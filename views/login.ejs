@@ -14,7 +14,7 @@
 <% if (messages.success) { %>
 <p style="color:green"><%- messages.success %></p>
 <% } %>
-<form action="/authentication" method="post" name="form1">
+<form action="/account/authentication" method="post" name="form1">
 <div class="form-group">
 <label for="exampleInputEmail1">Email</label>
 <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="">
@@ -24,7 +24,7 @@
 <input type="password" name="password" class="form-control" id="password" aria-describedby="emailHelp" placeholder="*********" value="">
 </div>
 <input type="submit" class="btn btn-primary" value="Add">
-<a href="/register" class="btn btn-success ml-2">Register Here</a>
+<a href="/account/register" class="btn btn-success ml-2">Register Here</a>
 </form>
 </body>
 </html>

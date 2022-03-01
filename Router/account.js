@@ -3,9 +3,9 @@ var router = express.Router();
 var connection  = require('../model/db');
 
 
-router.get('/', function(req, res){
+router.get('/', function(req, res, next){
   //res.write("<script>window.location=\"../login\"</script>");
-  res.render("index");
+  res.render("login");
 })
 //display login page
 router.get('/login', function(req, res, next){    
@@ -25,13 +25,13 @@ if(err) throw err
 // if user not found
 if (rows.length <= 0) {
 req.flash('error', 'Please correct enter email and Password!')
-res.redirect('/login')
+res.redirect('/account/login')
 }
 else { // if user found
 // render to views/user/edit.ejs template file
 req.session.loggedin = true;
 var name = req.session.name;
-res.redirect('/home');
+res.redirect('/account/home');
 }            
 })
 })
@@ -78,13 +78,13 @@ if( !errors ) {   //No errors were found.  Passed Validation!
         } else {                
         req.flash('success', 'You have successfully signup!');
         res.write("<script>alert('success')</script>");
-        res.write("<script>window.location=\"../login\"</script>");
+        res.write("<script>window.location=\"/account/login\"</script>");
         }
         })
   } else {
     console.log("not new");
     res.write("<script>alert('already exist')</script>");
-res.write("<script>window.location=\"/register\"</script>");
+res.write("<script>window.location=\"/account/register\"</script>");
   }
   });
   console.log(email);
@@ -116,14 +116,14 @@ name: req.session.name,
 });
 } else {
 req.flash('success', 'Please login first!');
-res.redirect('/login');
+res.redirect('/account/login');
 }
 });
 // Logout user
 router.get('/logout', function (req, res) {
 req.session.destroy();
 req.flash('success', 'Login Again Here');
-res.redirect('/login');
+res.redirect('/account/login');
 });
 
 module.exports = router;

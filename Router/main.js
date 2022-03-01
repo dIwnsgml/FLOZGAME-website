@@ -1,9 +1,20 @@
 const express = require("express");
 const app = express();
-const mRouter = express.Router();
+var Router = express.Router();
 
-mRouter.get('/', (req, res) => {
+Router.get('/', (req, res) => {
   res.render("index");
 });
 
-module.exports = mRouter;
+Router.get('/community', function(req, res, next) {
+  if (req.session.loggedin) {
+  res.render('/community/main', {
+  name: req.session.name,     
+  });
+  } else {
+  res.write("<script>alert('Login First')</script>");
+  res.write("<script>window.location=\"/account/login\"</script>");
+  }
+});
+
+module.exports = Router;

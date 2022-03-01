@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 var Router = express.Router();
 
-Router.get('/games', (req, res) => {
+Router.get('/', (req, res) => {
   res.render('index')
 });
 

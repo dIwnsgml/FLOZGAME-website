@@ -13,14 +13,13 @@ const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const connection = require("./model/db");
 
-const mRouter = require("./Router/main");
-const authRouter = require("./Router/auth");
+const mainRouter = require("./Router/main");
+const accountRouter = require("./Router/account");
 const gameRouter = require("./Router/game");
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
-//app.use('/', mRouter);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -37,10 +36,11 @@ app.use(session({
  
 app.use(flash());
 app.use(expressValidator());
- 
-app.use('/account', authRouter);
-//app.use('/auth', authRouter); 
+
+app.use('/', mainRouter);
+app.use('/account', accountRouter);
 app.use('/games', gameRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
