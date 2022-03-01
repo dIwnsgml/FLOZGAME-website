@@ -1,0 +1,18 @@
+          <!-- <div class="game-name">Cube</div>
+          <div class="img">
+            <img src="../img/games/cube.jpg" alt="CUBE">
+            <p>d</p>
+          </div>
+          <a class="btn" href="../games/Cube.exe" download>Download</a>
+          <div class="game-description">
+            <p>Cube Slider, our debut work, follows a typical run game.<br/>
+              However, we approached the game in a new way.<br/>
+              Rather than making the level consisted of radnomized obstacles, we used handmade design.<br/>
+              This kind if approach could results in laclking diversity in gameplay but this game doesnt.<br/> 
+              With really fast-paced gameplay and stylish physical effect, the game doesn't feel repetitive or boring<br/> 
+              Rather, the levels gives the feeling of learning every positions of obstacles.<br/>
+              Thus, high color contrast and many other bold stylic choices, the game differentiates itself from other similar games.
+            </p>
+          </div> -->
+
+linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)),

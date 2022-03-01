@@ -1,0 +1,25 @@
+<html>
+<head>
+	<style type="text/css">
+		body { background-color: #fff; padding: 0 20px; color:#000; font: 13px/18px Arial, sans-serif; }
+		a { color: #360; }
+		h3 { padding-top: 20px; }
+		ol { margin:5px 0 15px 16px; padding:0; list-style-type:square; }
+	</style>
+</head>
+
+<body>
+	<div id="mediaplayer">JW Player goes here</div>
+	<script type="text/javascript" src="http://devs.ssgstar.com:8080/player/jwplayer.js"></script>
+	<script type="text/javascript">
+		jwplayer("mediaplayer").setup({
+			flashplayer: "http://devs.ssgstar.com:8080/player/player.swf",
+			file: "http://devs.ssgstar.com:8080/player/video.mp4",
+			image: "http://devs.ssgstar.com:8080/player/preview.jpg"
+		});
+	</script>
+</body>
+</html>
+<!--
+<object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' width='640' height='480' id='single1' name='single1'><param name='movie' value='http://devs.ssgstar.com/player/video.mp4'>
+-->
