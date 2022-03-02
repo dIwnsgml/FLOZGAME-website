@@ -21,7 +21,7 @@ router.post('/authentication', function(req, res, next) {
 var email = req.body.email;
 var password = req.body.password;
 connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], function(err, rows, fields) {
-if(err) throw err
+//if(err) throw err
 // if user not found
 if (rows.length <= 0) {
 req.flash('error', 'Please correct enter email and Password!')
@@ -31,7 +31,7 @@ else { // if user found
 // render to views/user/edit.ejs template file
 req.session.loggedin = true;
 var name = req.session.name;
-res.redirect('/account/home');
+res.redirect('/');
 }            
 })
 })
@@ -122,8 +122,8 @@ res.redirect('/account/login');
 // Logout user
 router.get('/logout', function (req, res) {
 req.session.destroy();
-req.flash('success', 'Login Again Here');
-res.redirect('/account/login');
+//req.flash('success', 'Login Again Here');
+res.redirect('/');
 });
 
 module.exports = router;
