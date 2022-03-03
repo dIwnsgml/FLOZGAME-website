@@ -73,6 +73,18 @@ header .main-menu .item:hover .item__name {
   border-radius: 6px 6px 0 0;
   transition: background-color .5s ;
 }
+
+header .main-menu .item .item__name a{
+  color: #323232;
+}
+
+header .main-menu .item:hover .item__name a{
+  background-color: #323232;
+  color: white;
+  border-radius: 6px 6px 0 0;
+  transition: background-color .5s ;
+}
+
 header .main-menu .item .item__contents {
   width: 100%;
   position: fixed;
@@ -336,4 +348,43 @@ footer .inner .logo img{
   position:relative;
   left: calc(50% - 50px);
   bottom: 10px;
+}
+
+@media (max-width: 1000px) {
+  header h1 {
+    font-size: 25px;
+  }
+
+  header .logo img {
+    width: 50px;
+    height: 50px;
+    margin-top: 20px;
+  }
+
+  header .main-menu .item .item__name {
+    font-size: 12px;
+  }
+
+  .games .inner .container .box{
+    height: 15px;
+  }
+  .games .inner .container .box .btn .more{
+    height: 30px;
+    font-size: 10px;
+  }
+  .games .inner .container .box .btn .download{
+    height: 30px;
+    font-size: 10px;
+  }
+  footer .inner .container2 .container2-el{
+    font-size: 8px;
+  }
+  footer .inner .container2 .container2-el a{
+    font-size: 12px;
+    text-align: center;
+  }
+  footer .inner .logo img{
+    width: 60px;
+    left: calc(50% - 30px);
+  }
 }
