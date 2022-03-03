@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
+<head>
   <%- include("./elements/head");%>
+  <link rel="stylesheet" href="./main.css" />
+</head>
 <body>
   <%- include("./elements/header");%>
   <!-- Slider main container -->
@@ -114,22 +117,6 @@
       </div>
     </div>
   </div>
-  <footer>
-    <div class="inner">
-      <ul class = "container1">
-        <li class = "container1-el"><a href = "./index.html">SUPPORT</a></li>
-        <li class = "container1-el"><a href = "./index.html">ABOUT FLOZ</a></li>
-        <li class = "container1-el"><a href = "./index.html">CAREERS</a></li>
-      </ul>
-      <ul class = "container2">
-        <li class = "container2-el"><a href = "./index.html">BUSINESS OPPORTUNITIES</a></li>
-        <li class = "container2-el"><a href = "./index.html">INVESTOR RELATIONS</a></li>
-        <li class = "container2-el"><a href = "./index.html">PRIVACY POLICY</a></li>
-      </ul>
-      <div class="logo">
-        <img src="./img/floz-white.png" alt="FLOZ">
-      </div>
-    </div>
-  </footer>
+  <%- include("./elements/footer")%>
 </body>
 </html>

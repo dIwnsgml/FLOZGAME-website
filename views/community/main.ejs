@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+<header>
+  <%- include("../elements/head");%>
+  <link rel="stylesheet" href="./main.css" />
+  <link rel="stylesheet" href="./community.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap" rel="stylesheet">
+</header>
 <body>
-  <h1>d</h1>
+  <%- include("../elements/header");%>
+  <div class="main">
+    <div class="f"></div>
+    <div class="text">
+      <h1>Take part in exciting Events</h1>
+      <p>on the FLOZ oficial community!</p>
+      <a href=""><i class="fa-solid fa-message"></i> Go to Community</a>
+      <ul>
+        <li><a href="https://www.youtube.com"><i class="fa-brands fa-facebook-f s"></i></a></li>
+        <li><a href=""><i class="fa-brands fa-discord s"></i></a></li>
+        <li><a href=""><i class="fa-brands fa-twitter s"></i></a></li>
+        <li><a href=""><i class="fa-brands fa-instagram s"></i></a></li>
+      </ul>
+    </div>
+  </div>
+  <%- include("../elements/footer");%>
 </body>
 </html>

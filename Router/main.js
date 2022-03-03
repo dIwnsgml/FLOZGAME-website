@@ -11,21 +11,25 @@ Router.get('/', function(req, res, next) {
   res.render('index', {
   button:"Logout",
   name: req.session.name,
-  path:"login"     
+  path:"account/logout"     
   });
   } else {
     res.render('index', {
       button:"Login",
       name: req.session.name, 
-      path:"logout"    
+      path:"account/login"    
       });
   }
   });
 
 Router.get('/community', function(req, res, next) {
   if (req.session.loggedin) {
-  res.render('community/main');
-  } else {
+    res.render('community/main', {
+      button:"Logout",
+      //name: req.session.name,
+      path:"account/logout"     
+      });
+      } else {
   res.write("<script>alert('Login First')</script>");
   res.write("<script>window.location=\"/account/login\"</script>");
   }

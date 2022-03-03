@@ -12,13 +12,16 @@ const flash = require("express-flash");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const connection = require("./model/db");
+const helmet = require("helmet");
 
+app.use(helmet());
 const mainRouter = require("./Router/main");
 const accountRouter = require("./Router/account");
 const gameRouter = require("./Router/game");
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
+
 
 
 app.use(logger('dev'));
@@ -31,7 +34,7 @@ app.use(session({
     secret: '123456cat',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 600000 }
+    cookie: { maxAge: 1000 * 60 * 20 }
 }))
  
 app.use(flash());
@@ -62,5 +65,6 @@ app.use(function(err, req, res, next) {
 app.listen(port, "127.0.0.1", () => {
   console.log(`Server running ${port}`);
 });
+app.use(helmet());
 
 module.exports = app;
