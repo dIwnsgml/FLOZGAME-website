@@ -6,32 +6,32 @@ var Router = express.Router();
   res.render("index");
 }); */
 
-Router.get('/', function(req, res, next) {
+Router.get('/', function (req, res, next) {
   if (req.session.loggedin) {
-  res.render('index', {
-  button:"Logout",
-  name: req.session.name,
-  path:"account/logout"     
-  });
+    res.render('index', {
+      button: "Logout",
+      name: req.session.name,
+      path: "account/logout"
+    });
   } else {
     res.render('index', {
-      button:"Login",
-      name: req.session.name, 
-      path:"account/login"    
-      });
+      button: "Login",
+      name: req.session.name,
+      path: "account/login"
+    });
   }
-  });
+});
 
-Router.get('/community', function(req, res, next) {
+Router.get('/community', function (req, res, next) {
   if (req.session.loggedin) {
     res.render('community/main', {
-      button:"Logout",
+      button: "Logout",
       //name: req.session.name,
-      path:"account/logout"     
-      });
-      } else {
-  res.write("<script>alert('Login First')</script>");
-  res.write("<script>window.location=\"/account/login\"</script>");
+      path: "account/logout"
+    });
+  } else {
+    res.write("<script>alert('Login First')</script>");
+    res.write("<script>window.location=\"/account/login\"</script>");
   }
 });
 

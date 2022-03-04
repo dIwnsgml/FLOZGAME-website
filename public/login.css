@@ -1,70 +1,58 @@
 @import url("elements/header.css");
 @import url("elements/footer.css");
-.main{
-  position: center center;
-  margin-bottom: 30px;
+
+.main {
+  margin-top: 130px;
 }
 
-.main .f{
-  background-image: url("/img/games/cube_el/cube1.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  height: 100vh;
-  filter: blur(4px);
+.main {
+  margin-top: 130px;
 }
 
-.main .text {
-  font-family: 'League Gothic', sans-serif;
-  text-align: center;
-  filter: blur(0px);
-  position: relative;
-  top: -50vh;
+.main > .inner{
+  width: 600px;
+  position: center;
+  height: calc(100vh - 345px);
 }
 
-.main .text h1{
-  font-size: 60px;
-  text-shadow: 3px 3px #808080;
+.main > .inner .fbox{
+  top: 50px;
+  width: 600px;
+  position: absolute;
+  border: solid #808080 2px;
 }
 
-.main .text p{
-  font-size: 40px;
-  text-shadow: 2px 2px #808080;
+.main > .inner .fbox .form-group{
+  margin-bottom: 10px;
 }
 
-.main .text a{
-  font-size: 40px;
-  padding: 7px;
-  color: white;
-  background-color: #28288c;
-  border-radius: 5px;
+.main > .inner form{
+  position: center;
+  width: 400px;
+  margin: 92px;
 }
 
-.main .text ul {
-  text-align: center;
+.main > .inner form input{
+  width: 200px;
+  height: 20px;
+  float: right;
 }
 
-.main .text ul li{
-  display: inline-block;
-  display: inline-block;
-  margin-top: 30px;
-  margin-right: 15px;
-  margin-left: 15px;
+.main > .inner form input:nth-child(3){
+  float: left;
+  margin-left: calc(50% - 50px);
+  margin-top: 40px;
 }
 
-.main .text ul a{
-  border-radius: 50%;
+.main > .inner form input.btn{
+  width: 100px;
+  height: 30px;
 }
 
-.main .text ul .s{
-  width: 50px;
-  height: 50px;
+.main > .inner a{
+  float: right;
+  margin: 10px;
 }
-
-a {
-  color: #333;
-}
-
 
 @media (max-width: 1000px) {
   header h1 {

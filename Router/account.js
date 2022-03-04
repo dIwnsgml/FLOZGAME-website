@@ -44,7 +44,9 @@ router.get('/login', function (req, res, next) {
   res.render('login', {
     title: 'Login',
     email: '',
-    password: ''
+    password: '',
+    path: 'account/login',
+    button: 'Login'
   })
 })
 //authenticate user
@@ -78,7 +80,9 @@ router.get('/register', function (req, res, next) {
     title: 'Registration Page',
     name: '',
     email: '',
-    password: ''
+    password: '',
+    button:"Login",
+    path:"account/login"
   })
 })
 // user registration
@@ -146,7 +150,10 @@ router.post('/post-register', function (req, res, next) {
       title: 'Registration Page',
       name: req.body.name,
       email: req.body.email,
-      password: ''
+      password: '',
+      button:"Login",
+      name: req.session.name, 
+      path:"account/login"
     })
   }
 })
