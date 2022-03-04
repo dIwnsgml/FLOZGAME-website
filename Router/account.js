@@ -5,26 +5,6 @@ const crypto = require("crypto");
 const util = require("util");
 const { response } = require('express');
 
-/* const randomBytesPromise = util.promisify(crypto.randomBytes);
-const pbkdf2Promise = util.promisify(crypto.pbkdf2);
-
-const createSalt = function(){
-  const buf = randomBytesPromise(64);
-
-  return buf.toString("base64");
-}; */
-
-/* const createHashedPassword = function(password){
-  const salt = createSalt();
-  const key = pbkdf2Promise(password, salt, 984316, 64, "sha512");
-  const hashedPassword = key.toString("base64");
-
-  return hashedPassword;
-}; */
-
-//console.log(createSalt());
-
-
 function hashTest(password) {
   var salt = crypto.randomBytes(32).toString('hex')
   return [salt, crypto.pbkdf2Sync(password, salt, 99097, 32, 'sha512').toString('hex')]
@@ -46,30 +26,34 @@ router.get('/login', function (req, res, next) {
     email: '',
     password: '',
     path: 'account/login',
-    button: 'Login'
+    button: 'Login',
   })
 })
 //authenticate user
 router.post('/authentication', function (req, res, next) {
   var email = req.body.email;
   var password = req.body.password;
-  var b = hashTest(password);
-  connection.query('SELECT * FROM users WHERE email = ?', [email], function (err, rows, fields, salt, results) {
+  connection.query('SELECT * FROM users WHERE email = ?', [email], function (err, rows, fields) {
     //if(err) throw err
     // if user not found
-    console.log(rows[0].salt, crypto.pbkdf2Sync(password, rows[0].salt, 99097, 32, 'sha512').toString('hex'), rows[0].password);
+    //console.log(rows[0].salt, crypto.pbkdf2Sync(password, rows[0].salt, 99097, 32, 'sha512').toString('hex'), rows[0].password);
+    if(rows.length <= 0){
+      res.write("<script>alert('No such user')</script>");
+        res.write("<script>window.location=\"/account/login\"</script>");
+    }else{
+      if (crypto.pbkdf2Sync(password, rows[0].salt, 99097, 32, 'sha512').toString('hex') == rows[0].password) {
 
-    if (crypto.pbkdf2Sync(password, rows[0].salt, 99097, 32, 'sha512').toString('hex') == rows[0].password) {
-
-      // if user found
-      // render to views/user/edit.ejs template file
-      req.session.loggedin = true;
-      var name = req.session.name;
-      res.redirect('/');
-    }
-    else {
-      req.flash('error', 'Please correct enter email and Password!')
-      res.redirect('/account/login')
+        // if user found
+        // render to views/user/edit.ejs template file
+        req.session.loggedin = true;
+        var name = req.session.name;
+        res.redirect('/');
+      }
+      else {
+        //req.flash('error', 'Please correct enter email and Password!')
+        res.write("<script>alert('No such user')</script>");
+        res.write("<script>window.location=\"/account/login\"</script>");
+      }
     }
   })
 })
