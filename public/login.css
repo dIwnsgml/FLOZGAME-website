@@ -99,4 +99,19 @@
     width: 60px;
     left: calc(50% - 30px);
   }
+  .main > .inner{
+    width: 100%;
+  }
+  .main > .inner .fbox{
+    width: 90%;
+    margin-left: 5%;
+  }
+  .main > .inner form{
+    position: center;
+    width: 150px;
+    margin: 92px;
+  }
+  .main > .inner form input{
+    width: 150px;
+  }
 }
