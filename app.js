@@ -29,7 +29,7 @@ app.use(helmet.hidePoweredBy());
 
 const mainRouter = require("./Router/main");
 const accountRouter = require("./Router/account");
-const gameRouter = require("./Router/game");
+const gameRouter = require("./Router/games");
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');

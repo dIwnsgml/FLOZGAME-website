@@ -111,6 +111,11 @@ header .main-menu .item .item__contents .contents__menu > ul > li h4 {
   font-size: 14px;
   color: #fff;
 }
+
+header .main-menu .item .item__contents .contents__menu > ul > li h4 a{
+  font-size: 14px;
+  color: #fff;
+}
 header .main-menu .item .item__contents .contents__menu > ul > li ul li {
   padding: 5px 0;
   font-size: 12px;

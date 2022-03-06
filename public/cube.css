@@ -1,0 +1,141 @@
+@import url("elements/header.css");
+@import url("elements/footer.css");
+
+.floating-area {
+  position:relative;
+  top: 120px;
+  display: flex;
+  width: 100%;
+  height: calc(100vw * .3);
+  min-height: 200px;
+  background-image: url('../../img/games/cube_el/background.jpg');
+  background-position: center;
+/*   height: calc(7.5 / 13 * 100vw); */
+}
+.floating-area .float img{
+  opacity: 0;
+  position: absolute;
+  display: block;
+  left: 50%;
+  transform: translate(-50%);
+}
+.floating-area .float .road{
+  position: absolute;
+  width: 100%;
+  transition: 1s ease-out;
+  bottom: 0px;
+}
+.floating-area .float .cube{
+  position: absolute;
+  width: 10%;
+  top: 60%;
+  transition: 1s ease-out;
+}
+.middle {
+  position: relative;
+}
+.middle .detail{
+  position: relative;
+  top: 50px;
+}
+.middle .detail h1{
+  font-size: 20px;
+  font-family: 'Roboto';
+  font-weight: 900;
+}
+.middle .detail .container{
+  position: absolute;
+  width: 80vw;
+  background-color: rgb(56, 55, 55);
+  border-radius: 5px;
+}
+.middle .detail .container ul li{
+  color: whitesmoke;
+  float: left;
+  margin-right: 10vw;
+  margin-top: 10px;
+}
+.middle .detail .container ul:nth-child(1){
+  color: whitesmoke;
+  float: left;
+  margin-left: 3.3vw;
+}
+.middle .detail .container ul li h1 {
+  color: gray;
+  font-family: 'Roboto';
+  font-weight: 900;
+}
+.middle .detail .container ul li h2 {
+  color: whitesmoke;
+  position: relative;
+  top: -10px;
+  font-family: 'Roboto';
+  font-weight: 900;
+}
+.middle .game-summary{
+  position: absolute;
+  top: 300px;
+}
+.middle .game-summary h1{
+  font-size: 20px;
+  font-family: 'Roboto';
+  font-weight:900;
+}
+.middle .game-summary .container{
+  background-color: rgb(56, 55, 55);
+  width: 80vw;
+  border-radius: 5px;
+  position: absolute;
+}
+.middle .game-summary .container .inner{
+  padding-top: 20px;
+  width : 90%;
+  padding-bottom: 20px;
+}
+.middle .game-summary .container p{
+  color: whitesmoke;
+  font-family: 'Roboto';
+}
+
+@media (max-width: 1000px) {
+  header h1 {
+    font-size: 25px;
+  }
+
+  header .logo img {
+    width: 50px;
+    height: 50px;
+    margin-top: 20px;
+  }
+
+  header .main-menu .item .item__name {
+    font-size: 12px;
+  }
+
+  .games .inner .container .box{
+    height: 15px;
+  }
+  .games .inner .container .box .btn .more{
+    height: 30px;
+    font-size: 10px;
+  }
+  .games .inner .container .box .btn .download{
+    height: 30px;
+    font-size: 10px;
+  }
+  footer .inner .container2 .container2-el{
+    font-size: 8px;
+  }
+  footer .inner .container2 .container2-el a{
+    font-size: 12px;
+    text-align: center;
+  }
+  footer .inner .logo img{
+    width: 60px;
+    left: calc(50% - 30px);
+  }
+  .middle {
+    height: 150px;
+    margin-left: 5vw;
+  }
+}

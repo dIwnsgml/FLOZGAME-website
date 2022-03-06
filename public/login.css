@@ -12,7 +12,7 @@
 .main > .inner{
   width: 600px;
   position: center;
-  height: calc(100vh - 345px);
+  height: calc(100vh - 150px);
 }
 
 .main > .inner .fbox{
