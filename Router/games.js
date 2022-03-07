@@ -5,7 +5,7 @@ const Router = express.Router();
 var a;
 var count = 0;
 Router.get('/cube', (req, res) => {
-  conn.query('SELECT * FROM comm', function(err, rows, fields) {
+  conn.query('SELECT * FROM comment', function(err, rows, fields) {
     for(var i = 0; rows[i] != a; i++){
       count++;
     }
@@ -15,7 +15,8 @@ Router.get('/cube', (req, res) => {
         path: 'exit/logout',
         button: 'Logout',
         comment: '',
-        ong: rows[a]
+        ong: {rows},
+        n: count,
       });
     } else {
       res.render('games/cube', {
@@ -40,7 +41,7 @@ Router.post('/cube/comment', (req, res) => {
   }
   console.log(co);
   //console.log(req.cookies['names'], req.body.comment, req.body.rate, today.toLocaleDateString('en-US'));
-  conn.query('INSERT INTO comm SET ?', co, function(err, rows, fields) {
+  conn.query('INSERT INTO comment SET ?', co, function(err, rows, fields) {
     console.log(co);
     res.redirect('/games/cube');
   })

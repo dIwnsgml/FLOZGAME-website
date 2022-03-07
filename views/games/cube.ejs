@@ -88,10 +88,20 @@
                       <ul>
                         <% for(var i = 0; i < n; i++){%>
                             <li>
-                                <div class="name"><%=ong.rows[i].name%></div>
-                                <div class="time"><%=ong.rows[i].time%></div>
-                                <div class="rate"><%=ong.rows[i].rate%></div>
-                                <div class="comment"><%=ong.rows[i].comment%></div>
+                                <div class="in">
+                                    <div class="name"><%=ong.rows[i].name%></div>
+                                    <div class="time"><%=ong.rows[i].time%></div>
+                                    <div class="rate">
+                                        <% for(var j = 0; j < ong.rows[i].rate; j++){%>
+                                            <i class="fa-solid fa-star"></i>
+                                        <%}%>
+                                        <% for(var d = 0; d < 5 - ong.rows[i].rate; d++){%>
+                                            <i class="fa-regular fa-star"></i>
+                                        <%}%>
+                                    <%=ong.rows[i].rate%>
+                                    </div>
+                                    <div class="comment"><%=ong.rows[i].comment%></div>
+                                </div>
                             </li>
                         <%}%>
                       </ul>

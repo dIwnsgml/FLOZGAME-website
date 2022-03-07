@@ -143,11 +143,32 @@ html, header {
   float: right;
   width: 45%;
 }
-.comments ul li {
-  width: 300px;
+.comments ul li .in{
+  float: left;
+  width: 70%;
+  margin: 30px;
+  color: #fafafa;
+  background-color: black;
+  padding: 10px;
+  border-radius: 10px;
+  height: 40px;
+  font-weight: 600;
+}
+.comments ul li .in .name{
+  float: left;
+}
+.comments ul li .in .time{
+  float: left;
+}
+.comments ul li .in .rate{
+  float: right;
+}
+.comments ul li .in .comment{
+position: absolute;
+margin-top: 20px;
 }
 footer {
-  top: 900px;
+  top: 1300px;
 }
 
 @media (max-width: 1000px) {
