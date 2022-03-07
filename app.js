@@ -13,6 +13,7 @@ const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const connection = require("./model/db");
 const helmet = require("helmet");
+const secret = '123456cat';
 
 app.use(helmet.permittedCrossDomainPolicies());
 app.use(helmet.referrerPolicy());
@@ -43,7 +44,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(session({
-  secret: '123456cat',
+  secret: secret,
   resave: false,
   saveUninitialized: true,
   cookie: { maxAge: 1000 * 60 * 20 }

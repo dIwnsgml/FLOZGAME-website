@@ -34,6 +34,10 @@
 .middle {
   position: relative;
 }
+.middle .inner{
+  width: 80vw;
+  left: 5vw;
+}
 .middle .detail{
   position: relative;
   top: 50px;
