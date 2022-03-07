@@ -1,65 +1,111 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <%- include("../elements/head");%>
-  <script defer src = "/js/cube.js"></script>
-  <link rel="stylesheet" href="/cube.css">
+        <script defer src="/js/cube.js"></script>
+        <link rel="stylesheet" href="/cube.css">
 </head>
-<body>
-  <%- include("../elements/header");%>
-  <div class="floating-area">
-      <div class="float">
-          <img src="/img/games/cube_el/road2.png" alt="" class = "road">
-      </div>
-      <div class="float">
-          <img src="/img/games/cube_el/cubel.jpg" alt="" class = "cube">
-      </div>
-  </div>
-  <div class="middle">
-      <div class="inner">
-          <div class="detail">
-              <h1>Details</h1>
-              <div class="container">
-                  <ul>
-                      <li>
-                          <div class = "genre">
-                              <h1>Genre</h1><br>
-                              <h2>Racing</h2>
-                          </div>
-                      </li>
-                      <li>
-                          <div class = "publisher">
-                              <h1>Publisher</h1><br>
-                              <h2>FlozGame</h2>
-                          </div>
-                      </li>
-                      <li>
-                          <div class="dev">
-                              <h1>Developer</h1><br>
-                              <h2>David Ko</h2>
-                          </div>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-          <div class="game-summary">
-              <h1>Game Summary</h1>
-              <div class="container">
-                  <div class="inner">
-                      <p>Cube Slider, David's debut work, follows typical run game. However, 
-                          he approached the genre in a new way. Rather than making the level cosistsed of randomized obstacles, he used handmade design.
-                           This kind of approach could results in lacking diversity in gameplay, 
-                           but this game doesn't. With really fast-paced gameplay and stylish physical effect,
-                            the game doesn't feel repetitive or boring. Rather, 
-                            the level gives the feeling of learning every positions of obstacles.
 
-                        Thus, high color contrast and many other bold stylistic choices, the game differentiates itself from other similar games.
-                        </p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  <%- include("../elements/footer");%>
+<body>
+<%- include("../elements/header");%>
+    <div class="floating-area">
+        <div class="float">
+            <img src="/img/games/cube_el/road2.png" alt="" class="road">
+        </div>
+        <div class="float">
+            <img src="/img/games/cube_el/cubel.jpg" alt="" class="cube">
+        </div>
+    </div>
+    <div class="middle">
+
+        <div class="detail">
+            <h1>Details</h1>
+            <div class="container">
+                <ul>
+                    <li>
+                        <div class="genre">
+                            <h1>Genre</h1><br>
+                            <h2>Racing</h2>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="publisher">
+                            <h1>Publisher</h1><br>
+                            <h2>FlozGame</h2>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dev">
+                            <h1>Developer</h1><br>
+                            <h2>David Ko</h2>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="game-summary">
+            <h1>Game Summary</h1>
+            <div class="container">
+                <div class="inner">
+                    <p>Cube Slider, David's debut work, follows typical run game. However,
+                        he approached the genre in a new way. Rather than making the level cosistsed of randomized
+                        obstacles, he used handmade design.
+                        This kind of approach could results in lacking diversity in gameplay,
+                        but this game doesn't. With really fast-paced gameplay and stylish physical effect,
+                        the game doesn't feel repetitive or boring. Rather,
+                        the level gives the feeling of learning every positions of obstacles.
+
+                        Thus, high color contrast and many other bold stylistic choices, the game differentiates
+                        itself from other similar games.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="two">
+            <div class="comments">
+                <h1>Comments</h1>
+                <a href="/account/login"><%= comment%></a>
+                <div class="container">
+                    <form action="/games/cube/comment" method="post" name="comment">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Rating</label>
+                          <select name="rate" id="rate">
+                            <option value=5>5</option>
+                            <option value=4>4</option>
+                            <option value=3>3</option>
+                            <option value=2>2</option>
+                            <option value="1">1</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Comment</label>
+                          <textarea name="comment" id="comment" cols="30" rows="3" placeholder="ong"></textarea>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Add">
+                        
+                      </form>
+                      <ul>
+                        <% for(var i = 0; i < n; i++){%>
+                            <li>
+                                <div class="name"><%=ong.rows[i].name%></div>
+                                <div class="time"><%=ong.rows[i].time%></div>
+                                <div class="rate"><%=ong.rows[i].rate%></div>
+                                <div class="comment"><%=ong.rows[i].comment%></div>
+                            </li>
+                        <%}%>
+                      </ul>
+                </div>
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="chart">
+                <h1>ong</h1>
+            </div>
+        </div>
+    </div>
+    <%- include("../elements/footer");%>
 </body>
+
 </html>

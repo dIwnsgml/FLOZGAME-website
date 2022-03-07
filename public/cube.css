@@ -1,6 +1,10 @@
 @import url("elements/header.css");
 @import url("elements/footer.css");
 
+html, header {
+  overflow-x: hidden;
+}
+
 .floating-area {
   position:relative;
   top: 120px;
@@ -34,13 +38,10 @@
 .middle {
   position: relative;
 }
-.middle .inner{
-  width: 80vw;
-  left: 5vw;
-}
 .middle .detail{
   position: relative;
-  top: 50px;
+  top: 100px;
+  left: 5vw;
 }
 .middle .detail h1{
   font-size: 20px;
@@ -49,7 +50,7 @@
 }
 .middle .detail .container{
   position: absolute;
-  width: 80vw;
+  width: 90vw;
   background-color: rgb(56, 55, 55);
   border-radius: 5px;
 }
@@ -79,6 +80,7 @@
 .middle .game-summary{
   position: absolute;
   top: 300px;
+  left: 5vw;
 }
 .middle .game-summary h1{
   font-size: 20px;
@@ -87,18 +89,65 @@
 }
 .middle .game-summary .container{
   background-color: rgb(56, 55, 55);
-  width: 80vw;
+  width: 90vw;
   border-radius: 5px;
   position: absolute;
 }
 .middle .game-summary .container .inner{
   padding-top: 20px;
-  width : 90%;
+
   padding-bottom: 20px;
+
 }
 .middle .game-summary .container p{
   color: whitesmoke;
   font-family: 'Roboto';
+}
+
+.two {
+  position: absolute;
+  top: 500px;
+  left: 5vw;
+  float: left;
+  width: 90%;
+}
+
+.middle .comments{
+  position: absolute;
+  float: left;
+  width: 50%;
+}
+.middle .comments h1{
+  font-size: 20px;
+  font-family: 'Roboto';
+  font-weight:900;
+}
+.middle .game-summary .container{
+  background-color: rgb(56, 55, 55);
+  width: 90vw;
+  border-radius: 5px;
+  position: absolute;
+}
+.middle .game-summary .container .inner{
+  padding-top: 20px;
+
+  padding-bottom: 20px;
+
+}
+.middle .game-summary .container p{
+  color: whitesmoke;
+  font-family: 'Roboto';
+}
+
+.middle .two .chart {
+  float: right;
+  width: 45%;
+}
+.comments ul li {
+  width: 300px;
+}
+footer {
+  top: 900px;
 }
 
 @media (max-width: 1000px) {
@@ -140,6 +189,5 @@
   }
   .middle {
     height: 150px;
-    margin-left: 5vw;
   }
 }

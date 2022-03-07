@@ -4,6 +4,7 @@ var connection = require('../model/db');
 const crypto = require("crypto");
 const util = require("util");
 const { response } = require('express');
+const { name } = require('ejs');
 
 function hashTest(password) {
   var salt = crypto.randomBytes(32).toString('hex')
@@ -31,9 +32,9 @@ router.get('/login', function (req, res, next) {
 })
 //authenticate user
 router.post('/authentication', function (req, res, next) {
-  var email = req.body.email;
+  var name = req.body.name;
   var password = req.body.password;
-  connection.query('SELECT * FROM users WHERE email = ?', [email], function (err, rows, fields) {
+  connection.query('SELECT * FROM users WHERE name = ?', [name], function (err, rows, fields) {
     //if(err) throw err
     // if user not found
     //console.log(rows[0].salt, crypto.pbkdf2Sync(password, rows[0].salt, 99097, 32, 'sha512').toString('hex'), rows[0].password);
@@ -45,8 +46,8 @@ router.post('/authentication', function (req, res, next) {
 
         // if user found
         // render to views/user/edit.ejs template file
+        res.cookie("names", req.body.name);
         req.session.loggedin = true;
-        var name = req.session.name;
         res.redirect('/');
       }
       else {
@@ -76,6 +77,7 @@ router.post('/post-register', function (req, res, next) {
   req.assert('email', 'A valid email is required').isEmail()  //Validate email
   var email = req.body.email;
   var password = req.body.password;
+  var name = req.body.name;
   var errors = req.validationErrors();
   var a = hashTest(password);
   console.log(a, a[0], a[1]);
@@ -91,6 +93,7 @@ router.post('/post-register', function (req, res, next) {
 
           //req.sanitize('password').escape().trim(),
         }
+        
         console.log(hashTest(password));
         console.log("passwd");
         connection.query('INSERT INTO users SET ?', user, function (err, result) {
