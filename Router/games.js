@@ -4,10 +4,12 @@ const app = express();
 const Router = express.Router();
 var a;
 var count = 0;
+var score = 0;
 Router.get('/cube', (req, res) => {
   conn.query('SELECT * FROM comments', function(err, rows, fields) {
     for(var i = 0; rows[i] != a; i++){
       count++;
+      score += rows[i].rate;
     }
     console.log(count)
     if(req.session.loggedin){
@@ -17,6 +19,7 @@ Router.get('/cube', (req, res) => {
         comment: '',
         ong: {rows},
         n: count,
+        avg_score: Math.round(score / count * 100) / 100,
       });
     } else {
       res.render('games/cube', {
@@ -25,11 +28,13 @@ Router.get('/cube', (req, res) => {
         comment: 'Login to leave a comment',
         ong: {rows},
         n: count,
+        avg_score: Math.round(score / count * 100) / 100,
       });
       console.log()
     }
   })
   count = 0;
+  score = 0;
 })
 Router.post('/cube/comment', (req, res) => {
   let today = new Date();

@@ -111,6 +111,17 @@
                 </ul>
             </div>
             <div class="chart">
+                <div class="inner">
+                    <h1>Rating</h1>
+                    <%= avg_score%>
+                    <% for(var j = 1; j < avg_score; j++){%>
+                        <i class="fa-solid fa-star"></i>
+                    <%}%>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <% for(var d = 1; d < 5 - avg_score; d++){%>
+                        <i class="fa-regular fa-star"></i>
+                    <%}%>
+                </div>
                 <h1>ong</h1>
             </div>
         </div>

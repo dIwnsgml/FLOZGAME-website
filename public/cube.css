@@ -198,10 +198,19 @@ position: relative;
 margin-top: 20px;
 left: -130px;
 }
+.chart {
+  background-color: rgb(56, 55, 55);
+  height: 200px;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+.chart > .inner {
+  color: #f5f5f5;
+  margin: 60px;
+}
 footer {
   top: 1500px;
 }
-
 @media (max-width: 1000px) {
   header h1 {
     font-size: 25px;
