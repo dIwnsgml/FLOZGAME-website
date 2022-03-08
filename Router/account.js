@@ -43,9 +43,6 @@ router.post('/authentication', function (req, res, next) {
         res.write("<script>window.location=\"/account/login\"</script>");
     }else{
       if (crypto.pbkdf2Sync(password, rows[0].salt, 99097, 32, 'sha512').toString('hex') == rows[0].password) {
-
-        // if user found
-        // render to views/user/edit.ejs template file
         res.cookie("names", req.body.name);
         req.session.loggedin = true;
         res.redirect('/');
@@ -58,9 +55,7 @@ router.post('/authentication', function (req, res, next) {
     }
   })
 })
-//display login page
 router.get('/register', function (req, res, next) {
-  // render to views/user/add.ejs
   res.render('register', {
     title: 'Registration Page',
     name: '',
@@ -70,7 +65,6 @@ router.get('/register', function (req, res, next) {
     path:"account/login"
   })
 })
-// user registration
 router.post('/post-register', function (req, res, next) {
   req.assert('name', 'Name is required').notEmpty()           //Validate name
   req.assert('password', 'Password is required').notEmpty()   //Validate password
@@ -123,7 +117,7 @@ router.post('/post-register', function (req, res, next) {
     });
     console.log(email);
   }
-  else {   //Display errors to user
+  else { 
     var error_msg = ''
     errors.forEach(function (error) {
       error_msg += error.msg + '<br>'
