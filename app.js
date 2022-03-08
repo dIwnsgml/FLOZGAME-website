@@ -57,22 +57,21 @@ app.use('/', mainRouter);
 app.use('/account', accountRouter);
 app.use('/games', gameRouter);
 
-// catch 404 and forward to error handler
+// catch 404
 app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
+  // 로컬에서만 에러
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  // 에러 보여줌
   res.status(err.status || 500);
   res.render(err);
 });
-// port must be set to 3000 because incoming http requests are routed from port 80 to port 8080
 
 
 app.listen(port, "127.0.0.1", () => {

@@ -9,3 +9,11 @@ setTimeout(function(){
 setTimeout(function(){
   cube.style='opacity: 1'
 },1600);
+const comment = document.querySelector(".comments form");
+const check = document.querySelector("header button a")
+console.log(check.href)
+if(check.href.search("login") == -1){
+  comment.style = "display: block;"
+} else {
+  comment.style = "display: none;"
+}

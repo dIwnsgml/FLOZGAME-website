@@ -129,10 +129,6 @@ router.post('/post-register', function (req, res, next) {
       error_msg += error.msg + '<br>'
     })
     req.flash('error', error_msg)
-    /**
-    * Using req.body.name 
-    * because req.param('name') is deprecated
-    */
     res.render('register', {
       title: 'Registration Page',
       name: req.body.name,
@@ -144,19 +140,7 @@ router.post('/post-register', function (req, res, next) {
     })
   }
 })
-//display home page
-router.get('/home', function (req, res, next) {
-  if (req.session.loggedin) {
-    res.render('home', {
-      title: "Dashboard",
-      name: req.session.name,
-    });
-  } else {
-    req.flash('success', 'Please login first!');
-    res.redirect('/account/login');
-  }
-});
-// Logout user
+
 router.get('/logout', function (req, res) {
   req.session.destroy();
   //req.flash('success', 'Login Again Here');

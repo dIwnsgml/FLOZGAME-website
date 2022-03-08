@@ -142,17 +142,47 @@ html, header {
 .middle .two .chart {
   float: right;
   width: 45%;
+
+}
+.comments form {
+  margin-left: 20px;
+  border: solid gray 2px;
+  border-radius: 10px;
+  padding: 20px;
+  padding-bottom: 80px;
+  width: 70%;
+}
+.comments .container #d{
+  position: relative;
+  top: -10px;
+}
+.comments .container textarea{
+  position: relative;
+  top: 70px;
+  left: -80px;
+  font-size: 15px;
+}
+.comments .container input{
+  position: relative;
+  top: 70px;
+  width: 50px;
+  font-size: 15px;
+
 }
 .comments ul li .in{
   float: left;
   width: 70%;
   margin: 30px;
   color: #fafafa;
-  background-color: black;
+  background-color: rgb(56, 55, 55);
   padding: 10px;
   border-radius: 10px;
   height: 40px;
   font-weight: 600;
+}
+.comments .container > ul {
+  height: 700px;
+  overflow-y: scroll;
 }
 .comments ul li .in .name{
   float: left;
@@ -164,11 +194,12 @@ html, header {
   float: right;
 }
 .comments ul li .in .comment{
-position: absolute;
+position: relative;
 margin-top: 20px;
+left: -130px;
 }
 footer {
-  top: 1300px;
+  top: 1500px;
 }
 
 @media (max-width: 1000px) {
