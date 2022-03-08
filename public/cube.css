@@ -177,12 +177,15 @@ html, header {
   background-color: rgb(56, 55, 55);
   padding: 10px;
   border-radius: 10px;
-  height: 40px;
+  height: 90px;
   font-weight: 600;
 }
 .comments .container > ul {
   height: 700px;
   overflow-y: scroll;
+}
+.comments .container > ul .in{
+  position: relative;
 }
 .comments ul li .in .name{
   float: left;
@@ -194,9 +197,8 @@ html, header {
   float: right;
 }
 .comments ul li .in .comment{
-position: relative;
-margin-top: 20px;
-left: -130px;
+  position: absolute;
+  margin-top: 40px;
 }
 .chart {
   background-color: rgb(56, 55, 55);
@@ -211,7 +213,7 @@ left: -130px;
 footer {
   top: 1500px;
 }
-@media (max-width: 1000px) {
+@media (max-width: 500px) {
   header h1 {
     font-size: 25px;
   }
@@ -248,7 +250,39 @@ footer {
     width: 60px;
     left: calc(50% - 30px);
   }
+  footer {
+    top: 2000px;
+  }
   .middle {
     height: 150px;
+  }
+  .two {
+    margin-top: 190px;
+  }
+  .two .comments{
+    width: 90vw;
+    float:none;
+    top: 450px;
+  }
+  .two .chart{
+    width: 90vw !important;
+    float:none !important;
+    margin-top: 100px;
+    padding-top: 50px;
+  }
+  .comments .container #d{
+    position: relative;
+    top: 10px;
+  }
+  .comments .container textarea{
+    left: 0px;
+  }
+  .comments ul li .in .comment{
+    position: relative;
+    margin-top: 20px;
+    left: 0px;
+  }
+  .comments ul li .in{
+    height: 100px;
   }
 }
