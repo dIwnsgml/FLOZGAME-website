@@ -7,10 +7,10 @@ var count = 0;
 var score = 0;
 Router.get('/cube', (req, res) => {
   conn.query('SELECT * FROM comments', function(err, rows, fields) {
-    for(var i = 0; rows[i] != a; i++){
+    /* for(var i = 0; rows[i] != a; i++){
       count++;
       score += rows[i].rate;
-    }
+    } */
     console.log(count)
     if(req.session.loggedin){
       res.render('games/cube', {

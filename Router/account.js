@@ -34,7 +34,9 @@ router.get('/login', function (req, res, next) {
 router.post('/authentication', function (req, res, next) {
   var name = req.body.name;
   var password = req.body.password;
-  connection.query('SELECT * FROM users WHERE name = ?', [name], function (err, rows, fields) {
+  console.log(name, [name])
+  connection.query('SELECT * FROM users WHERE name = ?', name, function (err, rows, fields) {
+    //console.log(rows)
     //if(err) throw err
     // if user not found
     //console.log(rows[0].salt, crypto.pbkdf2Sync(password, rows[0].salt, 99097, 32, 'sha512').toString('hex'), rows[0].password);

@@ -1,12 +1,12 @@
 const mysql = require("mysql");
 
 const conn = mysql.createConnection({
-  host: "database-1.c23sr7las3xg.us-east-2.rds.amazonaws.com",
-  user: "admin",
-  password: "junjason0228!!",
+  host: "localhost",
+  user: "root",
+  password: "ongchoong",
   database: "myapp",
-  port: "3306",
-  dialect: "mysql",
+  acquireTimeout :  100000,
+  connectTimeout :  100000,
 })
 
 conn.connect(function(error){
