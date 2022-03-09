@@ -82,7 +82,7 @@ router.post('/post-register', function (req, res, next) {
   }
 
   if (!errors) {   //No errors were found.  Passed Validation!
-    if ((filtering('fuck') + filtering('씨') + filtering('병신') + filtering('장애') + filtering('좆')) != -5) {
+    if ((filtering('fuck') + filtering('씨') + filtering('병신') + filtering('장애') + filtering('좆') + filtering('mom') + filtering('느금') + filtering('애미') + filtering('애비')) != -9) {
       console.log("o");
       res.write("<script>alert('Invalid word detected.')</script>");
       res.write("<script>window.location=\"/account/register\"</script>");
