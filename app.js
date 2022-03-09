@@ -20,7 +20,7 @@ app.use(helmet.referrerPolicy());
 app.use(helmet.xssFilter());
 app.use(helmet.hsts());
 app.use(helmet.ieNoOpen());
-app.use(helmet.noSniff());
+//app.use(helmet.noSniff());
 //app.use(helmet.contentSecurityPolicy());
 app.use(helmet.dnsPrefetchControl());
 app.use(helmet.expectCt());

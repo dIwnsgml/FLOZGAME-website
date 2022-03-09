@@ -26,7 +26,7 @@ router.get('/login', function (req, res, next) {
     title: 'Login',
     email: '',
     password: '',
-    path: 'account/login',
+    path: 'exit/login',
     button: 'Login',
   })
 })
@@ -62,7 +62,7 @@ router.get('/register', function (req, res, next) {
     email: '',
     password: '',
     button:"Login",
-    path:"account/login"
+    path:"exit/login"
   })
 })
 router.post('/post-register', function (req, res, next) {
@@ -78,33 +78,43 @@ router.post('/post-register', function (req, res, next) {
   if (!errors) {   //No errors were found.  Passed Validation!
     connection.query("SELECT * FROM users WHERE email = ?", email, function (err, result, field) {
       if (result.length == 0) {
-        console.log("new");
-        var user = {
-          name: req.sanitize('name').escape().trim(),
-          email: req.sanitize('email').escape().trim(),
-          password: a[1],
-          salt: a[0],
-
-          //req.sanitize('password').escape().trim(),
-        }
-        
-        console.log(hashTest(password));
-        console.log("passwd");
-        connection.query('INSERT INTO users SET ?', user, function (err, result) {
-          //if(err) throw err
-          if (err) {
-            req.flash('error', err)
-            // render to views/user/add.ejs
-            res.render('register', {
-              title: 'Registration Page',
-              name: '',
-              password: '',
-              email: ''
+        connection.query("SELECT * FROM users WHERE name = ?", name, function(err, result, field){
+          if(result.length == 0){
+            console.log("new");
+            var user = {
+              name: req.sanitize('name').escape().trim(),
+              email: req.sanitize('email').escape().trim(),
+              password: a[1],
+              salt: a[0],
+    
+              //req.sanitize('password').escape().trim(),
+            }
+            
+            console.log(hashTest(password));
+            console.log("passwd");
+            connection.query('INSERT INTO users SET ?', user, function (err, result) {
+              //if(err) throw err
+              if (err) {
+                req.flash('error', err)
+                // render to views/user/add.ejs
+                res.render('register', {
+                  title: 'Registration Page',
+                  name: '',
+                  password: '',
+                  email: ''
+                })
+              } else {
+                req.flash('success', 'You have successfully signup!');
+                res.write("<script>alert('success')</script>");
+                res.write("<script>window.location=\"/account/login\"</script>");
+              }
             })
           } else {
-            req.flash('success', 'You have successfully signup!');
-            res.write("<script>alert('success')</script>");
-            res.write("<script>window.location=\"/account/login\"</script>");
+            console.log("not new");
+            res.write("<script>alert('already exist')</script>");
+            res.write("<script>window.location=\"/account/register\"</script>");
+            /* res.redirect("/account/register");
+            req.flash('error', 'already exist'); */
           }
         })
       } else {
@@ -130,7 +140,7 @@ router.post('/post-register', function (req, res, next) {
       password: '',
       button:"Login",
       name: req.session.name, 
-      path:"account/login"
+      path:"exit/login"
     })
   }
 })
@@ -140,5 +150,12 @@ router.get('/logout', function (req, res) {
   //req.flash('success', 'Login Again Here');
   res.redirect('/');
 });
+router.get('/exit/login', (req, res) => {
+  res.redirect('/account/login');
+})
+
+router.get('/exit/logout', (req, res) => {
+  res.redirect('/account/logout');
+})
 
 module.exports = router;
