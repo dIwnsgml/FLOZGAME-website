@@ -80,12 +80,7 @@ router.post('/post-register', function (req, res, next) {
   var filtering = function(word){
     return name.indexOf(word)
   }
-  if((filtering('fuck') + filtering('씨') + filtering('병신') + filtering('장애') + filtering('좆'))!= -5){
-    console.log("o");
-    res.write("<script>alert('Invalid word detected.')</script>");
-    res.write("<script>window.location=\"/account/register\"</script>");
-  }
-  if (!errors) {   //No errors were found.  Passed Validation!
+  if ((filtering('fuck') + filtering('씨') + filtering('병신') + filtering('장애') + filtering('좆'))!= -5 && !errors) {   //No errors were found.  Passed Validation!
     connection.query("SELECT * FROM users WHERE email = ?", email, function (err, result, field) {
       if (result.length == 0) {
         connection.query("SELECT * FROM users WHERE name = ?", name, function(err, result, field){
