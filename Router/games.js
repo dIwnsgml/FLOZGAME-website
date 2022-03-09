@@ -7,10 +7,10 @@ var count = 0;
 var score = 0;
 Router.get('/cube', (req, res) => {
   conn.query('SELECT * FROM comments', function(err, rows, fields) {
-    /* for(var i = 0; rows[i] != a; i++){
+    for(var i = 0; rows[i] != a; i++){
       count++;
       score += rows[i].rate;
-    } */
+    }
     console.log(count)
     if(req.session.loggedin){
       res.render('games/cube', {
@@ -44,11 +44,31 @@ Router.post('/cube/comment', (req, res) => {
     time: today.toLocaleDateString('en-US'),
     rate: req.body.rate
   }
+  console.log(co.comment)
+
+  var filtering = function(word){
+    return co.comment.indexOf(word)
+  }
+  //console.log(filter.indexOf('씨'), filter.indexOf('병신'), filter.indexOf('장애'), filter.indexOf('좆'), filtering('fuck'))
+  var name = req.cookies['names']
   console.log(co);
   //console.log(req.cookies['names'], req.body.comment, req.body.rate, today.toLocaleDateString('en-US'));
-  conn.query('INSERT INTO comments SET ?', co, function(err, rows, fields) {
-    console.log(co);
-    res.redirect('/games/cube');
+  if((filtering('fuck') + filtering('씨') + filtering('병신') + filtering('장애') + filtering('좆'))!= -5){
+    console.log("o");
+    res.write("<script>alert('Invalid word detected.')</script>");
+    res.write("<script>window.location=\"/games/cube\"</script>");
+  }
+  conn.query('SELECT * FROM comments where name = ?', name, function(err, rows, fields){
+    console.log("ong")
+    if(rows.length <= 0){
+      conn.query('INSERT INTO comments SET ?', co, function(err, rows, fields) {
+        console.log(co);
+        res.redirect('/games/cube');
+      })
+    } else {
+      res.write("<script>alert('you have comment already')</script>");
+      res.write("<script>window.location=\"/games/cube\"</script>");
+    }
   })
 })
 
