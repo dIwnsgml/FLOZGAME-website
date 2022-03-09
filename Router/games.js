@@ -6,18 +6,18 @@ var a;
 var count = 0;
 var score = 0;
 Router.get('/cube', (req, res) => {
-  conn.query('SELECT * FROM comments', function(err, rows, fields) {
-    for(var i = 0; rows[i] != a; i++){
+  conn.query('SELECT * FROM comments', function (err, rows, fields) {
+    for (var i = 0; rows[i] != a; i++) {
       count++;
       score += rows[i].rate;
     }
     console.log(count)
-    if(req.session.loggedin){
+    if (req.session.loggedin) {
       res.render('games/cube', {
         path: 'exit/logout',
         button: 'Logout',
         comment: '',
-        ong: {rows},
+        ong: { rows },
         n: count,
         avg_score: Math.round(score / count * 100) / 100,
       });
@@ -26,7 +26,7 @@ Router.get('/cube', (req, res) => {
         path: 'exit/login',
         button: 'Login',
         comment: 'Login to leave a comment',
-        ong: {rows},
+        ong: { rows },
         n: count,
         avg_score: Math.round(score / count * 100) / 100,
       });
@@ -46,22 +46,22 @@ Router.post('/cube/comment', (req, res) => {
   }
   console.log(co.comment)
 
-  var filtering = function(word){
+  var filtering = function (word) {
     return co.comment.indexOf(word)
   }
   //console.log(filter.indexOf('씨'), filter.indexOf('병신'), filter.indexOf('장애'), filter.indexOf('좆'), filtering('fuck'))
   var name = req.cookies['names']
   console.log(co);
   //console.log(req.cookies['names'], req.body.comment, req.body.rate, today.toLocaleDateString('en-US'));
-  if((filtering('fuck') + filtering('씨') + filtering('병신') + filtering('장애') + filtering('좆'))!= -5){
+  if ((filtering('fuck') + filtering('씨') + filtering('병신') + filtering('장애') + filtering('좆')) != -5) {
     console.log("o");
     res.write("<script>alert('Invalid word detected.')</script>");
     res.write("<script>window.location=\"/games/cube\"</script>");
   }
-  conn.query('SELECT * FROM comments where name = ?', name, function(err, rows, fields){
+  conn.query('SELECT * FROM comments where name = ?', name, function (err, rows, fields) {
     console.log("ong")
-    if(rows.length <= 0){
-      conn.query('INSERT INTO comments SET ?', co, function(err, rows, fields) {
+    if (rows.length <= 0) {
+      conn.query('INSERT INTO comments SET ?', co, function (err, rows, fields) {
         console.log(co);
         res.redirect('/games/cube');
       })
@@ -93,7 +93,7 @@ Router.get('/exit/logout', (req, res) => {
     res.download('/app/test.txt')
     res.redirect('/games/cube');
   } else {
-    res.download('/app/test.txt')
+    res.download('/app/test.txt')sdsdss
     res.redirect('/games/cube');
   }
 }) */

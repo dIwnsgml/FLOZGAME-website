@@ -40,10 +40,10 @@ router.post('/authentication', function (req, res, next) {
     //if(err) throw err
     // if user not found
     //console.log(rows[0].salt, crypto.pbkdf2Sync(password, rows[0].salt, 99097, 32, 'sha512').toString('hex'), rows[0].password);
-    if(rows.length <= 0){
+    if (rows.length <= 0) {
       res.write("<script>alert('No such user')</script>");
-        res.write("<script>window.location=\"/account/login\"</script>");
-    }else{
+      res.write("<script>window.location=\"/account/login\"</script>");
+    } else {
       if (crypto.pbkdf2Sync(password, rows[0].salt, 99097, 32, 'sha512').toString('hex') == rows[0].password) {
         res.cookie("names", req.body.name);
         req.session.loggedin = true;
@@ -63,8 +63,8 @@ router.get('/register', function (req, res, next) {
     name: '',
     email: '',
     password: '',
-    button:"Login",
-    path:"exit/login"
+    button: "Login",
+    path: "exit/login"
   })
 })
 router.post('/post-register', function (req, res, next) {
@@ -77,30 +77,30 @@ router.post('/post-register', function (req, res, next) {
   var errors = req.validationErrors();
   var a = hashTest(password);
   console.log(a, a[0], a[1]);
-  var filtering = function(word){
+  var filtering = function (word) {
     return name.indexOf(word)
   }
 
   if (!errors) {   //No errors were found.  Passed Validation!
-    if((filtering('fuck') + filtering('씨') + filtering('병신') + filtering('장애') + filtering('좆'))!= -5){
+    if ((filtering('fuck') + filtering('씨') + filtering('병신') + filtering('장애') + filtering('좆')) != -5) {
       console.log("o");
       res.write("<script>alert('Invalid word detected.')</script>");
       res.write("<script>window.location=\"/account/register\"</script>");
-    }else{
+    } else {
       connection.query("SELECT * FROM users WHERE email = ?", email, function (err, result, field) {
         if (result.length == 0) {
-          connection.query("SELECT * FROM users WHERE name = ?", name, function(err, result, field){
-            if(result.length == 0){
+          connection.query("SELECT * FROM users WHERE name = ?", name, function (err, result, field) {
+            if (result.length == 0) {
               console.log("new");
               var user = {
                 name: req.sanitize('name').escape().trim(),
                 email: req.sanitize('email').escape().trim(),
                 password: a[1],
                 salt: a[0],
-      
+
                 //req.sanitize('password').escape().trim(),
               }
-              
+
               console.log(hashTest(password));
               console.log("passwd");
               connection.query('INSERT INTO users SET ?', user, function (err, result) {
@@ -139,7 +139,7 @@ router.post('/post-register', function (req, res, next) {
       console.log(email);
     }
   }
-  else { 
+  else {
     var error_msg = ''
     errors.forEach(function (error) {
       error_msg += error.msg + '<br>'
@@ -150,9 +150,9 @@ router.post('/post-register', function (req, res, next) {
       name: req.body.name,
       email: req.body.email,
       password: '',
-      button:"Login",
-      name: req.session.name, 
-      path:"exit/login"
+      button: "Login",
+      name: req.session.name,
+      path: "exit/login"
     })
   }
 })
@@ -169,5 +169,6 @@ router.get('/exit/login', (req, res) => {
 router.get('/exit/logout', (req, res) => {
   res.redirect('/account/logout');
 })
+
 
 module.exports = router;

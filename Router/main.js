@@ -35,4 +35,6 @@ Router.get('/community', function (req, res, next) {
   }
 });
 
+var asd= "d";
+
 module.exports = Router;
