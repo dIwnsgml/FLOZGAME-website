@@ -80,57 +80,64 @@ router.post('/post-register', function (req, res, next) {
   var filtering = function(word){
     return name.indexOf(word)
   }
-  if ((filtering('fuck') + filtering('씨') + filtering('병신') + filtering('장애') + filtering('좆'))!= -5 && !errors) {   //No errors were found.  Passed Validation!
-    connection.query("SELECT * FROM users WHERE email = ?", email, function (err, result, field) {
-      if (result.length == 0) {
-        connection.query("SELECT * FROM users WHERE name = ?", name, function(err, result, field){
-          if(result.length == 0){
-            console.log("new");
-            var user = {
-              name: req.sanitize('name').escape().trim(),
-              email: req.sanitize('email').escape().trim(),
-              password: a[1],
-              salt: a[0],
-    
-              //req.sanitize('password').escape().trim(),
-            }
-            
-            console.log(hashTest(password));
-            console.log("passwd");
-            connection.query('INSERT INTO users SET ?', user, function (err, result) {
-              //if(err) throw err
-              if (err) {
-                req.flash('error', err)
-                // render to views/user/add.ejs
-                res.render('register', {
-                  title: 'Registration Page',
-                  name: '',
-                  password: '',
-                  email: ''
-                })
-              } else {
-                req.flash('success', 'You have successfully signup!');
-                res.write("<script>alert('success')</script>");
-                res.write("<script>window.location=\"/account/login\"</script>");
+
+  if (!errors) {   //No errors were found.  Passed Validation!
+    if((filtering('fuck') + filtering('씨') + filtering('병신') + filtering('장애') + filtering('좆'))!= -5){
+      console.log("o");
+      res.write("<script>alert('Invalid word detected.')</script>");
+      res.write("<script>window.location=\"/account/register\"</script>");
+    }else{
+      connection.query("SELECT * FROM users WHERE email = ?", email, function (err, result, field) {
+        if (result.length == 0) {
+          connection.query("SELECT * FROM users WHERE name = ?", name, function(err, result, field){
+            if(result.length == 0){
+              console.log("new");
+              var user = {
+                name: req.sanitize('name').escape().trim(),
+                email: req.sanitize('email').escape().trim(),
+                password: a[1],
+                salt: a[0],
+      
+                //req.sanitize('password').escape().trim(),
               }
-            })
-          } else {
-            console.log("not new");
-            res.write("<script>alert('already exist')</script>");
-            res.write("<script>window.location=\"/account/register\"</script>");
-            /* res.redirect("/account/register");
-            req.flash('error', 'already exist'); */
-          }
-        })
-      } else {
-        console.log("not new");
-        res.write("<script>alert('already exist')</script>");
-        res.write("<script>window.location=\"/account/register\"</script>");
-        /* res.redirect("/account/register");
-        req.flash('error', 'already exist'); */
-      }
-    });
-    console.log(email);
+              
+              console.log(hashTest(password));
+              console.log("passwd");
+              connection.query('INSERT INTO users SET ?', user, function (err, result) {
+                //if(err) throw err
+                if (err) {
+                  req.flash('error', err)
+                  // render to views/user/add.ejs
+                  res.render('register', {
+                    title: 'Registration Page',
+                    name: '',
+                    password: '',
+                    email: ''
+                  })
+                } else {
+                  req.flash('success', 'You have successfully signup!');
+                  res.write("<script>alert('success')</script>");
+                  res.write("<script>window.location=\"/account/login\"</script>");
+                }
+              })
+            } else {
+              console.log("not new");
+              res.write("<script>alert('already exist')</script>");
+              res.write("<script>window.location=\"/account/register\"</script>");
+              /* res.redirect("/account/register");
+              req.flash('error', 'already exist'); */
+            }
+          })
+        } else {
+          console.log("not new");
+          res.write("<script>alert('already exist')</script>");
+          res.write("<script>window.location=\"/account/register\"</script>");
+          /* res.redirect("/account/register");
+          req.flash('error', 'already exist'); */
+        }
+      });
+      console.log(email);
+    }
   }
   else { 
     var error_msg = ''
