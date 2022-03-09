@@ -42,7 +42,8 @@ Router.post('/cube/comment', (req, res) => {
     name: req.cookies['names'],
     comment: req.body.comment,
     time: today.toLocaleDateString('en-US'),
-    rate: req.body.rate
+    rate: req.body.rate,
+    type: "cube",
   }
   console.log(co.comment)
 
