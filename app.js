@@ -31,6 +31,7 @@ app.use(helmet.hidePoweredBy());
 const mainRouter = require("./Router/main");
 const accountRouter = require("./Router/account");
 const gameRouter = require("./Router/games");
+const supportRouter = require("./Router/support");
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -56,6 +57,7 @@ app.use(expressValidator());
 app.use('/', mainRouter);
 app.use('/account', accountRouter);
 app.use('/games', gameRouter);
+app.use('/support', supportRouter);
 
 // catch 404
 app.use(function (req, res, next) {
