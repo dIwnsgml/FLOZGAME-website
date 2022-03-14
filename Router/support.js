@@ -1,6 +1,14 @@
 const express = require("express");
 const app = express();
 const Router = express.Router();
+const socket = require("socket.io");
+const http = require('http');
+const server = http.createServer(app);
+const io = require('socket.io')(server);
+
+io.sockets.on('connection', (socket) => {
+  console.log(socket);
+})
 
 Router.get('/', (req, res) => {
   if (req.session.loggedin) {

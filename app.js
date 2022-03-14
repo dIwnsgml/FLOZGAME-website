@@ -14,6 +14,13 @@ const mysql = require("mysql");
 const connection = require("./model/db");
 const helmet = require("helmet");
 const secret = '123456cat';
+const http = require('http');
+const server = http.createServer(app);
+const io = require('socket.io')(server);
+
+io.sockets.on('connection', (socket) => {
+  console.log(socket);
+})
 
 app.use(helmet.permittedCrossDomainPolicies());
 app.use(helmet.referrerPolicy());
@@ -76,7 +83,7 @@ app.use(function (err, req, res, next) {
 });
 
 
-app.listen(port, "127.0.0.1", () => {
+server.listen(port, "127.0.0.1", () => {
   console.log(`Server running ${port}`);
 });
 app.use(helmet());
