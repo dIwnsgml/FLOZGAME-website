@@ -1,14 +1,6 @@
 const express = require("express");
 const app = express();
 const Router = express.Router();
-const socket = require("socket.io");
-const http = require('http');
-const server = http.createServer(app);
-const io = require('socket.io')(server);
-
-io.sockets.on('connection', (socket) => {
-  console.log(socket);
-})
 
 Router.get('/', (req, res) => {
   if (req.session.loggedin) {
@@ -22,7 +14,27 @@ Router.get('/', (req, res) => {
       button: 'Login',
     })
   }
+  //io.to(socket.id).emit("message", data);
 })
+
+app.io = require('socket.io')();
+/*** Socket.IO 추가 ***/
+app.io.on('connection', function(socket){
+   
+  console.log("a user connected");
+  socket.broadcast.emit('hi');
+   
+  socket.on('disconnect', function(){
+      console.log('user disconnected');
+  });
+   
+  socket.on('chatMessage', function(msg){
+      console.log('message: ' + msg);
+      app.io.emit('chatMessage', msg);
+  }); 
+
+});
+
 
 Router.get('/exit/login', (req, res) => {
   res.redirect('/account/login');

@@ -15,12 +15,9 @@ const connection = require("./model/db");
 const helmet = require("helmet");
 const secret = '123456cat';
 const http = require('http');
-const server = http.createServer(app);
-const io = require('socket.io')(server);
 
-io.sockets.on('connection', (socket) => {
-  console.log(socket);
-})
+app.io = require('socket.io')();
+
 
 app.use(helmet.permittedCrossDomainPolicies());
 app.use(helmet.referrerPolicy());
@@ -38,7 +35,7 @@ app.use(helmet.hidePoweredBy());
 const mainRouter = require("./Router/main");
 const accountRouter = require("./Router/account");
 const gameRouter = require("./Router/games");
-const supportRouter = require("./Router/support");
+const supportRouter = require("./Router/support")(app.io);
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -83,7 +80,7 @@ app.use(function (err, req, res, next) {
 });
 
 
-server.listen(port, "127.0.0.1", () => {
+app.listen(port, "127.0.0.1", () => {
   console.log(`Server running ${port}`);
 });
 app.use(helmet());
