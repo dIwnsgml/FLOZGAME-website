@@ -3,9 +3,43 @@
 <head>
   <%- include("../elements/head");%>
   <link rel="stylesheet" href="/support.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <script defer src = "/js/support.js"></script>
 </head>
 <body>
-  <%- include("../elements/header");%>
+  <header>
+    <%- include("../elements/header");%>
+  </header>
+  <div class="main">
+    <div class="support">
+      <h1>FLOZ Support</h1>
+      <h2>What do you need help with?</h2>
+      <div class="login">
+        <h1>Sign in to your Steam account to review purchases, account status, and get personalized help.</h1>
+        <button>
+          <a href="/">Sign into FLOZ</a>
+        </button>
+        <button>
+          <a href="/">Create Account</a>
+        </button>
+      </div>
+    </div>
+    <div class="chat">
+      <div class="live">
+        <a href="">Start Chat</a>
+      </div>
+      <div class="email">
+        <h1>use email</h1>
+      </div>
+    </div>
+  </div>
+  <div class="room">
+    <div class="screen">
+      <form action="" method="POST">
+        <input type="text">
+      </form>
+    </div>
+  </div>
   <%- include("../elements/footer");%>
 </body>
 </html>

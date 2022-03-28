@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const Router = express.Router();
-
 Router.get('/', (req, res) => {
   if (req.session.loggedin) {
     res.render('support/support', {
@@ -17,9 +16,10 @@ Router.get('/', (req, res) => {
   //io.to(socket.id).emit("message", data);
 })
 
-app.io = require('socket.io')();
+//app.io = require('socket.io')();
 /*** Socket.IO 추가 ***/
-app.io.on('connection', function(socket){
+
+/* app.io.on('connection', function(socket){
    
   console.log("a user connected");
   socket.broadcast.emit('hi');
@@ -34,7 +34,7 @@ app.io.on('connection', function(socket){
   }); 
 
 });
-
+ */
 
 Router.get('/exit/login', (req, res) => {
   res.redirect('/account/login');

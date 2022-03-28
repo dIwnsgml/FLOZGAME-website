@@ -1,9 +1,6 @@
 const express = require("express");
 const app = express();
 var Router = express.Router();
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
-
 /* Router.get('/', (req, res) => {
   res.render("index");
 }); */
@@ -36,7 +33,7 @@ Router.get('/community', function (req, res, next) {
     res.write("<script>window.location=\"/account/login\"</script>");
   }
 });
-io.on('connect', (socket) => {   //연결이 들어오면 실행되는 이벤트
+/* io.on('connect', (socket) => {   //연결이 들어오면 실행되는 이벤트
   // socket 변수에는 실행 시점에 연결한 상대와 연결된 소켓의 객체가 들어있다.
   console.log(socket);
   //socket.emit으로 현재 연결한 상대에게 신호를 보낼 수 있다.
@@ -50,6 +47,6 @@ io.on('connect', (socket) => {   //연결이 들어오면 실행되는 이벤트
       // io.emit으로 연결된 모든 소켓들에 신호를 보낼 수 있다.
       io.emit('message', msg);
   });
-});
+}); */
 
 module.exports = Router;

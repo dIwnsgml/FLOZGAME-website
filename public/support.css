@@ -1,2 +1,55 @@
 @import url("elements/header.css");
 @import url("elements/footer.css");
+
+body > .main {
+  width: 50vw;
+  transform: translate(25vw);
+  position: relative;
+  top: 170px;
+}
+
+body > .main .support {
+}
+
+body > .main .support .login{
+  text-align: center;
+  border: solid 1px gray;
+}
+
+body > .main .support .login h1{
+  margin: 5px;
+}
+
+body > .main .support .login button:nth-child(2) {
+  margin: 15px 50px;
+  padding: 10px 50px;
+}
+
+body > .main .support .login button:nth-child(3) {
+  margin: 15px 50px;
+  padding: 10px 50px;
+}
+
+.chat {
+}
+
+.chat .live{
+
+}
+
+.chat .email{
+
+}
+
+.room {
+  position: fixed;
+  right: 20px;
+  bottom: 50px;
+  height: 500px;
+  border: solid 2px gray;
+  border-radius: 10px;
+}
+
+footer {
+  top: 1000px;
+}
