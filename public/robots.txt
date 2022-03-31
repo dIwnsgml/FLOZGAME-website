@@ -1,0 +1,6 @@
+Sitemap: http://flozgame.click/sitemap.xml
+User-agent: *
+Allow: /
+Allow: /account/login
+Allow: /account/register
+Disallow: /admin/

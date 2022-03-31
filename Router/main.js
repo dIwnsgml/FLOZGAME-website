@@ -21,6 +21,14 @@ Router.get('/', function (req, res, next) {
   }
 });
 
+Router.get('/robots.txt', (req, res) => {
+  res.render("robots.txt");
+});
+
+Router.get('/sitemap.xmal', (req, res) => {
+  res.render('sitemap.xml');
+});
+
 Router.get('/community', function (req, res, next) {
   if (req.session.loggedin) {
     res.render('community/main', {
