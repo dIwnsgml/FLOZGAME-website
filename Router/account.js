@@ -113,7 +113,9 @@ router.post('/post-register', function (req, res, next) {
                     name: '',
                     password: '',
                     email: ''
-                  })
+                  });
+                  res.write("<script>alert('error')</script>");
+                  res.write("<script>window.location=\"/account/register\"</script>");
                 } else {
                   req.flash('success', 'You have successfully signup!');
                   res.write("<script>alert('success')</script>");

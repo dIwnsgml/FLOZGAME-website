@@ -10,6 +10,18 @@
   <header>
     <%- include("../elements/header");%>
   </header>
+  <div class="modal">
+    <div class="top">
+      <h1>Admin is currently offline</h1>
+      <div class="circle"></div>
+      <button><i class="fa-solid fa-x"></i></button>
+    </div>
+    <form action="/support/chat" method = "POST" id = "form">
+      <textarea name="text" id="text" cols="30" rows="10"></textarea>
+      <input type= "submit" id = "submit" value = ""/>
+      <i class="fa-solid fa-paper-plane"></i>
+    </form>
+  </div>
   <div class="main">
     <div class="support">
       <h1>FLOZ Support</h1>
@@ -26,7 +38,7 @@
     </div>
     <div class="chat">
       <div class="live">
-        <a href="">Start Chat</a>
+        <button id = "chat">Start Chat</button>
       </div>
       <div class="email">
         <h1>use email</h1>

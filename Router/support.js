@@ -16,6 +16,10 @@ Router.get('/', (req, res) => {
   //io.to(socket.id).emit("message", data);
 })
 
+Router.post('/chat', (req, res) => {
+  res.redirect('/')
+})
+
 //app.io = require('socket.io')();
 /*** Socket.IO 추가 ***/
 
