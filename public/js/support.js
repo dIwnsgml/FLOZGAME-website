@@ -28,7 +28,6 @@ btn_chat.addEventListener('click', () => {
     btn_submit.addEventListener('click', () => {
       socket.emit('message', message.value);
       socket.on('message', (res) => {
-        console.log(res);
       });
     })
 })

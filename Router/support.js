@@ -1,7 +1,24 @@
 const express = require("express");
-const app = express();
 const Router = express.Router();
 Router.get('/', (req, res) => {
+  var io = req.app.get('socketio');
+  io.on('connection', (socket) => {
+    //var room = req.session.name;
+    var room = "a";
+    socket.on('discconect', () => {
+      console.log("disconnected");
+    })
+    socket.emit('usercount', io.engine.clientsCount);
+    // on 함수로 이벤트를 정의해 신호를 수신할 수 있다.
+    socket.on('message', (msg) => {
+        io.emit('message', msg);
+        console.log(msg);
+    });
+
+    socket.on('join', (requsetData) => {
+      socket.join(room)
+    })
+  });
   if (req.session.loggedin) {
     res.render('support/support', {
       path: 'exit/logout',

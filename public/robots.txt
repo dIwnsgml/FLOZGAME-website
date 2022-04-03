@@ -1,4 +1,4 @@
-Sitemap: http://flozgame.click/sitemap.xml
+Sitemap: https://flozgame.click/sitemap.xml
 User-agent: *
 Allow: /
 Allow: /account/login
