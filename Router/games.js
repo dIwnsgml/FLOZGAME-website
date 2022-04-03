@@ -14,7 +14,7 @@ Router.get('/cube', (req, res) => {
     console.log(count)
     if (req.session.loggedin) {
       res.render('games/cube', {
-        path: 'exit/logout',
+        path: '/account/logout',
         button: 'Logout',
         comment: '',
         ong: { rows },
@@ -23,7 +23,7 @@ Router.get('/cube', (req, res) => {
       });
     } else {
       res.render('games/cube', {
-        path: 'exit/login',
+        path: '/account/login',
         button: 'Login',
         comment: 'Login to leave a comment',
         ong: { rows },
@@ -73,13 +73,6 @@ Router.post('/cube/comment', (req, res) => {
   })
 })
 
-Router.get('/exit/login', (req, res) => {
-  res.redirect('/account/login');
-})
-
-Router.get('/exit/logout', (req, res) => {
-  res.redirect('/account/logout');
-})
 
 /* Router.get('/cube', (req,res)=>{
   res.render('test');

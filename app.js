@@ -64,7 +64,24 @@ app.use('/account', accountRouter);
 app.use('/games', gameRouter);
 app.use('/support', supportRouter);
 
+/* io.on('connection', (socket) => {
+  //var room = req.session.name;
+  socket.on('discconect', () => {
+    console.log("disconnected");
+  })
+  socket.emit('usercount', io.engine.clientsCount);
+  // on 함수로 이벤트를 정의해 신호를 수신할 수 있다.
+  socket.on('message', (msg) => {
+    var room = msg.room;
+      io.emit('message', msg);
+      console.log(msg);
+      console.log(room);
+  });
 
+  socket.on('join', (requsetData) => {
+    socket.join(room)
+  })
+}); */
 
 // catch 404
 app.use(function (req, res, next) {
@@ -82,7 +99,7 @@ app.use(function (err, req, res, next) {
   res.render(err);
 });
 
-
+//172.31.13.110
 server.listen(port, "127.0.0.1", () => {
   console.log(`Server running ${port}`);
 });

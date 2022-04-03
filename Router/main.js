@@ -10,13 +10,13 @@ Router.get('/', function (req, res, next) {
     res.render('index', {
       button: "Logout",
       name: req.session.name,
-      path: "account/logout"
+      path: "/account/logout"
     });
   } else {
     res.render('index', {
       button: "Login",
       name: req.session.name,
-      path: "account/login"
+      path: "/account/login"
     });
   }
 });

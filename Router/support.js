@@ -1,32 +1,35 @@
 const express = require("express");
 const Router = express.Router();
+const connection = require('../model/db');
+
+
 Router.get('/', (req, res) => {
   var io = req.app.get('socketio');
   io.on('connection', (socket) => {
-    //var room = req.session.name;
-    var room = "a";
+
+    socket.join('a');
+
     socket.on('discconect', () => {
       console.log("disconnected");
     })
-    socket.emit('usercount', io.engine.clientsCount);
-    // on 함수로 이벤트를 정의해 신호를 수신할 수 있다.
-    socket.on('message', (msg) => {
-        io.emit('message', msg);
-        console.log(msg);
-    });
 
-    socket.on('join', (requsetData) => {
-      socket.join(room)
-    })
+    socket.emit('usercount', io.engine.clientsCount);
+
+    socket.on('message', (id, msg) => {
+      socket.to(id).emit('message', socket.id, msg);
+      console.log(msg, socket.id);
+    });
   });
   if (req.session.loggedin) {
+    var name = req.session.name;
     res.render('support/support', {
-      path: 'exit/logout',
+      path: '/account/logout',
       button: 'Logout',
+      name: name,
     });
   } else {
     res.render('support/support', {
-      path: 'exit/login',
+      path: '/account/login',
       button: 'Login',
     })
   }
@@ -56,13 +59,4 @@ Router.post('/chat', (req, res) => {
 
 });
  */
-
-Router.get('/exit/login', (req, res) => {
-  res.redirect('/account/login');
-})
-
-Router.get('/exit/logout', (req, res) => {
-  res.redirect('/account/logout');
-})
-
 module.exports = Router;

@@ -12,26 +12,6 @@ btn_close_chat.addEventListener('click', () => {
     check --;
 })
 
-btn_chat.addEventListener('click', () => {
-  var socket = io();
-  socket.on('usercount', (count) => {
-  console.log(count);
-  });
-  
-    if(check == 0){
-      modal.style = "display: block;";
-      check ++;
-    } else {
-      modal.style = "display: none;";
-      check --;
-    }
-    btn_submit.addEventListener('click', () => {
-      socket.emit('message', message.value);
-      socket.on('message', (res) => {
-      });
-    })
-})
-
 //window.open("youtube.com", "ong", "width = 500px, height = 100px;");
 // 메시지 수신시 HTML에 메시지 내용 작성
 /* socket.on('message', (msg) => {

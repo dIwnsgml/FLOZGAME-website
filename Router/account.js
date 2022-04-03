@@ -26,7 +26,7 @@ router.get('/login', function (req, res, next) {
     title: 'Login',
     email: '',
     password: '',
-    path: 'exit/login',
+    path: '/account/login',
     button: 'Login',
   })
 })
@@ -64,7 +64,7 @@ router.get('/register', function (req, res, next) {
     email: '',
     password: '',
     button: "Login",
-    path: "exit/login"
+    path: "/account/login"
   })
 })
 router.post('/post-register', function (req, res, next) {
@@ -154,7 +154,7 @@ router.post('/post-register', function (req, res, next) {
       password: '',
       button: "Login",
       name: req.session.name,
-      path: "exit/login"
+      path: "/account/login"
     })
   }
 })
@@ -164,13 +164,5 @@ router.get('/logout', function (req, res) {
   //req.flash('success', 'Login Again Here');
   res.redirect('/');
 });
-router.get('/exit/login', (req, res) => {
-  res.redirect('/account/login');
-})
-
-router.get('/exit/logout', (req, res) => {
-  res.redirect('/account/logout');
-})
-
 
 module.exports = router;
