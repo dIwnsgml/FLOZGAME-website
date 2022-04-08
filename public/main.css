@@ -1,5 +1,9 @@
 @import url("elements/header.css");
 @import url("elements/footer.css");
+#user_name {
+  display: none;
+}
+
 .swiper {
   overflow: hidden;
   width: 100%;

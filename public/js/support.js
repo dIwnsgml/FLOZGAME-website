@@ -5,11 +5,39 @@ const message = document.querySelector("#text");
 const btn_close_chat = document.querySelector(".modal .top button i");
 const form = document.querySelector("#form");
 
+console.log(btn_submit);
 let check = 0;
 
-btn_close_chat.addEventListener('click', () => {
+btn_chat.addEventListener('click', () => {
+
+  if(check == 0){
+    modal.style = "display: block;";
+    check ++;
+  } else {
     modal.style = "display: none;";
     check --;
+  }
+
+  var socket = io({autoConnect: false});
+  var username = document.cookie.split(';')[1].split('=')[1];
+  console.log(socket.id)
+  socket.connect();
+  console.log(socket.id)
+  var room = (document.cookie.split(';')[1].split('=')[1])
+  socket.emit('join', room);
+  btn_submit.addEventListener('click', () => {
+    console.log(socket.id)
+    var msg = message.value;
+    socket.emit('message', msg);
+    console.log(msg);
+  })
+
+  btn_close_chat.addEventListener('click', () => {
+    modal.style = "display: none;";
+    check --;
+    socket.emit("disconnect");
+    socket.leave("someRoom")
+  })
 })
 
 //window.open("youtube.com", "ong", "width = 500px, height = 100px;");

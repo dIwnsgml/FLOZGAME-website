@@ -4,6 +4,7 @@
   <%- include("../elements/head");%>
   <link rel="stylesheet" href="/support.css">
   <script src="/socket.io/socket.io.js"></script>
+  <script defer src="/js/support.js"></script>
 </head>
 <body>
   <header>
@@ -52,27 +53,5 @@
     </div>
   </div>
   <%- include("../elements/footer");%>
-  <script src="/js/support.js"></script>
-  <script>
-    btn_chat.addEventListener('click', () => {
-      var socket = io();
-      socket.on('usercount', (count) => {
-      console.log(count);
-      });
-      
-        if(check == 0){
-          modal.style = "display: block;";
-          check ++;
-        } else {
-          modal.style = "display: none;";
-          check --;
-        }
-        btn_submit.addEventListener('click', () => {
-          var room = 'a'
-          socket.on('message', (room, message.value));
-          console.log(room, message.value)
-        })
-    })
-      </script>
 </body>
 </html>

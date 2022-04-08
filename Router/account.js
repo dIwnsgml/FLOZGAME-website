@@ -161,7 +161,7 @@ router.post('/post-register', function (req, res, next) {
 
 router.get('/logout', function (req, res) {
   req.session.destroy();
-  //req.flash('success', 'Login Again Here');
+  res.cookie('names', '',{maxAge: 0});
   res.redirect('/');
 });
 

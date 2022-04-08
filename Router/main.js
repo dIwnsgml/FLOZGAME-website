@@ -6,7 +6,7 @@ var Router = express.Router();
 }); */
 
 Router.get('/', function (req, res, next) {
-  if (req.session.loggedin) {
+  if (req.session.loggedin || typeof req.cookies['names'] != "undefined") {
     res.render('index', {
       button: "Logout",
       name: req.session.name,

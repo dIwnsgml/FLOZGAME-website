@@ -1,3 +1,9 @@
 CREATE TABLE IF NOT EXISTS `comm` ( `id` int(11) NOT NULL, `name` varchar(50) NOT NULL, `comment` varchar(600) NOT NULL, `time` varchar(100) NOT NULL, `rate` int(10) NOT NULL ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 ALTER TABLE `comment` ADD PRIMARY KEY (`id`);
 ALTER TABLE `comment` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+
+ALTER TABLE users ADD role VARCHAR(10) NOT NULL DEFAULT 'user' 
+
+UPDATE users SET role = 'admin' WHERE id = ?
+
+ ALTER TABLE users ADD chat VARCHAR(20);  

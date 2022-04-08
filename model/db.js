@@ -7,6 +7,7 @@ const conn = mysql.createConnection({
   database: "myapp",
   acquireTimeout :  100000,
   connectTimeout :  100000,
+  multipleStatements: true,
 })
 
 conn.connect(function(error){

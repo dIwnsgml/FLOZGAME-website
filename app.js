@@ -36,7 +36,8 @@ app.use(helmet.hidePoweredBy());
 const mainRouter = require("./Router/main");
 const accountRouter = require("./Router/account");
 const gameRouter = require("./Router/games");
-const supportRouter = require("./Router/support")//(app.io);
+const supportRouter = require("./Router/support");
+const adminRouter = require("./Router/admin");
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -53,7 +54,7 @@ app.use(session({
   secret: secret,
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 1000 * 60 * 20 }
+  cookie: { maxAge: 1000 * 60 * 10 }
 }))
 
 app.use(flash());
@@ -63,6 +64,7 @@ app.use('/', mainRouter);
 app.use('/account', accountRouter);
 app.use('/games', gameRouter);
 app.use('/support', supportRouter);
+app.use('/admin', adminRouter);
 
 /* io.on('connection', (socket) => {
   //var room = req.session.name;
