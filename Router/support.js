@@ -5,23 +5,26 @@ const connection = require('../model/db');
 Router.get('/', (req, res) => {
   var io = req.app.get('socketio');
   var name = req.cookies['names'];
+  var sessionID;
   io.use((socket, next) => {
     connection.query("SELECT * FROM users WHERE name = ?", name, (err, rows, fields) => {
       if(rows[0].chat != null) {
+        sessionID = rows[0].chat;
         socket.id = rows[0].chat;
         check = 1;
-        console.log('ex', socket.id)
+        console.log('ex', sessionID)
       } else {
         connection.query("UPDATE users SET chat = ? where name = ?", [socket.id, name]);
-        check = 0;
+        sessionID = socket.id;
       }
+      console.log(socket.id, sessionID, name)
+      socket.id = sessionID;
     })
-    console.log(socket.id, name)
     next();
   });
 
   io.on('connection', (socket) => {
-    console.log(socket.id)
+    console.log('asd', socket.id, sessionID)
 
     socket.onAny((event, args) => {
       console.log(event, args);
