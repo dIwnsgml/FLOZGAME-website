@@ -3,51 +3,52 @@ const Router = express.Router();
 const connection = require('../model/db');
 
 Router.get('/', (req, res) => {
+
   var io = req.app.get('socketio');
   var name = req.cookies['names'];
   var sessionID;
-  io.use((socket, next) => {
-    connection.query("SELECT * FROM users WHERE name = ?", name, (err, rows, fields) => {
-      if(rows[0].chat != null) {
-        sessionID = rows[0].chat;
+  connection.query("SELECT * FROM users WHERE name = ?", name, async (err, rows, fields) => {
+    if (rows[0].chat != null) {
+      io.use((socket, next) => {
         socket.id = rows[0].chat;
-        check = 1;
-        console.log('ex', sessionID)
-      } else {
+        next()
+      });
+    } else {
+      io.use((socket, next) => {
         connection.query("UPDATE users SET chat = ? where name = ?", [socket.id, name]);
-        sessionID = socket.id;
-      }
-      console.log(socket.id, sessionID, name)
-      socket.id = sessionID;
-    })
-    next();
-  });
+        next()
+      });
+    }
+  })
 
-  io.on('connection', (socket) => {
-    console.log('asd', socket.id, sessionID)
+  io.on('connection', async (socket) => {
+    console.log('asd', socket.id)
 
     socket.onAny((event, args) => {
       console.log(event, args);
     });
 
-    socket.emit("session", {
-      sessionID: socket.sessionID,
-      userID:socket.userID,
-    });
-
-    console.log(socket.userID)
-
-    socket.on('join', (room) => {
-      socket.join(room);
-      //console.log('connected', socket.rooms, socket.id);
-    })
+    var room = socket.id;
+    socket.id = '6SkUVAPTdm2SvAWPAAAD';
+    socket.join(room);
+    socket.id = room;
+    console.log(socket.rooms)
 
     socket.on('disconnect', () => {
       console.log('disconnected');
     })
 
-    socket.on('message', (msg) => {
-      socket.to(socket.id).emit(msg);
+    socket.on("private message", ({ content, to }) => {
+      console.log(io.sockets.adapter.rooms)
+      socket.to(to).emit("private message", {
+        content,
+        from: socket.id,
+      });
+    });
+
+    socket.on("message", (msg) => {
+      io.to(socket.id).emit('message', msg)
+      console.log(io.sockets.adapter.rooms)
     })
   });
   if (req.session.loggedin) {

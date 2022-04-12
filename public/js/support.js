@@ -10,21 +10,21 @@ let check = 0;
 
 btn_chat.addEventListener('click', () => {
 
-  if(check == 0){
+  if (check == 0) {
     modal.style = "display: block;";
-    check ++;
+    check++;
   } else {
     modal.style = "display: none;";
-    check --;
+    check--;
   }
 
-  var socket = io({autoConnect: false});
-  var username = document.cookie.split(';')[1].split('=')[1];
-  console.log(socket.id)
+  var socket = io();
+
   socket.connect();
+
+  var rooms = (document.cookie.split(';')[1].split('=')[1])
+  //socket.emit('join');
   console.log(socket.id)
-  var room = (document.cookie.split(';')[1].split('=')[1])
-  socket.emit('join', room);
   btn_submit.addEventListener('click', () => {
     console.log(socket.id)
     var msg = message.value;
@@ -34,7 +34,7 @@ btn_chat.addEventListener('click', () => {
 
   btn_close_chat.addEventListener('click', () => {
     modal.style = "display: none;";
-    check --;
+    check--;
     socket.emit("disconnect");
     socket.leave("someRoom")
   })
