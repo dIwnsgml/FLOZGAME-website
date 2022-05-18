@@ -21,14 +21,16 @@ btn_chat.addEventListener('click', () => {
   var socket = io();
 
   socket.connect();
-
-  var rooms = (document.cookie.split(';')[1].split('=')[1])
   //socket.emit('join');
   console.log(socket.id)
   btn_submit.addEventListener('click', () => {
     console.log(socket.id)
     var msg = message.value;
-    socket.emit('message', msg);
+    socket.emit('message', 'LCStZQYS1oBpuyNcAAAB', msg);
+    let createli = document.createElement('li')
+    createli.innerHTML = msg;
+    let textshow = document.querySelector("#textshow");
+    textshow.appendChild(createli)
     console.log(msg);
   })
 

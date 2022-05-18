@@ -29,7 +29,7 @@ Router.get('/sitemap.xmal', (req, res) => {
   res.render('sitemap.xml');
 });
 
-Router.get('/community', function (req, res, next) {
+/* Router.get('/community', function (req, res, next) {
   if (req.session.loggedin) {
     res.render('community/main', {
       button: "Logout",
@@ -39,6 +39,21 @@ Router.get('/community', function (req, res, next) {
   } else {
     res.write("<script>alert('Login First')</script>");
     res.write("<script>window.location=\"/account/login\"</script>");
+  }
+}); */
+Router.get('/community', function (req, res, next) {
+  if (req.session.loggedin) {
+    res.render('community/main', {
+      button: "Logout",
+      //name: req.session.name,
+      path: "account/logout"
+    });
+  } else {
+    res.render('community/main', {
+      button: "Login",
+      //name: req.session.name,
+      path: "account/login"
+    });
   }
 });
 /* io.on('connect', (socket) => {   //연결이 들어오면 실행되는 이벤트

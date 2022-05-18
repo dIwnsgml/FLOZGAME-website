@@ -22,33 +22,18 @@ Router.get('/', (req, res) => {
   })
 
   io.on('connection', async (socket) => {
-    console.log('asd', socket.id)
-
+    console.log(io.sockets.adapter.rooms)
     socket.onAny((event, args) => {
       console.log(event, args);
     });
-
-    var room = socket.id;
-    socket.id = '6SkUVAPTdm2SvAWPAAAD';
-    socket.join(room);
-    socket.id = room;
-    console.log(socket.rooms)
 
     socket.on('disconnect', () => {
       console.log('disconnected');
     })
 
-    socket.on("private message", ({ content, to }) => {
-      console.log(io.sockets.adapter.rooms)
-      socket.to(to).emit("private message", {
-        content,
-        from: socket.id,
-      });
-    });
-
-    socket.on("message", (msg) => {
-      io.to(socket.id).emit('message', msg)
-      console.log(io.sockets.adapter.rooms)
+    socket.on("message", (to,msg) => {
+      io.to(to).emit('message', msg)
+      console.log(msg, to)
     })
   });
   if (req.session.loggedin) {
