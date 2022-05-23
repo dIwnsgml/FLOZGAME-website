@@ -4,6 +4,7 @@ const btn_submit = document.querySelector("form i");
 const message = document.querySelector("#text");
 const btn_close_chat = document.querySelector(".modal .top button i");
 const form = document.querySelector("#form");
+const btn_every = document.querySelectorAll('a');
 
 console.log(btn_submit);
 let check = 0;
@@ -19,14 +20,12 @@ btn_chat.addEventListener('click', () => {
   }
 
   var socket = io();
-
   socket.connect();
-  //socket.emit('join');
-  console.log(socket.id)
+
   btn_submit.addEventListener('click', () => {
     console.log(socket.id)
     var msg = message.value;
-    socket.emit('message', 'LCStZQYS1oBpuyNcAAAB', msg);
+    socket.emit('message', socket.id, msg);
     let createli = document.createElement('li')
     createli.innerHTML = msg;
     let textshow = document.querySelector("#textshow");
@@ -37,9 +36,13 @@ btn_chat.addEventListener('click', () => {
   btn_close_chat.addEventListener('click', () => {
     modal.style = "display: none;";
     check--;
-    socket.emit("disconnect");
-    socket.leave("someRoom")
+    console.log('a')
+    socket.emit("Fdisconnect");
   })
+})
+
+btn_every.addEventListener('click', () => {
+  socket.emit('Fdisconnect')
 })
 
 //window.open("youtube.com", "ong", "width = 500px, height = 100px;");

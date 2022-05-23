@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document-admin</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <!-- <script defer src="/js/admin.js"></script> -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document-admin</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script defer src="/js/admin.js"></script>
 </head>
+
 <body>
-    <script>
-          var socket = io();
-    </script>
-    <a href="/admin/comments">comments</a>
-    <a href="/admin/chat">chat</a>
+  <div id="user-lists">
     <%= all%>
+  </div>
+  <div id="user-lists-o">
+  </div>
+  <button id="btn-chat">
+    <h1>Start Chat</h1>
+  </button>
+  <form action="">
+
+  </form>
+
 </body>
+
 </html>

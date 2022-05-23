@@ -17,6 +17,7 @@ const secret = '123456cat';
 const http = require('http');
 var server = http.createServer(app);
 var io = require('socket.io')(server);
+const fileStore = require('session-file-store')(session);
 
 
 
@@ -47,14 +48,22 @@ app.set('socketio', io);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieParser(secret));
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(session({
   secret: secret,
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 1000 * 60 * 10 }
+  cookie: { 
+    maxAge: 1000 * 60 * 10,
+    secure: false,
+    httpOnly: true,
+    signed: true,
+    authorized: true,
+    httpOnly: true,
+  },
+  //store: new fileStore(),
 }))
 
 app.use(flash());
@@ -84,6 +93,9 @@ app.use('/admin', adminRouter);
     socket.join(room)
   })
 }); */
+app.get('*',function(req,res){
+  res.redirect('/');
+});
 
 // catch 404
 app.use(function (req, res, next) {
@@ -95,7 +107,6 @@ app.use(function (err, req, res, next) {
   // 로컬에서만 에러
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   // 에러 보여줌
   res.status(err.status || 500);
   res.render(err);

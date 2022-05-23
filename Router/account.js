@@ -45,9 +45,20 @@ router.post('/authentication', function (req, res, next) {
       res.write("<script>window.location=\"/account/login\"</script>");
     } else {
       if (crypto.pbkdf2Sync(password, rows[0].salt, 99097, 32, 'sha512').toString('hex') == rows[0].password) {
-        res.cookie("names", req.body.name);
+        res.cookie("names", req.body.name, {
+          maxAge: 1000 * 60 * 10,
+          secure: true,
+          httpOnly: true,
+          signed: true,
+          authorized: true,
+          httpOnly: true,
+        });
+        req.session.userId = name;
         req.session.loggedin = true;
-        res.redirect('/');
+        req.session.save(() => {
+          console.log(req.session.loggedin, req.sessionID, req.session, req.session.userId)
+          res.redirect('/');
+        });
       }
       else {
         //req.flash('error', 'Please correct enter email and Password!')
@@ -82,7 +93,7 @@ router.post('/post-register', function (req, res, next) {
   }
 
   if (!errors) {   //No errors were found.  Passed Validation!
-    if ((filtering('fuck') + filtering('씨') + filtering('병신') + filtering('장애') + filtering('좆') + filtering('mom') + filtering('느금') + filtering('애미') + filtering('애비')) != -9) {
+    if ((filtering('fuck') + filtering(':') + filtering('병신') + filtering('장애') + filtering('좆') + filtering('mom') + filtering('느금') + filtering('애미') + filtering('애비') + filtering(';') + filtering('}') + filtering('{') + filtering(',')) != -13) {
       console.log("o");
       res.write("<script>alert('Invalid word detected.')</script>");
       res.write("<script>window.location=\"/account/register\"</script>");

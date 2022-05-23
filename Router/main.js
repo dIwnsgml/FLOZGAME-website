@@ -6,7 +6,7 @@ var Router = express.Router();
 }); */
 
 Router.get('/', function (req, res, next) {
-  if (req.session.loggedin || typeof req.cookies['names'] != "undefined") {
+  if (req.session.loggedin) {
     res.render('index', {
       button: "Logout",
       name: req.session.name,
@@ -42,17 +42,18 @@ Router.get('/sitemap.xmal', (req, res) => {
   }
 }); */
 Router.get('/community', function (req, res, next) {
+  console.log(req.session.loggedin, req.session.user, req.session)
   if (req.session.loggedin) {
     res.render('community/main', {
       button: "Logout",
       //name: req.session.name,
-      path: "account/logout"
+      path: "/account/logout"
     });
   } else {
     res.render('community/main', {
       button: "Login",
       //name: req.session.name,
-      path: "account/login"
+      path: "/account/login"
     });
   }
 });

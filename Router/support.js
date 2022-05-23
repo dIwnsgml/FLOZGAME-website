@@ -5,8 +5,8 @@ const connection = require('../model/db');
 Router.get('/', (req, res) => {
 
   var io = req.app.get('socketio');
-  var name = req.cookies['names'];
-  var sessionID;
+  var name = req.session.userId;
+  console.log(name)
   connection.query("SELECT * FROM users WHERE name = ?", name, async (err, rows, fields) => {
     if (rows[0].chat != null) {
       io.use((socket, next) => {
@@ -27,17 +27,23 @@ Router.get('/', (req, res) => {
       console.log(event, args);
     });
 
-    socket.on('disconnect', () => {
+    socket.on('Fdisconnect', () => {
       console.log('disconnected');
+      socket.disconnect();
     })
 
-    socket.on("message", (to,msg) => {
-      io.to(to).emit('message', msg)
-      console.log(msg, to)
+    socket.on("message", (room, msg) => {
+      var info = {
+        user: name,
+        room: room,
+        msg: msg,
+      }
+      connection.query("INSERT INTO chat SET ?", info);
+      io.to(room).emit('message', msg)
+      console.log(msg, room)
     })
   });
   if (req.session.loggedin) {
-    var name = req.cookies['names'];
     res.render('support/support', {
       path: '/account/logout',
       button: 'Logout',

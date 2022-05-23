@@ -6,4 +6,5 @@ ALTER TABLE users ADD role VARCHAR(10) NOT NULL DEFAULT 'user'
 
 UPDATE users SET role = 'admin' WHERE id = ?
 
- ALTER TABLE users ADD chat VARCHAR(20);  
+ ALTER TABLE users ADD chat VARCHAR(20);
+ CREATE TABLE `chat` (`user` varchar(50) NOT NULL, `room` varchar(20) NOT NULL, `time` TIMESTAMP NOT NULL DEFAULT NOW()) ENGINE=InnoDB DEFAULT CHARSET=utf8;               
