@@ -22,11 +22,12 @@ Router.get('/', (req, res) => {
   })
 
   io.on('connection', async (socket) => {
-    console.log(io.sockets.adapter.rooms)
     socket.onAny((event, args) => {
-      console.log(event, args);
+      console.log(event, args, io.sockets.adapter.rooms);
     });
-
+    socket.on('disconnect', function(){
+      console.log('user disconnected');
+    });
     socket.on('Fdisconnect', () => {
       console.log('disconnected');
       socket.disconnect();
@@ -57,10 +58,6 @@ Router.get('/', (req, res) => {
     })
   }
   //io.to(socket.id).emit("message", data);
-})
-
-Router.post('/chat', (req, res) => {
-  res.redirect('/')
 })
 
 //app.io = require('socket.io')();

@@ -20,8 +20,23 @@ btn_chat.addEventListener('click', () => {
   }
 
   var socket = io();
-  socket.connect();
+  socket.connect({reconnection: false});
+  // store url on load
+  let currentPage = location.href;
 
+  // listen for changes
+  setInterval(function()
+  {
+      if (currentPage != location.href)
+      {
+          // page has changed, set new page as 'current'
+          currentPage = location.href;
+          socket.disconnect()
+          console.log("ddsdsd")
+          socket.emit("Fdisconnect")
+          // do your thing..
+      }
+  }, 500);
   btn_submit.addEventListener('click', () => {
     console.log(socket.id)
     var msg = message.value;
@@ -41,9 +56,6 @@ btn_chat.addEventListener('click', () => {
   })
 })
 
-btn_every.addEventListener('click', () => {
-  socket.emit('Fdisconnect')
-})
 
 //window.open("youtube.com", "ong", "width = 500px, height = 100px;");
 // 메시지 수신시 HTML에 메시지 내용 작성
