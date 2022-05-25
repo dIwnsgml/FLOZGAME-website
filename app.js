@@ -37,7 +37,7 @@ app.use(helmet.hidePoweredBy());
 const mainRouter = require("./Router/main");
 const accountRouter = require("./Router/account");
 const gameRouter = require("./Router/games");
-const supportRouter = require("./Router/support");
+const supportRouter = require("./Router/support")(io);
 const adminRouter = require("./Router/admin");
 
 app.set('view engine', 'ejs');
@@ -58,10 +58,9 @@ app.use(session({
   cookie: { 
     maxAge: 1000 * 60 * 10,
     secure: false,
-    httpOnly: true,
+    httpOnly: false,
     signed: true,
     authorized: true,
-    httpOnly: true,
   },
   //store: new fileStore(),
 }))

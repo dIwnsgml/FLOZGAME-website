@@ -5,10 +5,9 @@ const message = document.querySelector("#text");
 const btn_close_chat = document.querySelector(".modal .top button i");
 const form = document.querySelector("#form");
 const btn_every = document.querySelectorAll('a');
-
+console.log(document.cookie)
 console.log(btn_submit);
 let check = 0;
-
 btn_chat.addEventListener('click', () => {
 
   if (check == 0) {
