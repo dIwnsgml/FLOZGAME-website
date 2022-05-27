@@ -38,7 +38,7 @@ const mainRouter = require("./Router/main");
 const accountRouter = require("./Router/account");
 const gameRouter = require("./Router/games");
 const supportRouter = require("./Router/support")(io);
-const adminRouter = require("./Router/admin");
+const adminRouter = require("./Router/admin")(io);
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');

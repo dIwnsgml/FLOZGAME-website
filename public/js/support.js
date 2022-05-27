@@ -5,52 +5,41 @@ const message = document.querySelector("#text");
 const btn_close_chat = document.querySelector(".modal .top button i");
 const form = document.querySelector("#form");
 const btn_every = document.querySelectorAll('a');
-console.log(document.cookie)
-console.log(btn_submit);
-let check = 0;
+let textshow = document.querySelector("#textshow");
+
 btn_chat.addEventListener('click', () => {
 
-  if (check == 0) {
-    modal.style = "display: block;";
-    check++;
-  } else {
-    modal.style = "display: none;";
-    check--;
-  }
+  modal.style = "display: block;";
 
-  var socket = io();
+  socket = io();
   socket.connect({reconnection: false});
-  // store url on load
-  let currentPage = location.href;
+  socket.on('bring_msg', (msg) => {
+    var elem = document.createElement("li");
+    elem.innerText = msg
+    textshow.appendChild(elem);
+  });
 
-  // listen for changes
-  setInterval(function()
-  {
-      if (currentPage != location.href)
-      {
-          // page has changed, set new page as 'current'
-          currentPage = location.href;
-          socket.disconnect()
-          console.log("ddsdsd")
-          socket.emit("Fdisconnect")
-          // do your thing..
-      }
-  }, 500);
+
+  socket.on('admin-online', () => {
+    console.log('admin')
+  })
+
   btn_submit.addEventListener('click', () => {
     console.log(socket.id)
     var msg = message.value;
     socket.emit('message', socket.id, msg);
-    let createli = document.createElement('li')
-    createli.innerHTML = msg;
-    let textshow = document.querySelector("#textshow");
-    textshow.appendChild(createli)
+    var elem = document.createElement("li");
+    elem.innerText = msg
+    textshow.appendChild(elem);
     console.log(msg);
   })
 
   btn_close_chat.addEventListener('click', () => {
     modal.style = "display: none;";
-    check--;
-    console.log('a')
+    var textLi = document.querySelectorAll('#textshow li');
+    for(var i = 0; i < textLi.length; i++){
+      textLi[i].remove()
+    }
     socket.emit("Fdisconnect");
   })
 })
