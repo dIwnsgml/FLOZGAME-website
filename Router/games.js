@@ -2,14 +2,15 @@ const express = require("express");
 const conn = require("../model/db");
 const app = express();
 const Router = express.Router();
-var a;
 var count = 0;
 var score = 0;
 Router.get('/cube', (req, res) => {
   conn.query('SELECT * FROM comments', function (err, rows, fields) {
-    for (var i = 0; rows[i] != a; i++) {
-      count++;
-      score += rows[i].rate;
+    if(typeof rows != 'undefined'){
+      for (var i = 0; typeof rows[i] != 'undefined'; i++) {
+        count++;
+        score += rows[i].rate;
+      }
     }
     console.log(count)
     if (req.session.loggedin) {
@@ -51,7 +52,7 @@ Router.post('/cube/comment', (req, res) => {
     return co.comment.indexOf(word)
   }
   //console.log(filter.indexOf('씨'), filter.indexOf('병신'), filter.indexOf('장애'), filter.indexOf('좆'), filtering('fuck'))
-  var name = req.cookies['names']
+  var name = req.session.userId;
   console.log(co);
   //console.log(req.cookies['names'], req.body.comment, req.body.rate, today.toLocaleDateString('en-US'));
   if ((filtering('fuck') + filtering('씨') + filtering('병신') + filtering('장애') + filtering('좆') + filtering('mom') + filtering('느금') + filtering('애미') + filtering('애비')) != -9) {
@@ -61,7 +62,7 @@ Router.post('/cube/comment', (req, res) => {
   }
   conn.query('SELECT * FROM comments where name = ?', name, function (err, rows, fields) {
     console.log("ong")
-    if (rows.length <= 0) {
+    if (typeof rows[0] == 'undefined') {
       conn.query('INSERT INTO comments SET ?', co, function (err, rows, fields) {
         console.log(co);
         res.redirect('/games/cube');

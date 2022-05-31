@@ -92,6 +92,83 @@ app.use('/admin', adminRouter);
     socket.join(room)
   })
 }); */
+
+
+io.sockets.on('connection', async (socket) => {
+
+  socket.onAny((event, args) => {
+    console.log(event, args, io.sockets.adapter.rooms);
+  });
+
+  socket.on('admin_online', () => {
+    socket.broadcast.emit('online');
+    console.log('admin_online')
+  })
+
+  socket.on('admin_offline', () => {
+    socket.broadcast.emit('offline');
+    console.log('admin_offline')
+  })
+
+  socket.on('start_bring', () => {
+    connection.query("SELECT * FROM chat WHERE room = ?", socket.id, (err, rows, fields) => {
+      for(var i = 0; typeof rows[i] != 'undefined'; i++){
+        if(socket.userId == rows[i].user){
+          io.to(socket.id).emit('bring_msg', rows[i].msg, rows[i].time, 'me')
+          console.log('me')
+        } else {
+          io.to(socket.id).emit('bring_msg', rows[i].msg, rows[i].time, rows[i].user)
+        }
+        console.log(rows[i].msg)
+      }
+    })
+  })
+
+  socket.on('admin_start_bring', (room) => {
+    connection.query("SELECT * FROM chat WHERE room = ?", room, (err, rows, fields) => {
+      for(var i = 0; typeof rows[i] != 'undefined'; i++){
+        if(socket.userId == rows[i].user){
+          io.to(socket.id).emit('admin_bring_msg', rows[i].msg, rows[i].time, 'me')
+          console.log('me')
+        } else {
+          io.to(socket.id).emit('admin_bring_msg', rows[i].msg, rows[i].time, rows[i].user)
+        }
+        console.log(rows[i].msg)
+      }
+    })
+  })
+
+  socket.on('join', (room) => {
+    socket.join(room);
+    console.log(io.sockets.adapter.rooms)
+  })
+  
+  socket.on('join-room', (room) => {
+    socket.join(room);
+  })
+
+  socket.on('Fdisconnect', () => {
+    console.log('disconnected');
+    socket.disconnect();
+  })
+
+  socket.on("message", (room, msg) => {
+    var info = {
+      user: socket.userId,
+      room: room,
+      msg: msg,
+    }
+    connection.query("INSERT INTO chat SET ?", info);
+    if(socket.id == room){
+      io.to(room).emit('msg', msg, 'me');
+    } else {
+      io.to(room).emit('msg', msg, room);
+    }
+    console.log(msg, room)
+  })
+});
+
+
 app.get('*',function(req,res){
   res.redirect('/');
 });

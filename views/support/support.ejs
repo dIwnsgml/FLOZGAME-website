@@ -3,7 +3,7 @@
 <head>
   <%- include("../elements/head");%>
   <title>Support</title>
-  <link rel="stylesheet" href="/support.css">
+  <link rel="stylesheet" href="/css/support.css">
   <script src="/socket.io/socket.io.js"></script>
   <script defer src="/js/support.js"></script>
 </head>
@@ -20,11 +20,8 @@
     <ul id = "textshow">
 
     </ul>
-    <form action="/support/chat" method = "POST" id = "form">
-      <textarea name="text" id="text" cols="30" rows="10"></textarea>
-      <input type= "submit" id = "submit" value = ""/>
-      <i class="fa-solid fa-paper-plane"></i>
-    </form>
+    <textarea name="text" id="text" cols="30" rows="10"></textarea>
+    <button id = "msg-send"><i class="fa-solid fa-paper-plane"></i></button>
   </div>
   <div class="main">
     <div class="support">

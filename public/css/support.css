@@ -99,9 +99,35 @@ footer {
 
 .modal #textshow{
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 600px;
+  top: 55px;
   position: relative;
-  top: 50px;
+}
+
+.modal #textshow li.chat{
+  margin: 15px;
+  padding: 10px;
+  border:#808080;
+  background-color: bisque;
+  max-width: 150px;
+  min-width: 70px;
+  clear: both;
+  word-break:break-all;
+  float: left;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.modal #textshow li.time{
+  margin-right: 20px;
+  margin-left: 20px;
+  font-size: 10px;
+  clear: both;
+  word-break:break-all;
+  float: left;
+  text-align: left;
+  border-radius: 10px;
 }
 
 .modal textarea#text{
@@ -110,10 +136,14 @@ footer {
   width: calc(100% - 55px);
   height: 40px;
   border: #000 solid 1px;
-  border-radius: 10px;
+  border-bottom-left-radius: 10px;
+  resize: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
 }
 
-.modal input#submit {
+.modal > button {
   position: fixed;
   bottom: 0px;
   right: 0px;
@@ -121,7 +151,7 @@ footer {
   height: 48px;
 }
 
-.modal form i {
+.modal i.fa-paper-plane {
   position: absolute;
   bottom: 15px;
   right: 15px;

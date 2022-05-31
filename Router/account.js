@@ -39,8 +39,7 @@ router.post('/authentication', function (req, res, next) {
     //console.log(rows)
     //if(err) throw err
     // if user not found
-    //console.log(rows[0].salt, crypto.pbkdf2Sync(password, rows[0].salt, 99097, 32, 'sha512').toString('hex'), rows[0].password);
-    if (rows.length <= 0) {
+    if (typeof rows[0] == 'undefined') {
       res.write("<script>alert('No such user')</script>");
       res.write("<script>window.location=\"/account/login\"</script>");
     } else {
@@ -98,10 +97,10 @@ router.post('/post-register', function (req, res, next) {
       res.write("<script>alert('Invalid word detected.')</script>");
       res.write("<script>window.location=\"/account/register\"</script>");
     } else {
-      connection.query("SELECT * FROM users WHERE email = ?", email, function (err, result, field) {
-        if (result.length == 0) {
-          connection.query("SELECT * FROM users WHERE name = ?", name, function (err, result, field) {
-            if (result.length == 0) {
+      connection.query("SELECT * FROM users WHERE email = ?", email, function (err, rows, field) {
+        if (typeof rows[0] == 'undefined') {
+          connection.query("SELECT * FROM users WHERE name = ?", name, function (err, rows, field) {
+            if (typeof rows[0] == 'undefined') {
               console.log("new");
               var user = {
                 name: req.sanitize('name').escape().trim(),
@@ -114,25 +113,23 @@ router.post('/post-register', function (req, res, next) {
 
               console.log(hashTest(password));
               console.log("passwd");
-              connection.query('INSERT INTO users SET ?', user, function (err, result) {
-                //if(err) throw err
-                if (err) {
-                  req.flash('error', err)
-                  // render to views/user/add.ejs
-                  res.render('register', {
-                    title: 'Registration Page',
-                    name: '',
-                    password: '',
-                    email: ''
-                  });
-                  res.write("<script>alert('error')</script>");
-                  res.write("<script>window.location=\"/account/register\"</script>");
-                } else {
-                  req.flash('success', 'You have successfully signup!');
-                  res.write("<script>alert('success')</script>");
-                  res.write("<script>window.location=\"/account/login\"</script>");
-                }
-              })
+              connection.query('INSERT INTO users SET ?', user);
+              if (err) {
+                req.flash('error', err)
+                // render to views/user/add.ejs
+                res.render('register', {
+                  title: 'Registration Page',
+                  name: '',
+                  password: '',
+                  email: ''
+                });
+                res.write("<script>alert('error')</script>");
+                res.write("<script>window.location=\"/account/register\"</script>");
+              } else {
+                req.flash('success', 'You have successfully signup!');
+                res.write("<script>alert('success')</script>");
+                res.write("<script>window.location=\"/account/login\"</script>");
+              }
             } else {
               console.log("not new");
               res.write("<script>alert('already exist')</script>");
