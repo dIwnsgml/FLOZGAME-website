@@ -32,13 +32,13 @@ module.exports = function(io) {
     })
   
     if (req.session.loggedin) {
-      res.render('support/support', {
+      res.render('support/loggedin', {
         path: '/account/logout',
         button: 'Logout',
         name: name,
       });
     } else {
-      res.render('support/support', {
+      res.render('support/notloggedin', {
         path: '/account/login',
         button: 'Login',
         name: 0,

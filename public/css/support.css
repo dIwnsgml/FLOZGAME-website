@@ -31,14 +31,15 @@ body > .main .support .login button:nth-child(3) {
 }
 
 .chat {
+  text-align: center;
 }
 
 .chat .live{
 
 }
 
-.chat .email{
-
+.chat button{
+  padding: 30px;
 }
 
 .room {
@@ -75,6 +76,8 @@ footer {
   width: calc(100% - 5px);
   height: 50px;
   border: solid #808080 2px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .modal .top h1{
@@ -87,10 +90,15 @@ footer {
   border-radius: 10px;
   background-color: #808080;
   float: left;
+  position: relative;
+  left: 10px;
 }
 
 .modal .top button {
   float: right;
+  padding: 10px;
+  border: 0px;
+  background-color: transparent;
 }
 
 .modal .top button i{
@@ -149,6 +157,8 @@ footer {
   right: 0px;
   width: 48px;
   height: 48px;
+  border-bottom-right-radius: 10px;
+  border:#808080 1px solid;
 }
 
 .modal i.fa-paper-plane {

@@ -24,7 +24,9 @@ socket.on('bring_msg', (msg, time, user) => {
   var elem = document.createElement("li");
   var msg_time = document.createElement("li");
   elem.innerText = msg;
-  time = new Date(time).toLocaleString();
+  time = new Date(time);
+  console.log(time.getDate());
+  time = time.toLocaleString();
   //time = time.split('-')[2].split('T')[1].split(':')[0] + ':' + time.split('-')[2].split('T')[1].split(':')[1];
   /* if(time.split(':')[0] > 12){
     time = time.split(':')[0] - 12 + time.split(':')[1];

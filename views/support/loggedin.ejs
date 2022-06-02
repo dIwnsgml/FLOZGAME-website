@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include("../elements/head");%>
+  <title>Support</title>
+  <link rel="stylesheet" href="/css/support.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <script defer src="/js/support.js"></script>
+</head>
+<body>
+  <header>
+    <%- include("../elements/header");%>
+  </header>
+  <div class="modal">
+    <div class="top">
+      <h1>Admin is currently offline</h1>
+      <div class="circle"></div>
+      <button><i class="fa-solid fa-x"></i></button>
+    </div>
+    <ul id = "textshow">
+
+    </ul>
+    <textarea name="text" id="text" cols="30" rows="10"></textarea>
+    <button id = "msg-send"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+  <div class="main">
+    <div class="support">
+      <h1>FLOZGAME Support</h1>
+      <h2><%= name%>, how can we help you?</h2>
+      <div class="game-list">
+        <ul>
+          <li><a href="/">a</a></li>
+          <li><a href="/">a</a></li>
+        </ul>
+      </div>
+      <hr>
+    </div>
+    <div class="chat">
+      <div class="live">
+        <button id = "chat">Start Chat</button>
+      </div>
+      <div class="email">
+        <h1>use email</h1>
+      </div>
+    </div>
+  </div>
+  <%- include("../elements/footer");%>
+</body>
+</html>
