@@ -34,14 +34,16 @@ module.exports = function(io) {
     if (req.session.loggedin) {
       res.render('support/loggedin', {
         path: '/account/logout',
-        button: 'Logout',
+        button: 'LOGOUT',
         name: name,
+        list: "LOGOUT",
       });
     } else {
       res.render('support/notloggedin', {
         path: '/account/login',
-        button: 'Login',
+        button: 'SIGN IN',
         name: 0,
+        list: "",
       })
     }
   });

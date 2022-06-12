@@ -15,21 +15,30 @@ function hashTest(password) {
 
 //console.log(createHashedPassword('as'));
 
-router.get('/', function (req, res, next) {
-  //res.write("<script>window.location=\"../login\"</script>");
-  res.render("login");
-})
 //display login page
 router.get('/login', function (req, res, next) {
   // render to views/user/add.ejs
-  res.render('login', {
-    title: 'Login',
-    email: '',
-    password: '',
-    path: '/account/login',
-    button: 'Login',
-  })
+  if(req.session.loggedin){
+    res.render('login', {
+      title: 'Login',
+      email: '',
+      password: '',
+      path: '/account/logout',
+      button: 'LOGOUT',
+      list: "LOGOUT",
+    })
+  } else {
+    res.render('login', {
+      title: 'Login',
+      email: '',
+      password: '',
+      path: '/account/login',
+      button: 'SIGN IN',
+      list: "",
+    })
+  }
 })
+
 //authenticate user
 router.post('/authentication', function (req, res, next) {
   var name = req.body.name;
@@ -67,16 +76,30 @@ router.post('/authentication', function (req, res, next) {
     }
   })
 })
+
 router.get('/register', function (req, res, next) {
-  res.render('register', {
-    title: 'Registration Page',
-    name: '',
-    email: '',
-    password: '',
-    button: "Login",
-    path: "/account/login"
-  })
+  if(req.session.loggedin){
+    res.render('register', {
+      title: 'Registration Page',
+      name: '',
+      email: '',
+      password: '',
+      button: "LOGOUT",
+      path: "/account/logout",
+      list: "LOGOUT",
+    })
+  } else {
+    res.render('register', {
+      title: 'Registration Page',
+      name: '',
+      email: '',
+      password: '',
+      button: "SIGN IN",
+      path: "/account/login",
+    })
+  }
 })
+
 router.post('/post-register', function (req, res, next) {
   req.assert('name', 'Name is required').notEmpty()           //Validate name
   req.assert('password', 'Password is required').notEmpty()   //Validate password
@@ -160,7 +183,7 @@ router.post('/post-register', function (req, res, next) {
       name: req.body.name,
       email: req.body.email,
       password: '',
-      button: "Login",
+      button: "SIGN IN",
       name: req.session.name,
       path: "/account/login"
     })

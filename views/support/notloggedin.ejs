@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include("../elements/head");%>
+  <title>Support</title>
+  <link rel="stylesheet" href="/css/nsupport.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <script defer src="/js/modal.js"></script>
+</head>
+<body>
+  <header>
+    <%- include("../elements/header");%>
+  </header>
+  <div class="main">
+    <div class="top">
+      <div class="blur">
+        <div class="text">
+          <div class="first">
+            <p>WELCOME TO FLOZGAME SUPPORT CENTER</p>
+          </div>
+          <div class="second">
+            <p>LOGIN TO START CHAT WITH  SUPPORT TEAM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="inner">
+      <div class="or">
+        <p>OR SEND EMAIL TO admin@flozgame.click / support@flozgame.click</p>
+      </div>
+    </div>
+    <%- include("../elements/footer");%>
+  </div>
+  <div class="modal3">
+    <div class="top">
+      <h1>Admin is currently offline</h1>
+      <div class="circle"></div>
+      <button><i class="fa-solid fa-x"></i></button>
+    </div>
+    <ul id = "textshow">
+
+    </ul>
+    <textarea name="text" id="text" cols="30" rows="10"></textarea>
+    <button id = "msg-send"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+  <%- include("../elements/modal");%>
+</body>
+</html>

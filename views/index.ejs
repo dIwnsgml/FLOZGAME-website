@@ -5,120 +5,210 @@
   <link rel="stylesheet" href="/css/main.css" />
   <title>FLOZGAME</title>
   <script defer src = "/js/main.js"></script>
+  <script defer src = "/js/modal.js"></script>
 </head>
 <body>
   <%- include("./elements/header");%>
-  <!-- Slider main container -->
-  <div class="swiper">
-    <!-- Additional required wrapper -->
+  <div class="swiper" id = "mobile">
     <div class="swiper-wrapper">
-      <!-- Slides -->
+      <div class="swiper-slide">
+        <img src="./img/slider/cube-mobile.jpg" alt="?" />
+      </div>
+      <div class="swiper-slide">
+        <img src="./img/slider/cube-mobile.jpg" alt="?">
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <!-- <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-scrollbar"></div> -->
+  </div>
+  <div class="swiper" id = "pc">
+    <div class="swiper-wrapper">
       <div class="swiper-slide">
         <img src="./img/slider/slider1.png" alt="?" />
       </div>
       <div class="swiper-slide">
-        <img src="./img/slider/slider2.jpg" alt="?">
+        <img src="./img/slider/slider2.jpg" alt="?" />
       </div>
     </div>
-    <!-- <div class="swiper-pagination"></div> -->
-<!--     <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div> -->
-<!--     <div class="swiper-scrollbar"></div> -->
+    <div class="swiper-pagination"></div>
+    <!-- <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-scrollbar"></div> -->
   </div>
-  <hr></hr>
-  <div class="games">
+  <div class="main" id = "mobile">
     <div class="inner">
-      <h1>All Games</h1>
-      <div class="container">
-        <div class="box">
-          <div class="game-img">
-            <div class="game-name">
-              <h1>Cube</h1>
-            </div>
-            <div class="os">
-              <img src="/img/all-game/icons/Windows_icon-icons.com_67026-removebg-preview.png" alt="?">
-            </div>
-          </div>
-          <div class="btn">
-            <button type = "button" class = "more"><a href = "/games/cube">LEARN MORE</a></button>
-            <button type = "button" class = "download"><a href = "/app/Cube Beta 1.4.zip" download>Download</a></button>
-          </div>
+      <div class="news">
+        <div class="title">
+          <h2>News</h2>
         </div>
-        <div class="box">
-          <div class="game-img">
-          </div>
-          <div class="game-name">
-            <h1>Cube</h1>
-          </div>
-          <div class="os">
-            <img src="/img/all-game/icons/Windows_icon-icons.com_67026-removebg-preview.png" alt="?">
-          </div>
+        <ul>
+          <li>
+            <a href="">
+              <div class="topic">
+                <p>Chat</p>
+              </div>
+              <div class="img-area">
+                <img src="/img/floz.jpg" alt="">
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div class="topic">
+                <p>Chat</p>
+              </div>
+              <div class="img-area">
+                <img src="/img/floz.jpg" alt="">
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div class="topic">
+                <p>Chat</p>
+              </div>
+              <div class="img-area">
+                <img src="/img/floz.jpg" alt="">
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="games">
+        <div class="title">
+          <h2>Our Games</h2>
         </div>
-        <div class="box">
-          <div class="game-img">
-          </div>
-          <div class="game-name">
-            <h1>Cube</h1>
-          </div>
-          <div class="os">
-            <img src="/img/all-game/icons/Windows_icon-icons.com_67026-removebg-preview.png" alt="?">
-          </div>
-        </div>
-        <div class="box">
-          <div class="game-img">
-          </div>
-          <div class="game-name">
-            <h1>Cube</h1>
-          </div>
-          <div class="os">
-            <img src="/img/all-game/icons/Windows_icon-icons.com_67026-removebg-preview.png" alt="?">
-          </div>
-        </div>
-        <div class="box">
-          <div class="game-img">
-          </div>
-          <div class="btn">
-            <button type = "button" class = "more">LEARN MORE</button>
-            <button type = "button" class = "download"><a href = "/games/Cube.exe" download>DOWNLOAD</a></button>
-          </div>
-          <div class="game-name">
-            <h1>Cube</h1>
-          </div>
-          <div class="os">
-            <img src="/img/all-game/icons/Windows_icon-icons.com_67026-removebg-preview.png" alt="?">
-          </div>
-        </div>
-        <div class="box">
-          <div class="game-img">
-          </div>
-          <div class="btn">
-            <button type = "button" class = "more">LEARN MORE</button>
-            <button type = "button" class = "download"><a href = "/games/Cube.exe" download>DOWNLOAD</a></button>
-          </div>
-          <div class="game-name">
-            <h1>Cube</h1>
-          </div>
-          <div class="os">
-            <img src="/img/all-game/icons/Windows_icon-icons.com_67026-removebg-preview.png" alt="?">
-          </div>
-        </div>
-        <div class="box">
-          <div class="game-img">
-          </div>
-          <div class="btn">
-            <button type = "button" class = "more">LEARN MORE</button>
-            <button type = "button" class = "download"><a href = "/games/Cube.exe" download>DOWNLOAD</a></button>
-          </div>
-          <div class="game-name">
-            <h1>Cube</h1>
-          </div>
-          <div class="os">
-            <img src="/img/all-game/icons/Windows_icon-icons.com_67026-removebg-preview.png" alt="?">
-          </div>
-        </div>
+        <ul>
+          <li>
+            <a href="">
+              <div class="info">
+                <p>CUBE</p>
+                <div class="os">
+                  <i class="fa-brands fa-windows"></i>
+                  <i class="fa-brands fa-android"></i>
+                  <i class="fa-brands fa-apple"></i>
+                </div>
+              </div>
+              <div class="img-area">
+                <img src="/img/floz.jpg" alt="">
+              </div>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-  <%- include("./elements/footer")%>
+  <div class="main" id = "pc">
+    <div class="inner">
+      <div class="news">
+        <div class="title">
+          <h2>FLOZ NEWS</h2>
+        </div>
+        <div class="left">
+          <h1>DOWNLOAD CUBE!</h1>
+        </div>
+        <div class="right">
+          <ul>
+            <li>
+              <a href="">
+                <div class="topic">
+                  <p> START CHAT WITH CUSTOMER SERVICE REPRESENTATIVES</p>
+                </div>
+                <div class="img-area">
+                  <img src="/img/support.jpg" alt="">
+                </div>
+              </a>
+            </li>
+            <!-- <li>
+              <a href="">
+                <div class="topic">
+                  <p>Chat</p>
+                </div>
+                <div class="img-area">
+                  <img src="/img/floz.jpg" alt="">
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="topic">
+                  <p>Chat</p>
+                </div>
+                <div class="img-area">
+                  <img src="/img/floz.jpg" alt="">
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="topic">
+                  <p>Chat</p>
+                </div>
+                <div class="img-area">
+                  <img src="/img/floz.jpg" alt="">
+                </div>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="games">
+        <div class="title">
+          <h2>Our Games</h2>
+        </div>
+        <ul>
+          <li>
+            <a href="/games/cube">
+              <div class="info">
+                <p>CUBE</p>
+                <div class="os">
+                  <i class="fa-brands fa-windows"></i>
+                  <i class="fa-brands fa-android"></i>
+                  <i class="fa-brands fa-apple"></i>
+                </div>
+              </div>
+              <div class="img-area">
+                <img src="/img/floz.jpg" alt="">
+              </div>
+            </a>
+          </li>
+          <!-- <li>
+            <a href="">
+              <div class="info">
+                <p>CUBE</p>
+                <div class="os">
+                  <i class="fa-brands fa-windows"></i>
+                  <i class="fa-brands fa-android"></i>
+                  <i class="fa-brands fa-apple"></i>
+                </div>
+              </div>
+              <div class="img-area">
+                <img src="/img/floz.jpg" alt="">
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div class="info">
+                <p>CUBE</p>
+                <div class="os">
+                  <i class="fa-brands fa-windows"></i>
+                  <i class="fa-brands fa-android"></i>
+                  <i class="fa-brands fa-apple"></i>
+                </div>
+              </div>
+              <div class="img-area">
+                <img src="/img/floz.jpg" alt="">
+              </div>
+            </a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+    <%- include("./elements/footer")%>
+  </div>
+  <%- include("./elements/modal");%>
 </body>
 </html>

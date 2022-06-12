@@ -1,117 +1,112 @@
 @import url("elements/header.css");
 @import url("elements/footer.css");
 
-.main {
-  margin-top: 130px;
+.main > .inner {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+  width: 80vw;
+  transform: translate(10vw);
+  height: 100vh;
 }
 
-.main {
-  margin-top: 130px;
+html {
+  height: 1000px;
 }
 
-.main > .inner{
-  width: 600px;
-  position: center;
-  height: calc(100vh - 150px);
+.wrapper {
+  width: 700px;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
 }
 
-.main > .inner .fbox{
-  top: 50px;
-  width: 600px;
-  position: absolute;
-  border: solid #808080 2px;
-}
-
-.main > .inner .fbox .form-group{
-  margin-bottom: 10px;
-}
-
-.main > .inner form{
-  position: center;
-  width: 400px;
-  margin: 92px;
-}
-
-.main > .inner form input{
-  width: 200px;
-  height: 20px;
-  float: right;
-}
-
-.main > .inner form input:nth-child(3){
-  float: left;
-  margin-left: calc(50% - 50px);
-  margin-top: 40px;
-}
-
-.main > .inner form input.btn{
-  width: 100px;
-  height: 30px;
-}
-
-.main > .inner a{
-  float: right;
-  margin: 10px;
-}
-
-@media (max-width: 1000px) {
-  header h1 {
-    font-size: 25px;
-  }
-
-  header .logo img {
-    width: 50px;
-    height: 50px;
-    margin-top: 20px;
-  }
-
-  header .main-menu .item .item__name {
-    font-size: 12px;
-  }
-
-  .games .inner .container .box{
-    height: 15px;
-  }
-  .games .inner .container button{
-    height: 15px;
-    font-size: 10px;
-  }
-  .games .inner .container button a{
-    height: 15px;
-    font-size: 10px;
-  }
-  .games .inner .container .box .btn .more{
-    height: 30px;
-    font-size: 10px;
-  }
-  .games .inner .container .box .btn .download{
-    height: 50px;
-    font-size: 10px;
-  }
-  footer .inner .container2 .container2-el{
-    font-size: 8px;
-  }
-  footer .inner .container2 .container2-el a{
-    font-size: 12px;
+.text-center:nth-child(1){
+	color:#000;	
+	text-transform:uppercase;
+    font-size: 23px;
+    margin: -50px 0 80px 0;
+    display: block;
     text-align: center;
-  }
-  footer .inner .logo img{
-    width: 60px;
-    left: calc(50% - 30px);
-  }
-  .main > .inner{
-    width: 100%;
-  }
-  .main > .inner .fbox{
-    width: 90%;
-    margin-left: 5%;
-  }
-  .main > .inner form{
-    position: center;
-    width: 150px;
-    margin: 92px;
-  }
-  .main > .inner form input{
-    width: 150px;
-  }
+}
+
+a.text-center{
+	color:#000;	
+	text-transform:uppercase;
+    font-size: 13px;
+    margin: 10px 0 80px 0;
+    display: block;
+    text-align: center;
+    padding: 20px;
+}
+
+a.text-center:hover{
+	background-color: rgb(230, 230, 230);
+}
+
+.box{
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+	border-radius:3px;
+	padding:70px 100px;
+  color: #000;
+  background-color: #fff;
+  text-align: center;
+}
+.input-container{
+	position:relative;
+	margin-bottom:25px;
+}
+.input-container label{
+	position:absolute;
+	top:0px;
+	left:0px;
+	font-size:16px;
+  color: #000;
+	transition: all 0.2s ease-in-out;
+}
+.input-container input{ 
+  border:0;
+  border-bottom:1px solid #555;  
+  background:transparent;
+  width:100%;
+  padding:8px 0 5px 0;
+  font-size:16px;
+  color:#000;
+}
+.input-container input:focus{ 
+ border:none;	
+ outline:none;
+ border-bottom:1px solid #e74c3c;	
+}
+.btn{
+	color:#fff;
+	background-color:#e74c3c;
+	outline: none;
+    border: 0;
+    color: #fff;
+	padding:10px 20px;
+	text-transform:uppercase;
+	margin-top:50px;
+	border-radius:2px;
+	cursor:pointer;
+	position:relative;
+}
+/*.btn:after{
+	content:"";
+	position:absolute;
+	background:rgba(0,0,0,0.50);
+	top:0;
+	right:0;
+	width:100%;
+	height:100%;
+}*/
+.input-container input:focus ~ label,
+.input-container input:valid ~ label{
+	top:-12px;
+	font-size:12px;
 }

@@ -2,8 +2,10 @@ const express = require("express");
 const conn = require("../model/db");
 const app = express();
 const Router = express.Router();
+
 var count = 0;
 var score = 0;
+
 Router.get('/cube', (req, res) => {
   conn.query('SELECT * FROM comments', function (err, rows, fields) {
     if(typeof rows != 'undefined'){
@@ -16,20 +18,22 @@ Router.get('/cube', (req, res) => {
     if (req.session.loggedin) {
       res.render('games/cube', {
         path: '/account/logout',
-        button: 'Logout',
+        button: 'LOGOUT',
         comment: '',
         ong: { rows },
         n: count,
         avg_score: Math.round(score / count * 100) / 100,
+        list: "LOGOUT",
       });
     } else {
       res.render('games/cube', {
         path: '/account/login',
-        button: 'Login',
+        button: 'SIGN IN',
         comment: 'Login to leave a comment',
         ong: { rows },
         n: count,
         avg_score: Math.round(score / count * 100) / 100,
+        list: "",
       });
       console.log()
     }
@@ -72,25 +76,21 @@ Router.post('/cube/comment', (req, res) => {
       res.write("<script>window.location=\"/games/cube\"</script>");
     }
   })
-})
+});
 
-
-/* Router.get('/cube', (req,res)=>{
-  res.render('test');
-}) */
-
-/* Router.post('/cube/download', (req, res) => {
-  res.send(200);
-  res.redirect('/games/cube');
-  res.setHeader('Content-Disposition', `attachment; filename=${test.txt}`); // 이게 핵심 
-  res.sendFile('/app/test.txt');
-  if(req.session.loggedin){
-    res.download('/app/test.txt')
-    res.redirect('/games/cube');
+Router.get("/makeyourgame", (req, res) => {
+  if (req.session.loggedin) {
+    res.render('games/yourgame', {
+      path: '/games/logout',
+      button: 'LOGOUT',
+      list: "LOGOUT",
+    });
   } else {
-    res.download('/app/test.txt')sdsdss
-    res.redirect('/games/cube');
+    res.render('games/yourgame', {
+      path: '/account/login',
+      button: 'SIGN IN',
+      list: "",
+    });
   }
-}) */
-
+})
 module.exports = Router;

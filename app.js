@@ -39,6 +39,7 @@ const accountRouter = require("./Router/account");
 const gameRouter = require("./Router/games");
 const supportRouter = require("./Router/support")(io);
 const adminRouter = require("./Router/admin")(io);
+const ourStoryRouter = require("./Router/our-story");
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -73,6 +74,7 @@ app.use('/account', accountRouter);
 app.use('/games', gameRouter);
 app.use('/support', supportRouter);
 app.use('/admin', adminRouter);
+app.use('/our-story', ourStoryRouter);
 
 /* io.on('connection', (socket) => {
   //var room = req.session.name;

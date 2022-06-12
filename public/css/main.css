@@ -1,173 +1,354 @@
 @import url("elements/header.css");
 @import url("elements/footer.css");
-#user_name {
-  display: none;
+@import url("elements/modal.css");
+
+@media (max-width: 700px) {
+  #mobile {
+    display: block;
+  }
+
+  #pc {
+    display: none;
+  }
+
+  .swiper {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .swiper-slide img{
+    width: 100vw;
+  }
+  
+  .swiper-pagination {
+    z-index: 1;
+  }
+  
+  .swiper-pagination-bullet-active {
+    background-color: #000;
+  }
+  
+  .main {
+    text-align: center;
+    position: relative;
+    top: 110vh;
+  }
+  
+  .main .news > h1 {
+    color: white;
+  }
+  
+  .main .news ul li {
+    width: 90%;
+    background-color: #505050;
+    position: relative;
+    left: 5%;
+    border-radius: 20px;
+    text-align: left;
+    height: 100px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  
+  .main .news ul li .topic {
+    position: absolute;
+    margin: 7px;
+    font-size: 17px;
+    width: 62%;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+    height: 85px;
+  }
+  
+  .main .news ul li .topic p {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .main .news ul li .img-area{
+    width: 40%;
+    float: right;
+    background-color: #828282;
+    overflow: hidden;
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .main .news ul li img{
+    /* width: 99px; */
+    max-height: 100px;;
+  }
+  
+  .main .games {
+    color: white;
+  }
+  
+  .main .games ul li {
+    width: 90%;
+    background-color: #505050;
+    position: relative;
+    left: 5%;
+    border-radius: 20px;
+    text-align: left;
+    height: 200px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  
+  .main .games ul li .info {
+    position: absolute;
+    margin: 7px;
+    font-size: 17px;
+    width: 62%;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .main .games ul li .info p {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .main .games ul li .info .os {
+    margin-top: 10px;
+    background-color: #80808072;
+    padding: 3px;
+    border-radius: 3px;
+  }
+  
+  .main .games ul li .info .os i{
+    color: #fff;
+  }
+  
+  
+  .main .games ul li .img-area{
+    width: 40%;
+    float: right;
+    background-color: #828282;
+    overflow: hidden;
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .main .games ul li img{
+    max-width: 99px;
+    max-height: 200px;;
+  }
 }
 
-.swiper {
-  overflow: hidden;
-  width: 100%;
-}
-.swiper-slide {
-  margin-top: 121px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-.swiper-slide img {
-  display: block;
-  overflow:hidden;
-  width: 100%;
-}
-hr {
-  margin-top: 10vw;
-  display: block;
-  position: relative;
-  border: solid rgba(128,128,128,0.4) 2px;
-  width: 60%;
-  border-radius: 5px;
-}
+@media (min-width: 700px) {
+  .modal, .modal-2 {
+    display: none;
+  }
 
-.games .inner h1 {
-  margin-top: 100px;
-  font-size: 50px;
-  font-family: 'Magra', sans-serif;
-  text-align: center;
-  font-weight:800;
-}
-/* .games .inner .game-name {
-  margin-top: 30px;
-  font-family: "Fugaz One", cursive;
-  font-size: 30px;
-} */
-.games .inner .container{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-.games .inner .container .box{
-  min-width: 113px;
-  min-height: calc(120px * 24 / 17 + 30px);
-  width: 13vw;
-  height:calc(13vw * 24 / 17 + 60px);
-  margin: 8px;
-  border: 3px solid gray;
-  border-radius: 10px;
-  box-sizing: border-box;
-  overflow: hidden;
-  background-color:darkgrey;
-  position: relative;
-}
-.games .inner .container .box .game-img{
-  width: 100%;
-  height: 100%;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  border-radius: 10px;
-  transition:.5s ease-out;
-}
-.games .inner .container .box .btn .more{
-  position: absolute;
-  visibility:hidden;
-  opacity: 0;
-  height: 50px;
-  top: 30%;;
-  right: 50%;
-  transform: translate(50%);
-  border-radius: 10px;
-  transition:.5s ease-out;
-  box-shadow: 10px;
-  width: 80%;
-}
-.games .inner .container .box .btn .download{
-  position: absolute;
-  visibility:hidden;
-  opacity: 0;
-  height: 50px;
-  top: calc(50%);
-  right: 50%;
-  transform: translate(50%);
-  border-radius: 10px;
-  transition:.5s ease-out;
-  box-shadow: 10px;
-  width: 80%;
-  height: 10%;
-}
-.games .inner .container .box .btn .download a{
-  color: black;
-}
-.games .inner .container .box .btn .more a{
-  color: black;
-}
-.games .inner .container .box:nth-child(1) .game-img{
-  background-image: url('./img/all-game/cube.jpg');
-}
-/* .games .inner .container .box:nth-child(2) .game-img{
-  background-image: url('../img/floz.jpg');
-} */
-.games .inner .container .box .game-img .game-name{
-  position:absolute;
-  bottom: 0px;
-}
-.games .inner .container .box .game-img .os{
-  position: absolute;
-  bottom: 0px;
-  right: calc(30% + 10px);
-}
-.games .inner .container .box .game-img .game-name h1{
-  position:absolute;
-  font-family: 'Fugaz One', cursive;
-  font-size: 25px;
-  bottom: 0px;
-}
-.games .inner .container .box .game-img .os img{
-  position: absolute;
-  float:right;
-  bottom: 4px;
-  left: calc(23% + 10px);
-  height: 45px;
-}
+  #mobile {
+    display: none;
+  }
+  .main .inner{
+    margin-bottom: 0px;
+  }
+  #pc {
+    display: block;
+  }
 
-@media (max-width: 1000px) {
-  header h1 {
+  .swiper {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .swiper-slide{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  .swiper-slide-active{
+    z-index: 10;
+  }
+
+  .swiper-slide img{
+    height: 100vh;
+    object-fit: cover;
+    object-position: center; /* Center the image within the element */
+    width: auto;
+  }
+  
+  .swiper-pagination {
+    z-index: 1;
+  }
+  
+  .swiper-pagination-bullet-active {
+    background-color: #fff;
+  }
+  
+  .main {
+    width: 100%;
+    position: relative;
+    top: 110vh;
+    color: #fff;
+  }
+
+  .main .inner {
+    width: 80vw;
+    transform: translate(10vw);
+    position: relative;
+  }
+
+  .main .inner .news .title{
+    margin-bottom: 100px;
+    font-size: 25px;
+  }  
+
+
+  .main .inner .news .left{
+    position: relative;
+    background-image: url("/img/slider/slider2.jpg");
+    width: 38vw;
+    height: 300px;
+    background-position: center center;
+    display: inline-block;
+    line-height: 300px;
+    justify-content: center;
+    text-align: center;
+  }  
+
+  .main .inner .news .right{
+    float: right;
+    width: 39vw;
+    position: relative;
+    overflow-y: scroll;
+    height: 300px;
+  }
+
+  .main .news ul li {
+    background-color: #505050;
+    position: relative;
+    border-radius: 20px;
+    text-align: left;
+    height: 100px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .main .news ul li .topic {
+    position: absolute;
+    margin: 7px;
+    font-size: 17px;
+    width: 62%;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+    height: 85px;
+  }
+  
+  .main .news ul li .topic p {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .main .news ul li .img-area{
+    width: 40%;
+    float: right;
+    background-color: #828282;
+    overflow: hidden;
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .main .news ul li img{
+    /* width: 99px; */
+    max-height: 100px;;
+  }
+
+  .main .games {
+    color: white;
+    position: relative;
+    padding-bottom: 200px;
+  }
+  
+  .main .games .title {
+    color: white;
+    margin-top: 100px;
+    margin-bottom: 100px;
     font-size: 25px;
   }
-
-  header .logo img {
-    width: 50px;
-    height: 50px;
-    margin-top: 20px;
+  
+  .main .games ul li {
+    background-color: #505050;
+    position: relative;
+    border-radius: 20px;
+    text-align: left;
+    height: 500px;
+    margin-bottom: 10px;
+    overflow: hidden;
   }
 
-  header .main-menu .item .item__name {
-    font-size: 12px;
+  .main .games ul li:nth-child(1) {
+    background-image: url("/img/games/cube_el/cube1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
   }
-
-  .games .inner .container .box{
-    height: 15px;
+  
+  .main .games ul li .info {
+    position: relative;
+    margin: 7px;
+    font-size: 17px;
+    width: 62%;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  .games .inner .container .box .btn .more{
-    height: 30px;
-    font-size: 10px;
+  
+  .main .games ul li .info p {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
   }
-  .games .inner .container .box .btn .download{
-    height: 30px;
-    font-size: 10px;
+  
+  .main .games ul li .info .os {
+    margin-top: 10px;
+    background-color: #80808072;
+    padding: 3px;
+    border-radius: 3px;
   }
-  footer .inner .container2 .container2-el{
-    font-size: 8px;
+  
+  .main .games ul li .info .os i{
+    color: #fff;
   }
-  footer .inner .container2 .container2-el a{
-    font-size: 12px;
-    text-align: center;
+  
+  
+  .main .games ul li .img-area{
+    width: 40%;
+    float: right;
+    background-color: #828282;
+    overflow: hidden;
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
   }
-  footer .inner .logo img{
-    width: 60px;
-    left: calc(50% - 30px);
+  
+  .main .games ul li img{
+    max-width: 99px;
+    max-height: 200px;;
   }
 }

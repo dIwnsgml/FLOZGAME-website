@@ -1,91 +1,77 @@
 <header>
-    <div class="inner">
-        <a href = "/" class = "logo">
-            <img src = "/img/floz.jpg" alt = "floz"/>
+  <ul class = "mobile">
+    <li>
+      <button id = "btn-logo">
+        <img src="/img/floz-white.png" alt="floz_logo">
+        <i class="fa-solid fa-caret-down"></i>
+      </button>
+    </li>
+    <li id = "modal2-open">
+      <i class="fa-solid fa-bars fa-xl"></i>
+    </li>
+    <li>
+      <a href="/support">
+        <i class="fa-solid fa-headset fa-xl"></i>
+      </a>
+    </li>
+  </ul>
+  <ul class = "pc">
+    <li>
+      <button id = "btn-logo">
+        <a href="/">
+          <img src="/img/floz-white.png" alt="floz_logo">
         </a>
-        <h1>FLOZ</h1>
-        <ul class = "main-menu">
-            <li class = "item">
-                <div class = "item__name">GAME</div>
-                <div class="item__contents">
-                    <div class="contents__menu">
-                        <ul class = "inner">
-                            <li>
-                                <!-- <img src = "./img/slider/slider2.jpg"> -->
-                                <h4><a href="/games/cube">CUBE</a></h4>
-                                <ul>
-                                    <li><a href = "/app/Cube Beta 1.4.zip" download>Download</a></li>
-                                    <li><a href="/games/cube">Description</a></li>
-                                    <li>Rating</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h4>Termius</h4>
-                                <ul>
-                                    <li>Not ready</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <li class = "item">
-                <div class = "item__name">NEWS</div>
-                <div class="item__contents">
-                    <div class="contents__menu">
-                        <ul class = "inner">
-                            <li>
-                                <h4>CUBE</h4>
-                                <ul>
-                                    <li>Updates</li>
-                                </ul>
-                                <h4>Termius</h4>
-                                <ul>
-                                    <li>Updates</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <li class = "item">
-              <div class = "item__name"><a href="/support">Support</a></div>
-              <div class="item__contents">
-                  <div class="contents__menu">
-                      <ul class = "inner">
-                          <li>
-                              <h4><a href="/support/chat">chat</a></h4>
-                              <h4><a href="/support/email">email</a></h4>
-                              <ul>
-                                  <li>z</li>
-                              </ul>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </li>
-          <li class = "item">
-            <div class = "item__name"><a href="/community">Community</a></div>
-            <div class="item__contents">
-                <div class="contents__menu">
-                    <ul class = "inner">
-                        <li>
-                            <h4><a href="https://www.facebook.com/Flozgame-107806118601215/" target = "_blank">Facebook</a></h4>
-                            <ul>
-                            </ul>
-                            <h4><a href="https://discord.gg/8QYdY9vDfu" target = "_blank">Discord</a></h4>
-                            <ul>
-                            </ul>
-                            <h4><a href="https://twitter.com/FLOZGAME" target = "_blank">Twitter</a></h4>
-                            <ul>
-                            </ul>
-                            <h4><a href="https://www.instagram.com/flozgame/" target = "_blank">Instagram</a></h4>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </li>
+      </button>
+    </li>
+    <li>
+      <div class="title">
+        <h2>WHO WE ARE</h2>
+        <i class="fa-solid fa-caret-down"></i>
+      </div>
+      <div class="item">
+        <ul>
+          <li><a href="/our-story/floz">About FLOZ</a></li>
+          <li><a href="/our-story/flozgame">About FLOZGAME</a></li>
         </ul>
-        <button><a href=<%= path %>><%= button%></a></button>
-    </div>
+      </div>
+    </li>
+    <li>
+      <div class="title">
+        <h2>WORK WITH US</h2>
+        <i class="fa-solid fa-caret-down"></i>
+      </div>
+      <div class="item">
+        <ul>
+          <li><a href="/games/makeyourgame">Upload Your Games</a></li>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <div class="title">
+        <h2>GAMES</h2>
+        <i class="fa-solid fa-caret-down"></i>
+      </div>
+      <div class="item">
+        <ul>
+          <li><a href="/games/cube">CUBE</a></li>
+          <li><a href="/games/makeyourgame">CREATE YOUR GAME</a></li>
+        </ul>
+      </div>
+    </li>
+    <!-- <li>
+      <a href="">
+        <h2>NEWS</h2>
+      </a>
+    </li> -->
+    <li>
+      <a href=<%= path%> class = <%= list%>>
+        <button><%= button%></button>
+      </a>
+    </li>
+    <li>
+      <a href="/support">
+        <i class="fa-solid fa-headset fa-xl"></i>
+      </a>
+    </li>
+  </ul>
 </header>

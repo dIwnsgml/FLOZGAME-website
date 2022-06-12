@@ -1,11 +1,11 @@
-const modal = document.querySelector(".modal");
+const modal3 = document.querySelector(".modal3");
 const btn_chat = document.querySelector("#chat");
 const btn_submit = document.querySelector("#msg-send");
 const message = document.querySelector("#text");
-const btn_close_chat = document.querySelector(".modal .top button");
+const btn_close_chat = document.querySelector(".modal3 .top button");
 const btn_every = document.querySelectorAll('a');
 let textshow = document.querySelector("#textshow");
-const circle = document.querySelector(".modal .top .circle");
+const circle = document.querySelector(".modal3 .top .circle");
 
 
 socket = io();
@@ -19,12 +19,25 @@ socket.on('offline', () => {
   circle.style = 'background-color: #808080;';
   console.log('offline');
 })
-
+var all_msg = [];
+var msg_n = 0;
 socket.on('bring_msg', (msg, time, user) => {
+
   var elem = document.createElement("li");
   var msg_time = document.createElement("li");
   elem.innerText = msg;
   time = new Date(time);
+  //store in arr
+  all_msg[msg_n] = msg;
+  all_msg[msg_n.time] = time;
+  msg_n += 1;
+  if(typeof all_msg[msg_n - 1] != 'undefined'){
+    var past_time = new Date(all_msg[msg_n.time]);
+    console.log(past_time.getDate())
+    if(past_time.getDate() != time.getDate() && past_time.getMonth() != time.getMonth()){
+      console.log("di")
+    }
+  }
   console.log(time.getDate());
   time = time.toLocaleString();
   //time = time.split('-')[2].split('T')[1].split(':')[0] + ':' + time.split('-')[2].split('T')[1].split(':')[1];
@@ -97,7 +110,7 @@ socket.on('admin-online', () => {
 btn_chat.addEventListener('click', () => {
   socket.connect({reconnection: false});
   socket.emit('join', socket.id)
-  modal.style = "display: block;";
+  modal3.style = "display: block;";
   socket.emit("start_bring")
 })
 
@@ -108,7 +121,7 @@ btn_submit.addEventListener('click', () => {
 })
 
 btn_close_chat.addEventListener('click', () => {
-  modal.style = "display: none;";
+  modal3.style = "display: none;";
   var textLi = document.querySelectorAll('#textshow li');
   for(var i = 0; i < textLi.length; i++){
     textLi[i].remove()

@@ -1,132 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <%- include("../elements/head");%>
-        <script defer src="/js/cube.js"></script>
-        <link rel="stylesheet" href="/css/cube.css">
-        <title>Cube</title>
+  <%- include("../elements/head");%>
+  <title>Support</title>
+  <link rel="stylesheet" href="/css/cube.css">
+  <script defer src="/js/modal.js"></script>
 </head>
-
 <body>
-<%- include("../elements/header");%>
-    <div class="floating-area">
-        <div class="float">
-            <img src="/img/games/cube_el/road2.png" alt="" class="road">
+  <header>
+    <%- include("../elements/header");%>
+  </header>
+  <div class="main">
+    <div class="top">
+      <div class="blur">
+        <div class="text">
+          <div class="second">
+            <p>PLAY CUBE!</p>
+          </div>
+          <div class="first">
+            <img src="/img/games/cube_el/cubel.jpg" alt="">
+          </div>
         </div>
-        <div class="float">
-            <img src="/img/games/cube_el/cubel.jpg" alt="" class="cube">
-        </div>
+      </div>
     </div>
-    <div class="middle">
-        <div class="detail">
-            <h1>Details</h1>
-            <div class="container">
-                <ul>
-                    <li>
-                        <div class="genre">
-                            <h1>Genre</h1><br>
-                            <h2>Racing</h2>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="publisher">
-                            <h1>Publisher</h1><br>
-                            <h2>FlozGame</h2>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="dev">
-                            <h1>Developer</h1><br>
-                            <h2>David Ko</h2>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+    <div class="inner">
+      <div class="story">
+        <div class="title">
+          <p>CUBE</p>
         </div>
-        <div class="game-summary">
-            <h1>Game Summary</h1>
-            <div class="container">
-                <div class="inner">
-                    <p>Cube Slider, David's debut work, follows typical run game. However,
-                        he approached the genre in a new way. Rather than making the level cosistsed of randomized
-                        obstacles, he used handmade design.
-                        This kind of approach could results in lacking diversity in gameplay,
-                        but this game doesn't. With really fast-paced gameplay and stylish physical effect,
-                        the game doesn't feel repetitive or boring. Rather,
-                        the level gives the feeling of learning every positions of obstacles.
+        <p>
+          Cube Slider, David's debut work, follows a typical run game. However,
+          he approached the genre in a new way. Rather than making the level consists of randomized
+          obstacles, he used handmade design.
+          This kind of approach could results in lacking diversity in gameplay,
+          but this game doesn't. With really fast-paced gameplay and stylish physical effect,
+          the game doesn't feel repetitive or boring. Rather,
+          the level gives the feeling of learning every position of obstacles.
 
-                        Thus, high color contrast and many other bold stylistic choices, the game differentiates
-                        itself from other similar games.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="two">
-            <div class="comments">
-                <h1>Comments</h1>
-                <a href="/account/login"><%= comment%></a>
-                <div class="container">
-                    <form action="/games/cube/comment" method="post" name="comment">
-                        <div class="form-group">
-                          <label for="rating">Rating</label>
-                          <select name="rate" id="rate">
-                            <option value=5>5</option>
-                            <option value=4>4</option>
-                            <option value=3>3</option>
-                            <option value=2>2</option>
-                            <option value="1">1</option>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <label for="comment" id = "d">Comment</label>
-                          <textarea name="comment" id="comment" cols="30" rows="3" placeholder="ong"></textarea>
-                        </div>
-                        <input type="submit" class="btn btn-primary" value="Add">
-                        
-                      </form>
-                      <ul>
-                        <% for(var i = 0; i < n; i++){%>
-                            <li>
-                                <div class="in">
-                                    <div class="name"><%=ong.rows[i].name%></div>
-                                    <div class="time"><%=ong.rows[i].time%></div>
-                                    <div class="rate">
-                                        <% for(var j = 0; j < ong.rows[i].rate; j++){%>
-                                            <i class="fa-solid fa-star"></i>
-                                        <%}%>
-                                        <% for(var d = 0; d < 5 - ong.rows[i].rate; d++){%>
-                                            <i class="fa-regular fa-star"></i>
-                                        <%}%>
-                                    <%=ong.rows[i].rate%>
-                                    </div>
-                                    <div class="comment"><%=ong.rows[i].comment%></div>
-                                </div>
-                            </li>
-                        <%}%>
-                      </ul>
-                </div>
-                <ul>
-                    <li></li>
-                </ul>
-            </div>
-            <div class="chart">
-                <div class="inner">
-                    <h1>Rating</h1>
-                    <%= avg_score%>
-                    <% for(var j = 1; j < avg_score; j++){%>
-                        <i class="fa-solid fa-star"></i>
-                    <%}%>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                    <% for(var d = 1; d < 5 - avg_score; d++){%>
-                        <i class="fa-regular fa-star"></i>
-                    <%}%>
-                </div>
-                <h1>ong</h1>
-            </div>
-        </div>
+          Thus, high color contrast and many other bold stylistic choices, the game differentiates
+          itself from other similar games.
+
+        </p>
+      </div>
     </div>
     <%- include("../elements/footer");%>
+  </div>
+  <%- include("../elements/modal");%>
 </body>
-
 </html>

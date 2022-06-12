@@ -8,24 +8,25 @@
 <body>
   <%- include("./elements/header");%>
   <div class="main">
-    <div class="inner ong">
-      <div class="fbox">
-        
-          <form action="/account/authentication" method="post" name="form1">
-          <div class="form-group">
-          <label for="exampleInputEmail1">Name</label>
-          <input type="name" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name" value="">
-          </div>
-          <div class="form-group">
-          <label for="exampleInputEmail1">Password</label>
-          <input type="password" name="password" class="form-control" id="password" aria-describedby="emailHelp" placeholder="*********" value="">
-          </div>
-          <input type="submit" class="btn btn-primary" value="Login">
-          </form>
-          <a href="/account/register" class="btn btn-success ml-2">No account? Register here</a>
+    <div class="inner">
+      <div class="box">
+        <form action = "/account/authentication" method="post">
+          <span class="text-center">login</span>
+        <div class="input-container">
+          <input type="text" required="" name = "name"/>
+          <label>USERNAME</label>		
+        </div>
+        <div class="input-container">		
+          <input type="mail" required="" name = "password"/>
+          <label>PASSWORD</label>
+        </div>
+          <input type= "submit" class = "btn" value = "SUBMIT" >
+          <a href="/account/register" class = "text-center">Create Account</a>
+      </form>	
       </div>
     </div>
+    <%- include("./elements/footer");%>
   </div>
-<%- include("./elements/footer");%>
+  <%- include("./elements/modal");%>
 </body>
 </html>
