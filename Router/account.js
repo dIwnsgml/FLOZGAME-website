@@ -69,7 +69,6 @@ router.post('/authentication', function (req, res, next) {
         });
       }
       else {
-        //req.flash('error', 'Please correct enter email and Password!')
         res.write("<script>alert('No such user')</script>");
         res.write("<script>window.location=\"/account/login\"</script>");
       }
@@ -77,16 +76,16 @@ router.post('/authentication', function (req, res, next) {
   })
 })
 
-router.get('/register', function (req, res, next) {
+router.get('/register', function (req, res) {
   if(req.session.loggedin){
     res.render('register', {
-      title: 'Registration Page',
+    title: 'Registration Page',
       name: '',
       email: '',
       password: '',
-      button: "LOGOUT",
-      path: "/account/logout",
-      list: "LOGOUT",
+      button: "SIGN IN",
+      path: "/account/login",
+      list: "",
     })
   } else {
     res.render('register', {
@@ -96,9 +95,11 @@ router.get('/register', function (req, res, next) {
       password: '',
       button: "SIGN IN",
       path: "/account/login",
+      list: "",
     })
   }
 })
+
 
 router.post('/post-register', function (req, res, next) {
   req.assert('name', 'Name is required').notEmpty()           //Validate name
@@ -138,7 +139,6 @@ router.post('/post-register', function (req, res, next) {
               console.log("passwd");
               connection.query('INSERT INTO users SET ?', user);
               if (err) {
-                req.flash('error', err)
                 // render to views/user/add.ejs
                 res.render('register', {
                   title: 'Registration Page',
@@ -149,7 +149,6 @@ router.post('/post-register', function (req, res, next) {
                 res.write("<script>alert('error')</script>");
                 res.write("<script>window.location=\"/account/register\"</script>");
               } else {
-                req.flash('success', 'You have successfully signup!');
                 res.write("<script>alert('success')</script>");
                 res.write("<script>window.location=\"/account/login\"</script>");
               }
@@ -177,7 +176,6 @@ router.post('/post-register', function (req, res, next) {
     errors.forEach(function (error) {
       error_msg += error.msg + '<br>'
     })
-    req.flash('error', error_msg)
     res.render('register', {
       title: 'Registration Page',
       name: req.body.name,

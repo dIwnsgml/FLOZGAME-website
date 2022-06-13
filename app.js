@@ -181,14 +181,7 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
-  // 로컬에서만 에러
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-  // 에러 보여줌
-  res.status(err.status || 500);
-  res.render(err);
-});
+
 
 //172.31.13.110
 server.listen(port, "127.0.0.1", () => {
