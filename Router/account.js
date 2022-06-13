@@ -11,14 +11,8 @@ function hashTest(password) {
   return [salt, crypto.pbkdf2Sync(password, salt, 99097, 32, 'sha512').toString('hex')]
 }
 
-// 암호화
-
-//console.log(createHashedPassword('as'));
-
-//display login page
 router.get('/login', function (req, res, next) {
-  // render to views/user/add.ejs
-  if(req.session.loggedin){
+  if (req.session.loggedin) {
     res.render('login', {
       title: 'Login',
       email: '',
@@ -39,15 +33,11 @@ router.get('/login', function (req, res, next) {
   }
 })
 
-//authenticate user
 router.post('/authentication', function (req, res, next) {
   var name = req.body.name;
   var password = req.body.password;
   console.log(name, [name])
   connection.query('SELECT * FROM users WHERE name = ?', name, function (err, rows, fields) {
-    //console.log(rows)
-    //if(err) throw err
-    // if user not found
     if (typeof rows[0] == 'undefined') {
       res.write("<script>alert('No such user')</script>");
       res.write("<script>window.location=\"/account/login\"</script>");
@@ -77,9 +67,9 @@ router.post('/authentication', function (req, res, next) {
 })
 
 router.get('/register', function (req, res) {
-  if(req.session.loggedin){
+  if (req.session.loggedin) {
     res.render('register', {
-    title: 'Registration Page',
+      title: 'Registration Page',
       name: '',
       email: '',
       password: '',
@@ -190,7 +180,7 @@ router.post('/post-register', function (req, res, next) {
 
 router.get('/logout', function (req, res) {
   req.session.destroy();
-  res.cookie('names', '',{maxAge: 0});
+  res.cookie('names', '', { maxAge: 0 });
   res.redirect('/');
 });
 
