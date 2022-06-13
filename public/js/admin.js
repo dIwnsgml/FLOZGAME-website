@@ -105,7 +105,7 @@ chat_submit.addEventListener('click', () => {
 })
 
 btn_submit.addEventListener('click', () => {
-  console.log(socket.id)
+  console.log(socket.id, socket.userId)
   var msg = message.value;
   var room = chat_textarea.value;
   socket.emit('message', room, msg);

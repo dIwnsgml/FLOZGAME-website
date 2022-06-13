@@ -12,7 +12,6 @@ module.exports = function(io) {
     //console.log(name)
     connection.query("SELECT * FROM users WHERE name = ?", name, async (err, rows, fields) => {
       if (rows[0].chat == null || typeof rows[0].chat == 'undefined') {
-        console.log(rows[0].chat, socket.id)
         io.use((socket, next) => {
           var nsocketid = crypto.randomBytes(10).toString('hex');
           connection.query("UPDATE users SET chat = ? where name = ?", [nsocketid, name]);
