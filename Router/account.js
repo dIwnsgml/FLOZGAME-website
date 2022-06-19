@@ -1,17 +1,18 @@
 var express = require('express');
-var router = express.Router();
+var Router = express.Router();
 var connection = require('../model/db');
 const crypto = require("crypto");
 const util = require("util");
 const { response } = require('express');
 const { name } = require('ejs');
 
-function hashTest(password) {
-  var salt = crypto.randomBytes(32).toString('hex')
+function hashing(password) {
+  let salt = crypto.randomBytes(32).toString('hex')
   return [salt, crypto.pbkdf2Sync(password, salt, 99097, 32, 'sha512').toString('hex')]
 }
 
-router.get('/login', function (req, res, next) {
+Router.get('/login', function (req, res, next) {
+  req.session.r_error_msg = "";
   if (req.session.loggedin) {
     res.render('login', {
       title: 'Login',
@@ -19,7 +20,7 @@ router.get('/login', function (req, res, next) {
       password: '',
       path: '/account/logout',
       button: 'LOGOUT',
-      list: "LOGOUT",
+      error: req.session.error_msg,
     })
   } else {
     res.render('login', {
@@ -28,45 +29,58 @@ router.get('/login', function (req, res, next) {
       password: '',
       path: '/account/login',
       button: 'SIGN IN',
-      list: "",
+      error: req.session.error_msg,
     })
   }
 })
 
-router.post('/authentication', function (req, res, next) {
-  var name = req.body.name;
-  var password = req.body.password;
-  console.log(name, [name])
+Router.post('/authentication', function (req, res, next) {
+  let name = req.body.name;
+  let password = req.body.password;
+  let newName = name.replace(/[^a-z 0-9 ! ? @ .]/gi,'');
+  let newPassword = password.replace(/[^a-z 0-9 ! ? @ .]/gi,'');
+
+  console.log(name, newName,password, newPassword)
+
+  //filter invalid words
+  if(password != newPassword || name != newName){
+    req.session.error_msg = 'INVALID WORD DETECTED';
+    res.redirect('/account/login');
+    return 0;
+  }
   connection.query('SELECT * FROM users WHERE name = ?', name, function (err, rows, fields) {
+    //check if user exist
     if (typeof rows[0] == 'undefined') {
-      res.write("<script>alert('No such user')</script>");
-      res.write("<script>window.location=\"/account/login\"</script>");
-    } else {
-      if (crypto.pbkdf2Sync(password, rows[0].salt, 99097, 32, 'sha512').toString('hex') == rows[0].password) {
-        res.cookie("names", req.body.name, {
-          maxAge: 1000 * 60 * 10,
-          secure: true,
-          httpOnly: true,
-          signed: true,
-          authorized: true,
-          httpOnly: true,
-        });
-        req.session.userId = name;
-        req.session.loggedin = true;
-        req.session.save(() => {
-          console.log(req.session.loggedin, req.sessionID, req.session, req.session.userId)
-          res.redirect('/');
-        });
-      }
-      else {
-        res.write("<script>alert('No such user')</script>");
-        res.write("<script>window.location=\"/account/login\"</script>");
-      }
+      req.session.error_msg = 'NO SUCH USER';
+      res.redirect('/account/login');
+      return 0;
+    }
+
+    if (crypto.pbkdf2Sync(password, rows[0].salt, 99097, 32, 'sha512').toString('hex') == rows[0].password) {
+      res.cookie("names", name, {
+        maxAge: 1000 * 60 * 10,
+        secure: true,
+        httpOnly: true,
+        signed: true,
+        authorized: true,
+        httpOnly: true,
+      });
+      req.session.userId = name;
+      req.session.loggedin = true;
+      res.redirect('/');
+      return 0;
+    }
+    else {
+      req.session.error_msg = 'NO SUCH USER';
+      res.redirect('/account/login');
+      return 0;
     }
   })
 })
 
-router.get('/register', function (req, res) {
+Router.get('/register', function (req, res) {
+  req.session.error_msg = "";
+
   if (req.session.loggedin) {
     res.render('register', {
       title: 'Registration Page',
@@ -75,7 +89,7 @@ router.get('/register', function (req, res) {
       password: '',
       button: "SIGN IN",
       path: "/account/login",
-      list: "",
+      error: req.session.r_error_msg,
     })
   } else {
     res.render('register', {
@@ -85,103 +99,68 @@ router.get('/register', function (req, res) {
       password: '',
       button: "SIGN IN",
       path: "/account/login",
-      list: "",
+      error: req.session.r_error_msg,
     })
   }
 })
 
 
-router.post('/post-register', function (req, res, next) {
-  req.assert('name', 'Name is required').notEmpty()           //Validate name
-  req.assert('password', 'Password is required').notEmpty()   //Validate password
-  req.assert('email', 'A valid email is required').isEmail()  //Validate email
-  var email = req.body.email;
-  var password = req.body.password;
-  var name = req.body.name;
-  var errors = req.validationErrors();
-  var a = hashTest(password);
-  console.log(a, a[0], a[1]);
-  var filtering = function (word) {
-    return name.indexOf(word)
+Router.post('/post-register', function (req, res, next) {
+  let email = req.body.email;
+  let name = req.body.name;
+  let password = req.body.password;
+
+  let newEmail = email.replace(/[^a-z 0-9 ! ? @ .]/gi,'');
+  let newName = name.replace(/[^a-z 0-9 ! ? @ .]/gi,'');
+  let newPassword = password.replace(/[^a-z 0-9 ! ? @ .]/gi,'');
+
+  if(email != newEmail || name != newName || password != newPassword){
+    req.session.r_error_msg = 'INVALID WORD DETECTED';
+    res.redirect('/account/register');
+    return 0;
   }
 
-  if (!errors) {   //No errors were found.  Passed Validation!
-    if ((filtering('fuck') + filtering(':') + filtering('병신') + filtering('장애') + filtering('좆') + filtering('mom') + filtering('느금') + filtering('애미') + filtering('애비') + filtering(';') + filtering('}') + filtering('{') + filtering(',')) != -13) {
-      console.log("o");
-      res.write("<script>alert('Invalid word detected.')</script>");
-      res.write("<script>window.location=\"/account/register\"</script>");
-    } else {
-      connection.query("SELECT * FROM users WHERE email = ?", email, function (err, rows, field) {
+  let hashed = hashing(password);
+  console.log(hashed, hashed[0], hashed[1]);
+
+  //check email
+  connection.query("SELECT * FROM users WHERE email = ?", email, function (err, rows, field) {
+    if (typeof rows[0] == 'undefined') {
+      //check name
+      connection.query("SELECT * FROM users WHERE name = ?", name, function (err, rows, field) {
         if (typeof rows[0] == 'undefined') {
-          connection.query("SELECT * FROM users WHERE name = ?", name, function (err, rows, field) {
-            if (typeof rows[0] == 'undefined') {
-              console.log("new");
-              var user = {
-                name: req.sanitize('name').escape().trim(),
-                email: req.sanitize('email').escape().trim(),
-                password: a[1],
-                salt: a[0],
-
-                //req.sanitize('password').escape().trim(),
-              }
-
-              console.log(hashTest(password));
-              console.log("passwd");
-              connection.query('INSERT INTO users SET ?', user);
-              if (err) {
-                // render to views/user/add.ejs
-                res.render('register', {
-                  title: 'Registration Page',
-                  name: '',
-                  password: '',
-                  email: ''
-                });
-                res.write("<script>alert('error')</script>");
-                res.write("<script>window.location=\"/account/register\"</script>");
-              } else {
-                res.write("<script>alert('success')</script>");
-                res.write("<script>window.location=\"/account/login\"</script>");
-              }
-            } else {
-              console.log("not new");
-              res.write("<script>alert('already exist')</script>");
-              res.write("<script>window.location=\"/account/register\"</script>");
-              /* res.redirect("/account/register");
-              req.flash('error', 'already exist'); */
-            }
-          })
+          console.log("new");
+          var user = {
+            name: req.sanitize('name').escape().trim(),
+            email: req.sanitize('email').escape().trim(),
+            password: hashed[1],
+            salt: hashed[0],
+          }
+          console.log(hashing(password));
+          console.log("passwd");
+          connection.query('INSERT INTO users SET ?', user);
+          res.redirect('/account/login');
+          return 0;
         } else {
-          console.log("not new");
-          res.write("<script>alert('already exist')</script>");
-          res.write("<script>window.location=\"/account/register\"</script>");
-          /* res.redirect("/account/register");
-          req.flash('error', 'already exist'); */
+          req.session.r_error_msg = 'ALREADY EXIST';
+          console.log('not new');
+          res.redirect('/account/register');
         }
-      });
-      console.log(email);
+      })
+      return 0;
+    } else {
+      console.log("not new");
+      req.session.r_error_msg = 'ALREADY EXIST';
+      res.redirect('/account/register');
     }
-  }
-  else {
-    var error_msg = ''
-    errors.forEach(function (error) {
-      error_msg += error.msg + '<br>'
-    })
-    res.render('register', {
-      title: 'Registration Page',
-      name: req.body.name,
-      email: req.body.email,
-      password: '',
-      button: "SIGN IN",
-      name: req.session.name,
-      path: "/account/login"
-    })
-  }
+  });
+  console.log(email);
 })
 
-router.get('/logout', function (req, res) {
+Router.get('/logout', function (req, res) {
   req.session.destroy();
   res.cookie('names', '', { maxAge: 0 });
   res.redirect('/');
 });
 
-module.exports = router;
+module.exports = Router;

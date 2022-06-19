@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <%- include("./elements/head");%>
-  <title>Login</title>
+  <title>Login | FLOZGAME</title>
   <link rel="stylesheet" href="/css/login.css">
   <script defer src="/js/modal.js"></script>
 </head>
@@ -13,6 +13,7 @@
       <div class="box">
         <form action = "/account/authentication" method="post">
           <span class="text-center">login</span>
+          <span class="text-center error_msg"><%= error%></span>
         <div class="input-container">
           <input type="text" required="" name = "name"/>
           <label>USERNAME</label>		

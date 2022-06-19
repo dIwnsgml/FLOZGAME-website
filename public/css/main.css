@@ -305,7 +305,7 @@
   }
   
   .main .games ul li .info {
-    position: relative;
+    position: absolute;
     margin: 7px;
     font-size: 17px;
     width: 62%;
@@ -338,17 +338,14 @@
   .main .games ul li .img-area{
     width: 40%;
     float: right;
-    background-color: #828282;
+    background-image: url("/img/games/cube_el/cubel.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
     overflow: hidden;
     clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
-  }
-  
-  .main .games ul li img{
-    max-width: 99px;
-    max-height: 200px;;
   }
 }

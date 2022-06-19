@@ -26,7 +26,7 @@ app.use(helmet.referrerPolicy());
 app.use(helmet.xssFilter());
 app.use(helmet.hsts());
 app.use(helmet.ieNoOpen());
-//app.use(helmet.noSniff());
+app.use(helmet.noSniff());
 //app.use(helmet.contentSecurityPolicy());
 app.use(helmet.dnsPrefetchControl());
 app.use(helmet.expectCt());
@@ -75,26 +75,6 @@ app.use('/games', gameRouter);
 app.use('/support', supportRouter);
 app.use('/admin', adminRouter);
 app.use('/our-story', ourStoryRouter);
-
-/* io.on('connection', (socket) => {
-  //var room = req.session.name;
-  socket.on('discconect', () => {
-    console.log("disconnected");
-  })
-  socket.emit('usercount', io.engine.clientsCount);
-  // on 함수로 이벤트를 정의해 신호를 수신할 수 있다.
-  socket.on('message', (msg) => {
-    var room = msg.room;
-      io.emit('message', msg);
-      console.log(msg);
-      console.log(room);
-  });
-
-  socket.on('join', (requsetData) => {
-    socket.join(room)
-  })
-}); */
-
 
 io.sockets.on('connection', async (socket) => {
 
@@ -181,7 +161,15 @@ app.use(function (req, res, next) {
 });
 
 // error handler
+app.use(function (err, req, res, next) {
+  // 로컬에서만 에러
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+  // 에러 보여줌
+  res.status(err.status || 500);
+  res.render(err);
+});
 
 //172.31.13.110
 server.listen(port, "127.0.0.1", () => {

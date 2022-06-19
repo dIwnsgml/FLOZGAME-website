@@ -312,6 +312,10 @@ body {
     font-weight: 500;
     font-size: 20px;
   }
+
+  .inner .story > p {
+    line-height: 23px;
+  }
   
   .modal3 > .modal3-wrapper > button {
     position: fixed;

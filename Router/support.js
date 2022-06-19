@@ -9,7 +9,6 @@ module.exports = function(io) {
   Router.get('/', (req, res) => {
     var name = req.session.userId;
     console.log(name)
-    //console.log(name)
     connection.query("SELECT * FROM users WHERE name = ?", name, async (err, rows, fields) => {
       if (rows[0].chat == null || typeof rows[0].chat == 'undefined') {
         io.use((socket, next) => {

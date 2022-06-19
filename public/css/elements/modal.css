@@ -81,6 +81,7 @@ p, h1, h2, a, h3, h4, h5, h6, a {
 
   .modal .inner > ul > li{
     margin-bottom: 10px;
+    color: #000;
   }
 
   .modal .inner > ul > li .title{
@@ -159,6 +160,7 @@ p, h1, h2, a, h3, h4, h5, h6, a {
 
   .modal .inner .inform {
     text-align: center;
+    color: #000;
   }
 
   .modal .inner .inform ul li {
@@ -167,14 +169,14 @@ p, h1, h2, a, h3, h4, h5, h6, a {
   }
 
   .modal .inner .inform ul li img {
-    width: 100vw;
+    width: 100%;
   }
 
   /* modal 2*/
 
   .modal-2 {
     opacity: 0;
-    position: relative;
+    position: fixed;
     z-index: 4;
     width: 100vw;
     display: none;
@@ -184,7 +186,6 @@ p, h1, h2, a, h3, h4, h5, h6, a {
 
   .modal-2 .inner {
     margin: 13px;
-    height: 130vh;
   }
 
   .modal-2.animation {
@@ -195,6 +196,10 @@ p, h1, h2, a, h3, h4, h5, h6, a {
     width: 100vw;
     height: 100vh;
     overflow-y: scroll;
+  }
+
+  .modal-2 .inner .top #btn-modal img {
+    width: 60px;
   }
 
   .modal-2 .inner .top #btn-modal {
@@ -227,6 +232,7 @@ p, h1, h2, a, h3, h4, h5, h6, a {
 
   .modal-2 .inner > ul > li{
     margin-bottom: 10px;
+    color: #000;
   }
 
   .modal-2 .inner > ul > li a{

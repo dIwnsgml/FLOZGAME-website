@@ -111,3 +111,9 @@ a.text-center:hover{
 	top:-12px;
 	font-size:12px;
 }
+
+.error_msg {
+  color: #e74c3c;
+  position: relative;
+  top: -30px;
+}

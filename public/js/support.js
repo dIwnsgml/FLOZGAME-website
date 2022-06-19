@@ -19,12 +19,12 @@ socket.on('offline', () => {
   circle.style = 'background-color: #808080;';
   console.log('offline');
 })
-var all_msg = [];
-var msg_n = 0;
+let all_msg = [];
+let msg_n = 0;
 socket.on('bring_msg', (msg, time, user) => {
 
-  var elem = document.createElement("li");
-  var msg_time = document.createElement("li");
+  let elem = document.createElement("li");
+  let msg_time = document.createElement("li");
   elem.innerText = msg;
   time = new Date(time);
   //store in arr
@@ -32,7 +32,7 @@ socket.on('bring_msg', (msg, time, user) => {
   all_msg[msg_n.time] = time;
   msg_n += 1;
   if(typeof all_msg[msg_n - 1] != 'undefined'){
-    var past_time = new Date(all_msg[msg_n.time]);
+    let past_time = new Date(all_msg[msg_n.time]);
     console.log(past_time.getDate())
     if(past_time.getDate() != time.getDate() && past_time.getMonth() != time.getMonth()){
       console.log("di")
@@ -40,15 +40,6 @@ socket.on('bring_msg', (msg, time, user) => {
   }
   console.log(time.getDate());
   time = time.toLocaleString();
-  //time = time.split('-')[2].split('T')[1].split(':')[0] + ':' + time.split('-')[2].split('T')[1].split(':')[1];
-  /* if(time.split(':')[0] > 12){
-    time = time.split(':')[0] - 12 + time.split(':')[1];
-    time += ' PM';
-  } else {
-    time += ' AM';
-  } */
-
-  //console.log(time);
 
   if(time.search('오전') != -1){
     time = time.replace('오전', '');
@@ -76,9 +67,9 @@ socket.on('bring_msg', (msg, time, user) => {
 });
 
 socket.on('msg', (msg, user) => {
-  var elem = document.createElement("li");
-  var msg_time = document.createElement("li");
-  var now = new Date();
+  let elem = document.createElement("li");
+  let msg_time = document.createElement("li");
+  let now = new Date();
   if(now.getHours() > 12){
     time = now.getHours() - 12 + ':' + now.getMinutes();
     time += ' PM';
@@ -115,36 +106,11 @@ btn_chat.addEventListener('click', () => {
 })
 
 btn_submit.addEventListener('click', () => {
-  var msg = message.value;
+  let msg = message.value;
   socket.emit('message', socket.id, msg);
   message.value = "";
 })
 
 btn_close_chat.addEventListener('click', () => {
   modal3.style = "display: none;";
-  var textLi = document.querySelectorAll('#textshow li');
-  for(var i = 0; i < textLi.length; i++){
-    textLi[i].remove()
-  }
-  socket.emit("Fdisconnect");
 })
-
-
-//window.open("youtube.com", "ong", "width = 500px, height = 100px;");
-// 메시지 수신시 HTML에 메시지 내용 작성
-/* socket.on('message', (msg) => {
-    var messageList = document.getElementById('messages');
-    var messageTag = document.createElement("li");
-    messageTag.innerText = msg;
-    messageList.appendChild(messageTag);
-});
-
-msgform.onsubmit = (e) => {
-    e.preventDefault();
-    var msginput = document.getElementById('msginput');
-
-    // socket.emit으로 서버에 신호를 전달
-    socket.emit('message', msginput.value);
-
-    msginput.value = "";
-}; */

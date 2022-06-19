@@ -7,39 +7,19 @@ var count = 0;
 var score = 0;
 
 Router.get('/cube', (req, res) => {
-  conn.query('SELECT * FROM comments', function (err, rows, fields) {
-    if(typeof rows != 'undefined'){
-      for (var i = 0; typeof rows[i] != 'undefined'; i++) {
-        count++;
-        score += rows[i].rate;
-      }
-    }
-    console.log(count)
-    if (req.session.loggedin) {
-      res.render('games/cube', {
-        path: '/account/logout',
-        button: 'LOGOUT',
-        comment: '',
-        ong: { rows },
-        n: count,
-        avg_score: Math.round(score / count * 100) / 100,
-        list: "LOGOUT",
-      });
-    } else {
-      res.render('games/cube', {
-        path: '/account/login',
-        button: 'SIGN IN',
-        comment: 'Login to leave a comment',
-        ong: { rows },
-        n: count,
-        avg_score: Math.round(score / count * 100) / 100,
-        list: "",
-      });
-      console.log()
-    }
-  })
-  count = 0;
-  score = 0;
+  if (req.session.loggedin) {
+    res.render('games/cube', {
+      path: '/account/logout',
+      button: 'LOGOUT',
+      comment: '',
+    });
+  } else {
+    res.render('games/cube', {
+      path: '/account/login',
+      button: 'SIGN IN',
+      comment: 'Login to leave a comment',
+    });
+  }
 })
 Router.post('/cube/comment', (req, res) => {
   let today = new Date();

@@ -3,7 +3,7 @@
 
 <head>
   <%- include("./elements/head");%>
-  <title>Register</title>
+  <title>Register | FLOZGAME</title>
     <link rel="stylesheet" href="/css/login.css">
     <script defer src="/js/modal.js"></script>
 </head>
@@ -14,6 +14,7 @@
       <div class="box">
         <form action = "/account/post-register" method="post">
           <span class="text-center">register</span>
+          <span class="text-center error_msg"><%= error%></span>
           <div class="input-container">
             <input type="email" required="" name = "email"/>
             <label>EMAIL</label>		

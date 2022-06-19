@@ -1,6 +1,4 @@
 const express = require("express");
-const conn = require("../model/db");
-const app = express();
 const Router = express.Router();
 
 Router.get('/floz', (req, res) => {
