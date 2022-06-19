@@ -10,19 +10,27 @@
   #pc {
     display: none;
   }
-
   .swiper {
     position: absolute;
     width: 100%;
     overflow: hidden;
   }
-  
-  .swiper-slide img{
-    width: 100vw;
+
+  .swiper-slide{
+    align-items: center;
+    justify-content: center;
+    display: flex;
   }
-  
-  .swiper-pagination {
-    z-index: 1;
+
+  .swiper-slide-active{
+    z-index: 10;
+  }
+
+  .swiper-slide img{
+    height: 100vh;
+    object-fit: cover;
+    object-position: center; /* Center the image within the element */
+    width: auto;
   }
   
   .swiper-pagination-bullet-active {
