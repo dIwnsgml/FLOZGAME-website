@@ -13,11 +13,10 @@ const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const connection = require("./model/db");
 const helmet = require("helmet");
-const secret = require('./secret.json');
+const secret = require('./secret.json').place[0];
 const http = require('http');
 var server = http.createServer(app);
 var io = require('socket.io')(server);
-
 
 
 
@@ -162,16 +161,20 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
-  // 로컬에서만 에러
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // error for local
+  if(secret.place != 'dev'){
+    err.message = {}
+    res.render('error');
+  }
+  /* res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {}; */
 
   // 에러 보여줌
   res.status(err.status || 500);
-  res.render(err);
+  res.render(err.message);
 });
 
-server.listen(port, secret.address[0], () => {
+server.listen(port, secret.address, () => {
   console.log(`Server running ${port}`);
 });
 
