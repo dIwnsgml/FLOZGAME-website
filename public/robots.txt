@@ -3,4 +3,12 @@ User-agent: *
 Allow: /
 Allow: /account/login
 Allow: /account/register
-Disallow: /admin/
+Allow: /support
+Allow: /our-story/floz
+Allow: /our-story/flozgame
+Allow: /games/makeyourgame
+Allow: /games/cube
+Allow: /security
+Allow: /privacy-notice
+Allow: /terms-of-service
+Disallow: /admin

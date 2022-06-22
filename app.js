@@ -13,11 +13,10 @@ const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const connection = require("./model/db");
 const helmet = require("helmet");
-const secret = '123456cat';
+const secret = require('./secret.json');
 const http = require('http');
 var server = http.createServer(app);
 var io = require('socket.io')(server);
-const fileStore = require('session-file-store')(session);
 
 
 
@@ -49,11 +48,11 @@ app.set('socketio', io);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser(secret));
+app.use(cookieParser(secret.secretId));
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(session({
-  secret: secret,
+  secret: secret.secretId,
   resave: false,
   saveUninitialized: true,
   cookie: { 
@@ -171,8 +170,7 @@ app.use(function (err, req, res, next) {
   res.render(err);
 });
 
-//172.31.13.110
-server.listen(port, "127.0.0.1", () => {
+server.listen(port, secret.address[0], () => {
   console.log(`Server running ${port}`);
 });
 

@@ -13,6 +13,17 @@
   }
 }
 
+@keyframes tleft {
+  from {
+    transform: translate(200px, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
 @keyframes blur {
   to {
     backdrop-filter: blur(8px); 
@@ -60,6 +71,26 @@ body {
   font-size: 30px;
 }
 
+.main > .top .text .second{
+  opacity: 0;
+  animation: tleft 1.1s alternate forwards;
+  animation-delay: 1.5s;
+  font-size: 30px;
+}
+
+.inner .or{
+  text-align: center;
+  margin-top: 50px;
+  font-size: 27px;
+}
+
+.inner .or p{
+  animation: tright 2s alternate forwards;
+  animation-delay: 3s;
+  opacity: 0;
+}
+
+
 .main .inner .wrapper{
   display: flex;
   align-items: center;
@@ -86,250 +117,123 @@ body {
 .main > .inner .email {
   margin-bottom: 800px;
 }
-/*modal*/
-@media (max-width: 700px) {
-  .modal3 {
-    z-index: 10;
-    position: fixed;
-    width: 100vw;
-    height: 700px;
-    border-radius: 10px;
-    background-color: #fafafa;
-    display: none;
-    top: -100px;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    color: #000;
-  }
-  
-  .modal3 .modal3-wrapper {
-    position: relative;
-    width: 100vw;
-    height: 700px;
-    transform: translate(0, 0);
-  }
-  
-  .modal3 .top {
-    position: relative;
-    top: 0px;
-    width: calc(100% - 5px);
-    height: 50px;
-    border: solid #808080 2px;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-  }
-  
-  .modal3 .top h1{
-    float: left;
-  }
-  
-  .modal3 .top .circle{
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
-    background-color: #808080;
-    float: left;
-    position: relative;
-    left: 10px;
-  }
-  
-  .modal3 .top button {
-    float: right;
-    padding: 10px;
-    border: 0px;
-    position: relative;
-    background-color: transparent;
-  }
-  
-  .modal3 .top button i{
-    color: red;
-  }
-  
-  .modal3 #textshow{
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 600px;
-    top: 55px;
-    position: relative;
-  }
-  
-  .modal3 #textshow li.chat{
-    margin: 15px;
-    padding: 10px;
-    border:#808080;
-    background-color: bisque;
-    max-width: 150px;
-    min-width: 70px;
-    clear: both;
-    word-break:break-all;
-    float: left;
-    text-align: left;
-    border-radius: 10px;
-  }
-  
-  .modal3 #textshow li.time{
-    margin-right: 20px;
-    margin-left: 20px;
-    font-size: 10px;
-    clear: both;
-    word-break:break-all;
-    float: left;
-    text-align: left;
-    border-radius: 10px;
-  }
-  
-  .modal3 textarea#text{
-    position: absolute;
-    bottom: 0px;
-    width: calc(100% - 55px);
-    height: 40px;
-    border: #000 solid 1px;
-    border-bottom-left-radius: 10px;
-    resize: none;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-  }
-  
-  .modal3 > .modal3-wrapper > button {
-    position: relative;
-    float: right;
-    bottom: 0px;
-    right: 0px;
-    width: 48px;
-    height: 48px;
 
-    border-bottom-right-radius: 10px;
-    border:#808080 1px solid;
-  }
-  
-  .modal3 i.fa-paper-plane {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-  }
+/*modal*/
+
+.modal3 {
+  z-index: 10;
+  position: fixed;
+  width: 500px;
+  height: 700px;
+  border-radius: 10px;
+  background-color: #fafafa;
+  display: none;
+  transform:translate(calc(50vw - 250px), calc(50vh - 250px));
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
-@media (min-width: 700px) {
-  .modal3 {
-    z-index: 10;
-    position: fixed;
-    width: 500px;
-    height: 700px;
-    border-radius: 10px;
-    background-color: #fafafa;
-    display: none;
-    top: -100px;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    color: #000;
-  }
-  
-  .modal3 .modal3-wrapper {
-    position: absolute;
-    width: 500px;
-    height: 700px;
-    transform: translate(0, 0);
-  }
-  
-  .modal3 .top {
-    position: absolute;
-    top: 0px;
-    width: calc(100% - 5px);
-    height: 50px;
-    border: solid #808080 2px;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-  }
-  
-  .modal3 .top h1{
-    float: left;
-  }
-  
-  .modal3 .top .circle{
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
-    background-color: #808080;
-    float: left;
-    position: relative;
-    left: 10px;
-  }
-  
-  .modal3 .top button {
-    float: right;
-    padding: 10px;
-    border: 0px;
-    background-color: transparent;
-  }
-  
-  .modal3 .top button i{
-    color: red;
-  }
-  
-  .modal3 #textshow{
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 600px;
-    top: 55px;
-    position: relative;
-  }
-  
-  .modal3 #textshow li.chat{
-    margin: 15px;
-    padding: 10px;
-    border:#808080;
-    background-color: bisque;
-    max-width: 150px;
-    min-width: 70px;
-    clear: both;
-    word-break:break-all;
-    float: left;
-    text-align: left;
-    border-radius: 10px;
-  }
-  
-  .modal3 #textshow li.time{
-    margin-right: 20px;
-    margin-left: 20px;
-    font-size: 10px;
-    clear: both;
-    word-break:break-all;
-    float: left;
-    text-align: left;
-    border-radius: 10px;
-  }
-  
-  .modal3 textarea#text{
-    position: absolute;
-    bottom: 0px;
-    width: calc(100% - 55px);
-    height: 40px;
-    border: #000 solid 1px;
-    border-bottom-left-radius: 10px;
-    resize: none;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-  }
+.modal3 .top {
+  position: absolute;
+  top: 0px;
+  width: calc(100% - 5px);
+  height: 50px;
+  border: solid #808080 2px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
 
-  .inner .story > p {
-    line-height: 23px;
-  }
-  
-  .modal3 > .modal3-wrapper > button {
-    position: fixed;
-    bottom: 0px;
-    right: 0px;
-    width: 48px;
-    height: 48px;
-    border-bottom-right-radius: 10px;
-    border:#808080 1px solid;
-  }
-  
-  .modal3 i.fa-paper-plane {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-  }
+.modal3 .top h1{
+  float: left;
+}
+
+.modal3 .top .circle{
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #808080;
+  float: left;
+  position: relative;
+  left: 10px;
+}
+
+.modal3 .top button {
+  float: right;
+  padding: 10px;
+  border: 0px;
+  background-color: transparent;
+}
+
+.modal3 .top button i{
+  color: red;
+}
+
+.modal3 #textshow{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 600px;
+  top: 55px;
+  position: relative;
+}
+
+.modal3 #textshow li.chat{
+  margin: 15px;
+  padding: 10px;
+  border:#808080;
+  background-color: bisque;
+  max-width: 150px;
+  min-width: 70px;
+  clear: both;
+  word-break:break-all;
+  float: left;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.modal3 #textshow li.time{
+  margin-right: 20px;
+  margin-left: 20px;
+  font-size: 10px;
+  clear: both;
+  word-break:break-all;
+  float: left;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.modal3 textarea#text{
+  position: absolute;
+  bottom: 0px;
+  width: calc(100% - 55px);
+  height: 40px;
+  border: #000 solid 1px;
+  border-bottom-left-radius: 10px;
+  resize: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.modal3 > button {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  width: 48px;
+  height: 48px;
+  border-bottom-right-radius: 10px;
+  border:#808080 1px solid;
+}
+
+.modal3 i.fa-paper-plane {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+.img {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-image: url("../img/support.jpg");
 }
