@@ -120,6 +120,8 @@ body {
 
 /*modal*/
 
+/*modal*/
+
 .modal3 {
   z-index: 10;
   position: fixed;
@@ -128,7 +130,7 @@ body {
   border-radius: 10px;
   background-color: #fafafa;
   display: none;
-  transform:translate(calc(50vw - 250px), calc(50vh - 250px));
+  color: #000;
   overflow-y: hidden;
   overflow-x: hidden;
 }
@@ -202,7 +204,7 @@ body {
 }
 
 .modal3 textarea#text{
-  position: absolute;
+  position: relative;
   bottom: 0px;
   width: calc(100% - 55px);
   height: 40px;
@@ -211,13 +213,18 @@ body {
   resize: none;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 500;
+  float: left;
   font-size: 20px;
 }
 
-.modal3 > button {
-  position: fixed;
-  bottom: 0px;
-  right: 0px;
+.modal3-wrapper .buttom {
+  position: relative;
+  top: 54px;
+}
+
+.modal3-wrapper > .buttom > button {
+  float: right;
+  position: relative;
   width: 48px;
   height: 48px;
   border-bottom-right-radius: 10px;
@@ -225,7 +232,6 @@ body {
 }
 
 .modal3 i.fa-paper-plane {
-  position: absolute;
   bottom: 15px;
   right: 15px;
 }
@@ -236,4 +242,10 @@ body {
   height: 300px;
   background-repeat: no-repeat;
   background-image: url("../img/support.jpg");
+}
+
+@media (max-width: 700px) {
+  .modal3 {
+    width: 100vw;
+  }
 }
