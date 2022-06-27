@@ -10,12 +10,12 @@ const expressValidator = require('express-validator');
 const session = require("express-session");
 const flash = require("express-flash");
 const bodyParser = require("body-parser");
-const mysql = require("mysql");
 const connection = require("./model/db");
 const helmet = require("helmet");
 const secret = require('./secret.json').place[0];
 const http = require('http');
-var server = http.createServer(app);
+const xXssProtection = require("x-xss-protection");
+var server = https.createServer(app);
 var io = require('socket.io')(server);
 
 
@@ -31,6 +31,7 @@ app.use(helmet.dnsPrefetchControl());
 app.use(helmet.expectCt());
 app.use(helmet.frameguard());
 app.use(helmet.hidePoweredBy());
+app.use(xXssProtection());
 
 
 const mainRouter = require("./Router/main");
@@ -58,7 +59,7 @@ app.use(session({
   cookie: { 
     maxAge: 1000 * 60 * 10,
     secure: false,
-    httpOnly: false,
+    httpOnly: true,
     signed: true,
     authorized: true,
   },

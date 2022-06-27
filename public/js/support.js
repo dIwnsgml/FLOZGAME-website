@@ -9,7 +9,7 @@ const circle = document.querySelector(".modal3 .top .circle");
 
 
 socket = io();
-
+socket.emit("start_bring")
 socket.on('online', () => {
   circle.style = 'background-color: green;';
   console.log('online');
@@ -97,12 +97,11 @@ socket.on('msg', (msg, user) => {
 socket.on('admin-online', () => {
   console.log('admin')
 })
-
 btn_chat.addEventListener('click', () => {
   socket.connect({reconnection: false});
   socket.emit('join', socket.id)
   modal3.style = "display: block;";
-  socket.emit("start_bring")
+  textshow.scrollTo(0, 100000000);
 })
 
 btn_submit.addEventListener('click', () => {
