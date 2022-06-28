@@ -15,7 +15,7 @@ const helmet = require("helmet");
 const secret = require('./secret.json').place[0];
 const http = require('http');
 const xXssProtection = require("x-xss-protection");
-var server = https.createServer(app);
+var server = http.createServer(app);
 var io = require('socket.io')(server);
 
 

@@ -66,7 +66,7 @@ Router.get('/terms-of-service', (req, res) => {
       path: "/account/login",
     });
   }
-})
+});
 
 Router.get('/robots.txt', (req, res) => {
   res.render("robots.txt");
@@ -74,6 +74,10 @@ Router.get('/robots.txt', (req, res) => {
 
 Router.get('/sitemap.xmal', (req, res) => {
   res.render('sitemap.xml');
+});
+
+Router.get('/ads.txt', (req, res) => {
+  res.render('ads.txt');
 });
 
 module.exports = Router;
