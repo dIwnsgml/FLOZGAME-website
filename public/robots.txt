@@ -11,5 +11,6 @@ Allow: /games/cube
 Allow: /security
 Allow: /privacy-notice
 Allow: /terms-of-service
+Allow: /ads.txt
 Disallow: /admin
-Disallow: /ads.txt
+Disallow: /ads
