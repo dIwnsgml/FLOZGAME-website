@@ -13,4 +13,3 @@ Allow: /privacy-notice
 Allow: /terms-of-service
 Allow: /ads.txt
 Disallow: /admin
-Disallow: /ads
