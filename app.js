@@ -12,9 +12,9 @@ const flash = require("express-flash");
 const bodyParser = require("body-parser");
 const connection = require("./model/db");
 const helmet = require("helmet");
-const secret = require('./secret.json').place[0];
+const secret = require('./config/secret.json').place[0];
 const http = require('http');
-const xXssProtection = require("x-xss-protection");
+const crypto = require("crypto")
 var server = http.createServer(app);
 var io = require('socket.io')(server);
 
@@ -31,8 +31,23 @@ app.use(helmet.dnsPrefetchControl());
 app.use(helmet.expectCt());
 app.use(helmet.frameguard());
 app.use(helmet.hidePoweredBy());
-app.use(xXssProtection());
+app.use((req, res, next) => {
+  res.locals.cspNonce = crypto.randomBytes(16).toString("hex");
+  res.setHeader("X-XSS-protection", "1; mode=block");
+  //console.log(res.locals.cspNonce)
+  next();
+});
+app.use(helmet.frameguard({ action: 'SAMEORIGIN' }));
 
+const cspOptions = {
+  directives: {
+    defaultSrc: ["'self'", "*.googleapis.com", "'unsafe-inline'", "*.fonts.gstatic.com", "*.googletagmanager.com", "*.fontawesome.com", "https://googleads.g.doubleclick.net", "https://pagead2.googlesyndication.com"],
+    scriptSrc: ["'self'", "*.swiper-bundle.min.js", "https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js", "*.fontawesome.com", "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"],
+    "img-src": ["'self'", "data:"],
+  }
+}
+
+app.use(helmet.contentSecurityPolicy(cspOptions))
 
 const mainRouter = require("./Router/main");
 const accountRouter = require("./Router/account");

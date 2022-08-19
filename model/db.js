@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-const secret = require("../secret.json").place[0];
+const secret = require("../config/secret.json").place[0];
 
 //local
 const conn = mysql.createConnection({
